@@ -9,23 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import * as filters from './filters'
 
 
-
-
-// import  '../../../static/ueditor1.4.3/themes/default/css/ueditor.min.css'
-// import  '../../../static/ueditor1.4.3/themes/default/dialogbase.css'
-// import  '../../../static/ueditor1.4.3/themes/iframe.css'
-import  '../../../static/ueditor1.4.3/ueditor.config.js'
-import  '../../../static/ueditor1.4.3/ueditor.all.min.js'
-import  '../../../static/ueditor1.4.3/lang/zh-cn/zh-cn.js'
-import  '../../../static/ueditor1.4.3/ueditor.parse.min.js'
-
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
-
 Vue.config.productionTip = false
-import '../../style/public.scss';
-import '../../style/iconfont.css'
 import $ from 'jquery'
 window.jQuery = $;
 window.$ = $;

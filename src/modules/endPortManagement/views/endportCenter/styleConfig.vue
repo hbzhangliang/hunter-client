@@ -151,7 +151,6 @@
   }
 </script>
 <style lang="scss" scoped>
-  @import '../../../../style/fnMixin';
   $borderColor:rgba(220,220,200,0.4);
   .content{
     margin-top: 15px;

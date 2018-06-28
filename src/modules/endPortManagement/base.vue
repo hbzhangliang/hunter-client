@@ -2,7 +2,7 @@
 <template>
   <div id="main-container" class="clearfix">
     <div class="sub-header bgc-fff clearfix">
-      <menu-header :isShow="false"></menu-header><crumbs></crumbs>
+      <menu-header :isShow="true"></menu-header><crumbs></crumbs>
       <div class="h-10 bgc-f7f7fb"></div>
     </div>
     <Slide class="slider"></Slide>
