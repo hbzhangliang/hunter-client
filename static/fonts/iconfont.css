@@ -1,0 +1,19 @@
+
+@font-face {font-family: "iconfont";
+  src:url('iconfont.ttf?t=1512540871678') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+}
+
+.iconfont-t {
+  font-family:"iconfont" !important;
+  font-size:14px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sort-down:before { content: "\e636"; }
+
+.icon-sort-up:before { content: "\e637"; }
+
+.icon-del:before { content: "\e7a5"; }
+

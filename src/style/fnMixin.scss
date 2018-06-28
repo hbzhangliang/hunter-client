@@ -1,0 +1,3 @@
+@function widthRheight($width,$ratio){
+  @return $width*$ratio
+}
