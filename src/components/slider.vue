@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu
-            :router="true"
+            @select="doSelect"
             :default-active="activeIndex"
             default-active="2"
             class="el-menu-vertical-demo"
@@ -67,15 +67,26 @@
 <script>
   import end from '@/common/js/utils.js'
   import {} from '@/api/api'
-  import {mapState} from 'vuex'
+  import {mapState,mapMutations} from 'vuex'
   import $ from 'jquery'
   export default {
     data () {
       return {
-          isCollapse:false
+          isCollapse:false,
+          routerOptions:[{
+              key:"1-1",
+              label:"第一个页面页面"
+          },{
+              key:"1-2",
+              label:"第二个页面页面"
+          },{
+              key:"1-3",
+              label:"第三个页面页面"
+          }]
       }
     },
     methods: {
+        ...mapMutations(['ADD_OPTIONS']),
         initMenuCollapse(){
             this.isCollapse=this.leftMenuCollapse
         },
@@ -90,12 +101,33 @@
             let activeIndex = this.$route.name
             console.log(activeIndex)
             return activeIndex
+        },
+        doSelect(str) {
+            console.log(str)
+            let _this = this
+            //不存在才加上去
+            var bool = false
+            _this.options.forEach(p => {
+                if (p.key == str) {
+                    bool = true
+                }
+            })
+
+            if (!bool) {
+                this.routerOptions.forEach(p => {
+                    if (str == p.key) {
+                        _this.ADD_OPTIONS(p)
+                        _this.$router.replace("/base/"+str);
+                        // _this.$router.push({path: 'base/' + str})
+                    }
+                })
+            }
         }
 
     },
     components: {},
     computed: {
-        ...mapState(["leftMenuCollapse"])
+        ...mapState(["leftMenuCollapse","options"])
 
     },
     watch: {

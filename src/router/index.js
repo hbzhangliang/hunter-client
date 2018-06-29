@@ -4,7 +4,7 @@ import Base from '@/modules/endPortManagement/base'
 import firstPage from 'endportView/firstPage'
 
 import test from 'endportView/test'
-
+import test2 from 'endportView/test2'
 Vue.use(Router)
 
 export default new Router({
@@ -16,8 +16,18 @@ export default new Router({
       children:[
           {
               path: '1-1',
-              name: 'test',
+              name: '1-1',
               component: test
+          },
+          {
+              path: '1-2',
+              name: '1-2',
+              component: test2
+          },
+          {
+              path: 'main',
+              name: 'main',
+              component: firstPage
           },
         {
           path: 'firstPage',

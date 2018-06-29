@@ -40,6 +40,19 @@ export default {
   },
   SET_LEFTMENUCOLLASPSE(state,data){
       state.leftMenuCollapse = data
-  }
+  },
+  ADD_OPTIONS(state,option){
+    state.options.push(option)
+  },
+    REMOVE_OPTIONS(state,option){
+        var cn=[]
+        state.options.forEach(p=>{
+          if(p.key!=option){
+              cn.push(p)
+          }
+        })
+        state.options=cn
+    }
+
 
 }

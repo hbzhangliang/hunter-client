@@ -26,8 +26,8 @@ export default new Vuex.Store({
     memberId:null,
     memberName:null,
     //start
-    leftMenuCollapse:false
-
+    leftMenuCollapse:false,
+      options:[{key:"main",label:"主页"}]
   },
   mutations,
   actions,
