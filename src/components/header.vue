@@ -33,28 +33,63 @@
                   </div>
               </div>
           </el-col>
-          <el-col :span="6" style="float: right">
-              <div>
-                  <span class="hd_r_span"><i class="el-icon-upload el-icon--right"></i>城市</span>
-                  |<span class="hd_r_span"><i class="el-icon-upload el-icon--right"></i>设置</span>
-                  |<span class="hd_r_span"><i class="el-icon-upload el-icon--right"></i>主题</span>
-                  |<span class="hd_r_span"><i class="el-icon-upload el-icon--right"></i>简介</span>
-                  |<span class="hd_r_span"><i class="el-icon-upload el-icon--right"></i>
-                     <el-dropdown trigger="click" show-timeout="0.2">
-                        <span class="el-dropdown-link">注销</span>
-                        <el-dropdown-menu slot="dropdown">
-                          <el-dropdown-item>
-                             aaa
-                          </el-dropdown-item>
-                            <el-dropdown-item>
-                             bbb
-                          </el-dropdown-item>
-                            <el-dropdown-item>
-                             ccc
-                          </el-dropdown-item>
-                        </el-dropdown-menu>
+          <el-col :span="9" style="float: right;">
+              <div style="float: right;margin-right: 12px;">
+                          <el-dropdown>
+                                  <span class="el-dropdown-link hd_r_span">
+                                    设置<i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                              <el-dropdown-menu slot="dropdown">
+                                  <el-dropdown-item>密码设置</el-dropdown-item>
+                                  <el-dropdown-item>信息配置</el-dropdown-item>
+                                  <el-dropdown-item>我的图像</el-dropdown-item>
+                              </el-dropdown-menu>
+                          </el-dropdown>
+                          |<el-dropdown>
+                                  <span class="el-dropdown-link hd_r_span">
+                                    选择城市<i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                          <el-dropdown-menu slot="dropdown">
+                              <el-dropdown-item>上海</el-dropdown-item>
+                              <el-dropdown-item>无锡</el-dropdown-item>
+                              <el-dropdown-item>苏州</el-dropdown-item>
+                          </el-dropdown-menu>
                       </el-dropdown>
-                </span>
+                          |<el-dropdown>
+                                  <span class="el-dropdown-link hd_r_span">
+                                    主题<i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                          <el-dropdown-menu slot="dropdown">
+                              <el-dropdown-item>红色</el-dropdown-item>
+                              <el-dropdown-item>橙色</el-dropdown-item>
+                              <el-dropdown-item>绿色</el-dropdown-item>
+                              <el-dropdown-item>黄色</el-dropdown-item>
+                              <el-dropdown-item divided>默认</el-dropdown-item>
+                          </el-dropdown-menu>
+                      </el-dropdown>
+                          |<el-dropdown>
+                                  <span class="el-dropdown-link hd_r_span">
+                                    工具箱<i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                          <el-dropdown-menu slot="dropdown">
+                              <el-dropdown-item>锤子</el-dropdown-item>
+                              <el-dropdown-item>🔨</el-dropdown-item>
+                              <el-dropdown-item>斧头</el-dropdown-item>
+                              <el-dropdown-item>大刀</el-dropdown-item>
+                          </el-dropdown-menu>
+                        </el-dropdown>
+                      |<el-dropdown>
+                          <span class="el-dropdown-link hd_r_span">
+                            样式<i class="el-icon-arrow-down el-icon--right"></i>
+                          </span>
+                          <el-dropdown-menu slot="dropdown">
+                              <el-dropdown-item>aaa</el-dropdown-item>
+                              <el-dropdown-item>bbb</el-dropdown-item>
+                              <el-dropdown-item>ccc</el-dropdown-item>
+                              <el-dropdown-item disabled>ddd</el-dropdown-item>
+                              <el-dropdown-item divided>eee</el-dropdown-item>
+                          </el-dropdown-menu>
+                     </el-dropdown>
               </div>
           </el-col>
       </el-row>
