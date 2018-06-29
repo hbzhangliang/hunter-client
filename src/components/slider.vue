@@ -76,6 +76,7 @@
     },
     methods: {
         initMenuCollapse(){
+            this.isCollapse=this.leftMenuCollapse
             // let _this=this
             // setInterval(function () {
             //     _this.isCollapse=_this.leftMenuCollapse
@@ -93,12 +94,11 @@
     components: {},
     computed: {
         ...mapState(["leftMenuCollapse"])
+
     },
     watch: {
-        func(){
-            let _this=this
-            console.log("watch")
-            _this.isCollapse=_this.leftMenuCollapse
+        leftMenuCollapse(){
+            this.isCollapse=this.leftMenuCollapse
         }
     },
     created () {
