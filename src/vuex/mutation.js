@@ -37,6 +37,9 @@ export default {
   },
   SET_CONFIGEDITSTATUS(state,data){
       state.configEditStatus=data
+  },
+  SET_LEFTMENUCOLLASPSE(state,data){
+      state.leftMenuCollapse = data
   }
 
 }

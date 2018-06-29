@@ -10,4 +10,25 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+
+<script>
+  $(function () {
+      $(".hd_icon_tog").click(function () {
+        if($(".hd_icon_i").hasClass("el-icon-caret-left")){
+            $(".hd_icon_i").removeClass("el-icon-caret-left").addClass("el-icon-caret-right");
+            $(".slider").css({"width":"64px"})
+            $(".right").css({"width":'calc(100% - 64px)'})
+
+        }
+        else {
+            $(".hd_icon_i").removeClass("el-icon-caret-right").addClass("el-icon-caret-left");
+            $(".slider").css({"width":"16.7%"})
+            $(".right").css({"width":'calc(100% - 17%)'})
+        }
+
+      });
+  })
+  
+</script>
+
 </html>

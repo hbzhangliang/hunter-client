@@ -1,10 +1,11 @@
 <template>
-  <div class="my-slider">
+  <div>
     <el-menu
             default-active="2"
             class="el-menu-vertical-demo"
             @open="handleOpen"
-            @close="handleClose">
+            @close="handleClose"
+            :collapse="isCollapse">
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -65,22 +66,43 @@
 <script>
   import end from '@/common/js/utils.js'
   import {} from '@/api/api'
+  import {mapState} from 'vuex'
   import $ from 'jquery'
   export default {
     data () {
       return {
+          isCollapse:true
       }
     },
     methods: {
+        initMenuCollapse(){
+            let _this=this
+            console.log('cvcv'+_this.leftMenuCollapse)
+            _this.isCollapse=true
+            // let _this=this
+            // setInterval(function () {
+            //     console.log("init"+_this.leftMenuCollapse)
+            //     _this.isCollapse=_this.leftMenuCollapse
+            // },1000);
+        },
+
+        handleOpen(key, keyPath) {
+            console.log(key, keyPath);
+        },
+        handleClose(key, keyPath) {
+            console.log(key, keyPath);
+        }
 
     },
     components: {},
     computed: {
-
+        ...mapState(["leftMenuCollapse"])
     },
     watch: {
+
     },
     created () {
+        this.initMenuCollapse()
     }
   }
 </script>

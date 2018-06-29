@@ -4,8 +4,8 @@
           <el-col :span="4">
               <div>
                   <img class="hd_img" src="~@/assets/images/logo.png"/>
-                  <span class="hd_icon_tog">
-                      <i class="el-icon-caret-left"></i>
+                  <span class="hd_icon_tog" @click="hideMenu()">
+                      <i class="hd_icon_i el-icon-caret-left"></i>
                   </span>
               </div>
           </el-col>
@@ -98,7 +98,7 @@
 
 <script>
     import $ from 'jquery'
-    import {mapMutations} from 'vuex'
+    import {mapState,mapMutations} from 'vuex'
     import {} from '@/api/api'
     export default {
         data () {
@@ -107,11 +107,26 @@
             }
         },
         methods: {
-
+            ...mapMutations(['SET_LEFTMENUCOLLASPSE']),
+            hideMenu(){
+                console.log(this.leftMenuCollapse)
+                if(!this.leftMenuCollapse){
+                    this.SET_LEFTMENUCOLLASPSE(true)
+                    console.log("close")
+                }
+                else {
+                    this.SET_LEFTMENUCOLLASPSE(false)
+                    console.log("open")
+                }
+            }
         },
         created () {
 
+        },
+        computed: {
+            ...mapState(["leftMenuCollapse"])
         }
+
     }
 </script>
 <style lang="scss">
