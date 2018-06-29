@@ -1,39 +1,89 @@
 <template>
-  <section class="end-container">
-    <h3 class="end-system-title" style="margin: 10px 0px 0px 0px;">终端运营管理基础能力</h3>
-    <endSearch class="search" v-model="searchData"></endSearch>
-    <div class="firstPage">
-      <p class="end-blueTitle">服务说明</p>
-      <hr class="end-h6hr"/>
-      <p>1、平台是运营者通过公众号为微信用户提供资讯和服务的平台，而公众平台开发接口则是提供服务的基础，开发者在公众平台网站中创建公众号、获取接口权限后，可以通过阅读本接口文档来帮助开发。为了识别用户，每个用户针对每个公众号会产生一个安全的OpenID，如果需要在多公众号、移动应用之间做用户共通，则需前往微信开放平台，将这些公众号和应用绑定到一个开放平台账号下，绑定后，一个用户虽然对多个公众号和应用有多个不同的 ，但他对  </p>
-      <p>2、提供App原生、手机硬件、微信、钉钉等基础能力调用服务。</p>
-      <p>3、微信公众平台开发是指为微信公众号进行业务开发，为移动应用、PC端网站、公众号第三方平台（为各行各业公众号运营者提供服务）的开发，请前往微信开放平台接入。</p>
-      <h6 class="end-blueTitle">更新记录</h6>
-      <hr class="end-h6hr"/>
-      <div class="updateRecord" v-for="item in updateRecord">
-        <p><span>{{item.createTimeStr}}</span><span>{{item.type}}</span>
-          <span>{{item.opType}}</span><span>{{item.openContentName}}</span></p>
-        <!--<p>{{item.openContentName}}</p>-->
-      </div>
-    </div>
+  <section>
+    <el-tabs v-model="editTab" type="border-card"  editable closable @tab-remove="removeTab" @edit="handleTabsEdit">
+      <el-tab-pane
+              v-for="(item, index) in editableTabs"
+              :key="item.name"
+              :label="item.title"
+              :name="item.name">
+        {{item.content}}
+      </el-tab-pane>
+    </el-tabs>
   </section>
 </template>
 <script>
-  import endSearch from '../components/search.vue'
   import {} from '@/api/api'
   export default{
     data () {
       return {
-        updateRecord: [
-          {createTimeStr: 2017, type: 'AR', opType: '新增', openContentName: '微信公众平台开发'}
-        ],
-        searchData: ''
+          editTab: '1',
+          editableTabs: [{
+              title: '主页',
+              name: '1',
+              content: 'Tab 1 content'
+          }],
+          tabIndex: 1
       }
     },
       methods:{
+          addTab(targetName) {
+              let newTabName = ++this.tabIndex + '';
+              this.editableTabs.push({
+                  title: 'New Tab',
+                  name: newTabName,
+                  content: 'New Tab content'
+              });
+              this.editTab = newTabName;
+          },
+          removeTab(targetName) {
+              let tabs = this.editableTabs;
+              let activeName = this.editTab;
+              if (activeName === targetName) {
+                  tabs.forEach((tab, index) => {
+                      if (tab.name === targetName) {
+                          let nextTab = tabs[index + 1] || tabs[index - 1];
+                          if (nextTab) {
+                              activeName = nextTab.name;
+                          }
+                      }
+                  });
+              }
+
+              this.editTab = activeName;
+              this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+          },
+          handleTabsEdit(targetName, action) {
+              if (action === 'add') {
+                  let newTabName = ++this.tabIndex + '';
+                  this.editableTabs.push({
+                      title: 'New Tab',
+                      name: newTabName,
+                      content: 'New Tab content'
+                  });
+                  this.editableTabsValue = newTabName;
+              }
+              if (action === 'remove') {
+                  let tabs = this.editableTabs;
+                  let activeName = this.editableTabsValue;
+                  if (activeName === targetName) {
+                      tabs.forEach((tab, index) => {
+                          if (tab.name === targetName) {
+                              let nextTab = tabs[index + 1] || tabs[index - 1];
+                              if (nextTab) {
+                                  activeName = nextTab.name;
+                              }
+                          }
+                      });
+                  }
+
+                  this.editableTabsValue = activeName;
+                  this.editableTabs = tabs.filter(tab => tab.name !== targetName);
+              }
+          }
+
       },
     components: {
-      endSearch
+
     },
     watch: {
 
