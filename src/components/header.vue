@@ -110,6 +110,11 @@
         },
         methods: {
             ...mapMutations(['SET_LEFTMENUCOLLASPSE']),
+            init_header(){
+                if(end.getCookie('theme')!=null){
+                    end.changeTheme(end.getCookie('theme'))
+                }
+            },
             hideMenu(){
                 if(!this.leftMenuCollapse){
                     this.SET_LEFTMENUCOLLASPSE(true)
@@ -119,12 +124,13 @@
                 }
             },
             handleThemeCommand(command){
-                console.log("theme is "+command)
                 end.changeTheme(command)
+                //写入cookie
+                end.setCookie("theme",command,1);
             }
         },
         created () {
-
+            this.init_header()
         },
         computed: {
             ...mapState(["leftMenuCollapse"])

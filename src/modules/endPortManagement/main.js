@@ -11,13 +11,14 @@ import * as filters from './filters'
 
 Vue.config.productionTip = false
 import $ from 'jquery'
+import VueCookie from 'vue-cookie'
 window.jQuery = $;
 window.$ = $;
 $(function () {
     require('../../../static/qr/jquery-qrcode.js')
 });
 Vue.prototype.echarts = require('echarts')
-Vue.use(ElementUI)
+Vue.use(ElementUI,VueCookie)
 /* eslint-disable no-new */
 Object.keys(filters).forEach(function (key,index) {
   console.log(key)
