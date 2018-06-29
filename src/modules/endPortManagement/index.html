@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>hunter</title>
-    <link rel="stylesheet" href="static/themes/default/style.css">
+    <link id="cssLink" rel="stylesheet" href="static/themes/default/style.css">
     <link rel="stylesheet" href="static/fonts/iconfont.css">
   </head>
   <body style="height: 100%">
@@ -24,8 +24,13 @@
             $(".slider").css({"width":"16.7%"})
             $(".right").css({"width":'calc(100% - 17%)'})
         }
-
       });
+
+      function changeTheme(type) {
+          var href="static/themes/"+type+"/style.css";
+          $("#cssLink").attr("href",href);
+      }
+
   })
   
 </script>

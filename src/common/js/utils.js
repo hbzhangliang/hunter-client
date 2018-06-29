@@ -13,4 +13,8 @@ end.arrSort = (key) => {  // 数组对象根据key值排序
     return value1 - value2;
   }
 }
+end.changeTheme=(type)=>{
+    var href="static/themes/"+type+"/style.css";
+    $("#cssLink").attr("href",href);
+}
 export default end

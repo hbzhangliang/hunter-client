@@ -55,16 +55,16 @@
                               <el-dropdown-item>苏州</el-dropdown-item>
                           </el-dropdown-menu>
                       </el-dropdown>
-                          |<el-dropdown>
+                          |<el-dropdown @command="handleThemeCommand">
                                   <span class="el-dropdown-link hd_r_span">
                                     主题<i class="el-icon-arrow-down el-icon--right"></i>
                                   </span>
                           <el-dropdown-menu slot="dropdown">
-                              <el-dropdown-item>红色</el-dropdown-item>
-                              <el-dropdown-item>橙色</el-dropdown-item>
-                              <el-dropdown-item>绿色</el-dropdown-item>
-                              <el-dropdown-item>黄色</el-dropdown-item>
-                              <el-dropdown-item divided>默认</el-dropdown-item>
+                              <el-dropdown-item command="azure">深蓝</el-dropdown-item>
+                              <el-dropdown-item command="green">绿色</el-dropdown-item>
+                              <el-dropdown-item command="purple">浅红</el-dropdown-item>
+                              <el-dropdown-item command="silver">素银</el-dropdown-item>
+                              <el-dropdown-item command="default" divided>默认</el-dropdown-item>
                           </el-dropdown-menu>
                       </el-dropdown>
                           |<el-dropdown>
@@ -98,26 +98,29 @@
 
 <script>
     import $ from 'jquery'
+    import end from '@/common/js/utils.js'
     import {mapState,mapMutations} from 'vuex'
     import {} from '@/api/api'
     export default {
         data () {
             return {
+                theme:"default"
 
             }
         },
         methods: {
             ...mapMutations(['SET_LEFTMENUCOLLASPSE']),
             hideMenu(){
-                console.log(this.leftMenuCollapse)
                 if(!this.leftMenuCollapse){
                     this.SET_LEFTMENUCOLLASPSE(true)
-                    console.log("close")
                 }
                 else {
                     this.SET_LEFTMENUCOLLASPSE(false)
-                    console.log("open")
                 }
+            },
+            handleThemeCommand(command){
+                console.log("theme is "+command)
+                end.changeTheme(command)
             }
         },
         created () {
