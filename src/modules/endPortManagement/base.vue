@@ -2,6 +2,10 @@
 <template>
   <div id="main-container" class="clearfix">
     <Slide class="slider"></Slide>
+
+
+
+
     <router-view class="right clearfix">
     </router-view>
   </div>
