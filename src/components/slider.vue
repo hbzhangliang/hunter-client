@@ -78,10 +78,6 @@
     methods: {
         initMenuCollapse(){
             this.isCollapse=this.leftMenuCollapse
-            // let _this=this
-            // setInterval(function () {
-            //     _this.isCollapse=_this.leftMenuCollapse
-            // },2000);
         },
 
         handleOpen(key, keyPath) {

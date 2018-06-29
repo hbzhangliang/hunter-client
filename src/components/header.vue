@@ -116,12 +116,21 @@
                 }
             },
             hideMenu(){
-                if(!this.leftMenuCollapse){
-                    this.SET_LEFTMENUCOLLASPSE(true)
-                }
-                else {
-                    this.SET_LEFTMENUCOLLASPSE(false)
-                }
+                let _this=this
+                setTimeout(function () {
+                    if($(".hd_icon_i").hasClass("el-icon-caret-left")){
+                        _this.SET_LEFTMENUCOLLASPSE(false)
+                    }
+                    else {
+                        _this.SET_LEFTMENUCOLLASPSE(true)
+                    }
+                    // if(!_this.leftMenuCollapse){
+                    //     _this.SET_LEFTMENUCOLLASPSE(true)
+                    // }
+                    // else {
+                    //     _this.SET_LEFTMENUCOLLASPSE(false)
+                    // }
+                },100);
             },
             handleThemeCommand(command){
                 end.changeTheme(command)
