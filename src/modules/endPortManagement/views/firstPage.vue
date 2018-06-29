@@ -1,5 +1,5 @@
 <template>
-  <section class="end-container" style="padding: 20px 0;">
+  <section class="end-container">
     <h3 class="end-system-title" style="margin: 10px 0px 0px 0px;">终端运营管理基础能力</h3>
     <endSearch class="search" v-model="searchData"></endSearch>
     <div class="firstPage">
@@ -20,7 +20,7 @@
 </template>
 <script>
   import endSearch from '../components/search.vue'
-  import {getOpenContentLogList} from '@/api/api'
+  import {} from '@/api/api'
   export default{
     data () {
       return {
@@ -31,59 +31,18 @@
       }
     },
       methods:{
-          getContentLogs(){
-              getOpenContentLogList({count:8}).then(res=>{
-                 this.updateRecord=res
-              });
-          }
       },
     components: {
       endSearch
     },
     watch: {
-      searchData (value) {
-        console.log(value)
-        // 搜索与服务端联调
-      }
+
     },
     created () {
-        this.getContentLogs()
+
     }
   }
 </script>
 <style lang="scss" scoped>
-  .firstPage{
-    background: white;
-    min-height: 100%;
-    padding: 30px;
-  }
-  .firstPage > p{
-    color: #626262;
-    margin:15px 0;
-  }
-  .firstPage>h6{
-    margin-top: 40px;
-  }
-  /*h3{*/
-  /*font-size: 16px;*/
-  /*font-weight: 100;*/
-  /*color: #626262;*/
-  /*padding-left: 20px ;*/
-  /*}*/
-  .end-system-title{
-    display: inline-block;
-    margin-bottom: 15px;
-  }
-  .updateRecord>p{
-    margin-top: 30px;
-    padding-left: 14px;
-  span{
-    margin-right: 40px;
-  }
-  }
-  .search{
-    float: right;
-    margin-right: 30px;
-    /*bottom: 15px;*/
-  }
+
 </style>
