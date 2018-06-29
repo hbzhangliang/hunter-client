@@ -71,19 +71,15 @@
   export default {
     data () {
       return {
-          isCollapse:true
+          isCollapse:false
       }
     },
     methods: {
         initMenuCollapse(){
-            let _this=this
-            console.log('cvcv'+_this.leftMenuCollapse)
-            _this.isCollapse=true
             // let _this=this
             // setInterval(function () {
-            //     console.log("init"+_this.leftMenuCollapse)
             //     _this.isCollapse=_this.leftMenuCollapse
-            // },1000);
+            // },2000);
         },
 
         handleOpen(key, keyPath) {
@@ -99,7 +95,11 @@
         ...mapState(["leftMenuCollapse"])
     },
     watch: {
-
+        func(){
+            let _this=this
+            console.log("watch")
+            _this.isCollapse=_this.leftMenuCollapse
+        }
     },
     created () {
         this.initMenuCollapse()

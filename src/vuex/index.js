@@ -25,9 +25,8 @@ export default new Vuex.Store({
     },
     memberId:null,
     memberName:null,
-
-      //start
-      leftMenuCollapse:true
+    //start
+    leftMenuCollapse:false
 
   },
   mutations,
