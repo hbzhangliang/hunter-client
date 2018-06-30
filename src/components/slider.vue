@@ -3,6 +3,7 @@
     <el-menu
             @select="doSelect"
             :default-active="activeIndex"
+            default-active="1"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
@@ -87,7 +88,10 @@
             console.log(key, keyPath);
         },
         activeIndex: function () {
-            let activeIndex = this.$route.name
+            let activeIndex="1"
+            if(this.$route.name!=null){
+                activeIndex = this.$route.name
+            }
             console.log(activeIndex)
             return activeIndex
         },
