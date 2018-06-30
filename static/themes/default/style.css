@@ -143,3 +143,18 @@
 
 
 *{margin: 0;padding: 0;box-sizing: border-box;}
+
+html,body{
+    height: 100%;
+}
+
+
+.rt_view{
+    /*height: 700px;*/
+    /*background: lightcoral;*/
+}
+
+.el-tabs__content{
+    height: 700px;
+    background: greenyellow;
+}

@@ -26,8 +26,17 @@ export default new Vuex.Store({
     memberId:null,
     memberName:null,
     //start
-    leftMenuCollapse:false,
-      options:[{key:"main",label:"主页"}]
+      leftMenuCollapse:false,
+      //所有的菜单项
+      menus:[
+          {key:"main",label:"主页",router:"base/firstPage"},
+          {key:"1-1",label:"第一个页面页面",router:"base/1-1"},
+          {key:"1-2",label:"第二个页面页面",router:"base/1-2"},
+          {key:"1-3",label:"第三个页面页面",router:"base/1-3"}
+          ],
+      //选择到tab中的数据
+      options:[{key:"main",label:"主页",router:"base/firstPage"}],
+      editableTabsValue:"main"//当前编辑项
   },
   mutations,
   actions,

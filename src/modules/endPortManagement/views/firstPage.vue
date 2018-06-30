@@ -1,6 +1,6 @@
 <template>
   <section>
-
+this is main
   </section>
 </template>
 <script>

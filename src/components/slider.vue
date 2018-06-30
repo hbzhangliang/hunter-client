@@ -72,21 +72,11 @@
   export default {
     data () {
       return {
-          isCollapse:false,
-          routerOptions:[{
-              key:"1-1",
-              label:"第一个页面页面"
-          },{
-              key:"1-2",
-              label:"第二个页面页面"
-          },{
-              key:"1-3",
-              label:"第三个页面页面"
-          }]
+          isCollapse:false
       }
     },
     methods: {
-        ...mapMutations(['ADD_OPTIONS']),
+        ...mapMutations(['ADD_OPTIONS',"SET_EDITABLETABSVALUE"]),
         initMenuCollapse(){
             this.isCollapse=this.leftMenuCollapse
         },
@@ -114,10 +104,22 @@
             })
 
             if (!bool) {
-                this.routerOptions.forEach(p => {
+                this.$store.state.menus.forEach(p => {
                     if (str == p.key) {
+                        console.log("router")
+                        console.log(p.router)
                         _this.ADD_OPTIONS(p)
-                        _this.$router.replace("/base/"+str);
+                        _this.$router.replace(p.key)
+                        _this.SET_EDITABLETABSVALUE(p.key)
+                        // _this.$router.push({path: 'base/' + str})
+                    }
+                })
+            }
+            else {
+                this.$store.state.menus.forEach(p => {
+                    if (str == p.key) {
+                        // _this.$router.replace(p.router)
+                        _this.SET_EDITABLETABSVALUE(p.key)
                         // _this.$router.push({path: 'base/' + str})
                     }
                 })

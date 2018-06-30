@@ -1,7 +1,7 @@
 <template>
-    <div style="height: 400px ;background: blue">
+    <div>
         this is page 1-1
-
+        very good
     </div>
 </template>
 <script>

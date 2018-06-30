@@ -52,7 +52,10 @@ export default {
           }
         })
         state.options=cn
-    }
+    },
+    SET_EDITABLETABSVALUE(state,data){
+        state.editableTabsValue = data
+    },
 
 
 }
