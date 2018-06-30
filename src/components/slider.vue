@@ -3,7 +3,6 @@
     <el-menu
             @select="doSelect"
             :default-active="activeIndex"
-            default-active="2"
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
@@ -103,27 +102,16 @@
                 }
             })
 
-            if (!bool) {
-                this.$store.state.menus.forEach(p => {
-                    if (str == p.key) {
-                        console.log("router")
-                        console.log(p.router)
+            this.$store.state.menus.forEach(p => {
+                if (str == p.key) {
+                    if(!bool) {
                         _this.ADD_OPTIONS(p)
-                        _this.$router.replace(p.key)
-                        _this.SET_EDITABLETABSVALUE(p.key)
-                        // _this.$router.push({path: 'base/' + str})
                     }
-                })
-            }
-            else {
-                this.$store.state.menus.forEach(p => {
-                    if (str == p.key) {
-                        // _this.$router.replace(p.router)
-                        _this.SET_EDITABLETABSVALUE(p.key)
-                        // _this.$router.push({path: 'base/' + str})
-                    }
-                })
-            }
+                    _this.$router.replace(p.key)
+                    _this.SET_EDITABLETABSVALUE(p.key)
+                }
+            })
+
         }
 
     },

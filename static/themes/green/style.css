@@ -8,7 +8,7 @@
     overflow: hidden;
     position: relative;
     /*padding-bottom: 70px;*/
-    background: #efefef;
+    background: #f5f5f5;
     min-height: 100vh;
     height: 100%;
 }
@@ -19,12 +19,12 @@
     text-align: center;
     height: 64px;
     /*padding: 5px 0;*/
-    background-color: greenyellow;
-    /*box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .04);*/
+    background-color: lightgreen;
     position: relative;
     z-index: 2;
     min-width: 1080px;
     overflow: hidden;
+    border-bottom: 2px outset green;
 }
 
 .hd_row{
@@ -34,17 +34,18 @@
     height: 64px
 }
 .hd_icon_tog{
-    height: 64px;float: right;width: 30px;border: 1px solid lightgoldenrodyellow;
+    height: 64px;float: right;width: 30px;
+    border: 1px solid lightgoldenrodyellow;
     cursor: pointer;
 }
 .hd_menu{
     float: left;
     width: 20%;
-    border-right: 1px solid greenyellow;
+    border-right: 1px solid lightgray;
     cursor: pointer;
 }
 .hd_menu:hover{
-    background: orchid;
+    background: lightcyan;
 }
 .hd_menu_icon{
     line-height: 34px;height: 34px;padding: 5px;
@@ -58,7 +59,7 @@
 }
 .hd_menu_span:hover{
     line-height: 30px;
-    color: orchid;
+    color: darkblue;
     text-decoration: underline;
 }
 
@@ -70,7 +71,7 @@
 }
 
 .hd_r_span:hover{
-    background: whitesmoke;
+    background: lightcyan;
 
 }
 
@@ -80,7 +81,7 @@
 /*footer头部相关css 开始*/
 
 .footer {
-    background-color: greenyellow;
+    background-color: lightgreen;
     position: absolute;
     bottom: 0px;
     width: 100%;
@@ -88,6 +89,7 @@
     z-index: 2;
     height: 28px;
     line-height: 28px;
+    border-top: 2px outset blue;
 }
 .ft_info{
     text-align: center;
@@ -120,22 +122,28 @@
     float: left;
     position: relative;
     height:100%;
-    border: 1px outset greenyellow;
     overflow-y: auto;
+    border-right: 2px outset blue;
+    background: lightgreen;
 }
-/*left menu相关css 结束*/
 
+.slider .el-menu{
+    background: lightgreen;
+}
+
+/*left menu相关css 结束*/
 
 
 /*right content css 开始*/
 
 .right{
     float: left;
-    width: calc(100% - 17%);
-    padding: 2px;
+    width: calc(100% - 16.8%);
+    padding: 1px;
     height: 100%;
     position: relative;
     display: block;
+    /*border: 1px outset lightblue;*/
 }
 
 /*right content css 结束*/
@@ -143,3 +151,32 @@
 
 
 *{margin: 0;padding: 0;box-sizing: border-box;}
+
+html,body{
+    height: 100%;
+}
+
+
+.el-tabs__content{
+    /*background: green;*/
+}
+
+.rt_view{
+    /*background: red;*/
+    padding: 2px;
+    margin: 1px;
+    background: lightcyan;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.el-tabs__new-tab{
+    border: 1px solid green;
+}
+.el-tabs__new-tab:hover{
+    background: greenyellow;
+}
+.rt_tab_rm{
+    margin-right: 15px;
+}

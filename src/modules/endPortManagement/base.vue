@@ -20,15 +20,13 @@
 
       </div>
     </div>
-
-    <!--<router-view class="right clearfix">-->
-    <!--</router-view>-->
   </div>
 </template>
 
 <script>
   import Slide from '@/components/slider'
   import {mapState,mapMutations} from 'vuex'
+  import $ from 'jquery'
   export default {
     name:'base',
     data: function () {
@@ -50,14 +48,12 @@
                   if(targetName!="main") {
                       _this.removeTab(targetName)
                       _this.REMOVE_OPTIONS(targetName)
+                      _this.showOptionLast()
                   }
               }
               if (action === 'add') {
-                  console.log("fffgsgs")
+                  // console.log("fffgsgs")
               }
-              // _this.SET_EDITABLETABSVALUE(targetName)
-              // console.log(this.editableTabsValue)
-              // this.options = options.filter(tab => tab.name !== targetName);
           },
           tabClick(item){
               let _this=this
@@ -71,32 +67,45 @@
                       // _this.$router.push({path: 'base/' + str})
                   }
               })
+          },
+          //搜索option，将最后一个设置为可见路由
+          showOptionLast(){
+              let _this=this
+              var length=_this.$store.state.options.length
+              var opLast=_this.$store.state.options[length-1]
+              _this.$router.replace(opLast.key)
+              _this.SET_EDITABLETABSVALUE(opLast.key)
+          },
+
+          init_base(){
+
+              setTimeout(function () {
+                  //tab后边菜单处理
+                  var info="<span class='el-tabs__new-tab rt_tab_rm'><i class='el-icon-rank'></i></span>" +
+                      "<span class='el-tabs__new-tab'><i class='el-icon-close'></i></span>" +
+                      "<span class='el-tabs__new-tab'><i class='el-icon-refresh'></i></span>" +
+                      "<span class='el-tabs__new-tab'><i class='el-icon-mobile-phone'></i></span>";
+                  $(".el-tabs__new-tab").before(info)
+
+
+                  //高度设置
+                  var height=$(window).height()-138
+                  $(".el-tabs__content").css({height:height})
+                  $(".rt_view").css({height:height})
+              },100)
 
 
           }
-
       },
     components:{
       Slide
     },
     computed: {
-        // ...mapState(["options","editableTabsValue"]),
-        // editableTabsValue:{
-        //     get:function () {
-        //         return this.editableTabsValue
-        //     },
-        //     set:function (value) {
-        //         // this.SET_EDITABLETABSVALUE(value)
-        //     }
-        // }
         options(){
             console.log("dddd")
             console.log(this.$store.state.options)
             return this.$store.state.options
         },
-        // editableTabsValue(){
-        //     return this.$store.state.editableTabsValue
-        // },
         editableTabsValue:{
             get: function () {
                 console.log("showshow"+this.$store.state.editableTabsValue)
@@ -108,16 +117,10 @@
         }
     },
       watch: {
-          // options(){
-          //     console.log("options is ")
-          //     console.log(this.$store.state.options)
-          //     console.log(this.options)
-          //     return this.options
-          // },
-          // editableTabsValue(){
-          //     console.log("dddttt"+this.editableTabsValue)
-          //     return this.editableTabsValue
-          // }
+
+      },
+      created () {
+          this.init_base()
       }
   }
 </script>

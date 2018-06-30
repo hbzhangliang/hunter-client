@@ -20,11 +20,11 @@
     height: 64px;
     /*padding: 5px 0;*/
     background-color: lightskyblue;
-    /*box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .04);*/
     position: relative;
     z-index: 2;
     min-width: 1080px;
     overflow: hidden;
+    border-bottom: 2px outset blue;
 }
 
 .hd_row{
@@ -88,6 +88,7 @@
     z-index: 2;
     height: 28px;
     line-height: 28px;
+    border-top: 2px outset blue;
 }
 .ft_info{
     text-align: center;
@@ -120,22 +121,28 @@
     float: left;
     position: relative;
     height:100%;
-    border: 1px outset lightskyblue;
     overflow-y: auto;
+    border-right: 2px outset blue;
+    background: #ebebeb;
 }
-/*left menu相关css 结束*/
 
+.slider .el-menu{
+    background: #ebebeb;
+}
+
+/*left menu相关css 结束*/
 
 
 /*right content css 开始*/
 
 .right{
     float: left;
-    width: calc(100% - 17%);
-    padding: 2px;
+    width: calc(100% - 16.8%);
+    padding: 1px;
     height: 100%;
     position: relative;
     display: block;
+    /*border: 1px outset lightblue;*/
 }
 
 /*right content css 结束*/
@@ -149,12 +156,26 @@ html,body{
 }
 
 
-.rt_view{
-    /*height: 700px;*/
-    /*background: lightcoral;*/
+.el-tabs__content{
+    /*background: green;*/
 }
 
-.el-tabs__content{
-    height: 700px;
-    background: greenyellow;
+.rt_view{
+    /*background: red;*/
+    padding: 2px;
+    margin: 1px;
+    background: lightcyan;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.el-tabs__new-tab{
+    border: 1px solid lightskyblue;
+}
+.el-tabs__new-tab:hover{
+    background: lightskyblue;
+}
+.rt_tab_rm{
+    margin-right: 15px;
 }

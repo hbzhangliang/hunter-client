@@ -19,12 +19,12 @@
     text-align: center;
     height: 64px;
     /*padding: 5px 0;*/
-    background-color: cornflowerblue;
-    /*box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .04);*/
+    background-color: lightskyblue;
     position: relative;
     z-index: 2;
     min-width: 1080px;
     overflow: hidden;
+    border-bottom: 2px outset blue;
 }
 
 .hd_row{
@@ -58,7 +58,7 @@
 }
 .hd_menu_span:hover{
     line-height: 30px;
-    color: cornflowerblue;
+    color: darkblue;
     text-decoration: underline;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .hd_r_span:hover{
-    background: cornflowerblue;
+    background: lightcyan;
 
 }
 
@@ -80,7 +80,7 @@
 /*footer头部相关css 开始*/
 
 .footer {
-    background-color: cornflowerblue;
+    background-color: lightskyblue;
     position: absolute;
     bottom: 0px;
     width: 100%;
@@ -88,6 +88,7 @@
     z-index: 2;
     height: 28px;
     line-height: 28px;
+    border-top: 2px outset blue;
 }
 .ft_info{
     text-align: center;
@@ -120,22 +121,28 @@
     float: left;
     position: relative;
     height:100%;
-    border: 1px outset cornflowerblue;
     overflow-y: auto;
+    border-right: 2px outset blue;
+    background: #ebebeb;
 }
-/*left menu相关css 结束*/
 
+.slider .el-menu{
+    background: #ebebeb;
+}
+
+/*left menu相关css 结束*/
 
 
 /*right content css 开始*/
 
 .right{
     float: left;
-    width: calc(100% - 17%);
-    padding: 2px;
+    width: calc(100% - 16.8%);
+    padding: 1px;
     height: 100%;
     position: relative;
     display: block;
+    /*border: 1px outset lightblue;*/
 }
 
 /*right content css 结束*/
@@ -143,3 +150,32 @@
 
 
 *{margin: 0;padding: 0;box-sizing: border-box;}
+
+html,body{
+    height: 100%;
+}
+
+
+.el-tabs__content{
+    /*background: green;*/
+}
+
+.rt_view{
+    /*background: red;*/
+    padding: 2px;
+    margin: 1px;
+    background: lightcyan;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+.el-tabs__new-tab{
+    border: 1px solid lightskyblue;
+}
+.el-tabs__new-tab:hover{
+    background: yellowgreen;
+}
+.rt_tab_rm{
+    margin-right: 150px;
+}
