@@ -124,12 +124,6 @@
                     else {
                         _this.SET_LEFTMENUCOLLASPSE(true)
                     }
-                    // if(!_this.leftMenuCollapse){
-                    //     _this.SET_LEFTMENUCOLLASPSE(true)
-                    // }
-                    // else {
-                    //     _this.SET_LEFTMENUCOLLASPSE(false)
-                    // }
                 },100);
             },
             handleThemeCommand(command){

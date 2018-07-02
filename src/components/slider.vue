@@ -7,14 +7,16 @@
             class="el-menu-vertical-demo"
             @open="handleOpen"
             @close="handleClose"
-            :collapse="isCollapse">
+            :collapse="leftMenuCollapse">
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span>导航一</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="1-1">
+            <i class="el-icon-menu"></i>选项1
+          </el-menu-item>
           <el-menu-item index="1-2">选项2</el-menu-item>
           <el-menu-item index="1-3">选项3</el-menu-item>
           <el-menu-item index="1-4">选项4</el-menu-item>
@@ -24,8 +26,8 @@
           <el-menu-item index="1-6">选项6</el-menu-item>
         </el-menu-item-group>
         <el-submenu index="1-7">
-          <template slot="title">选项4</template>
-          <el-menu-item index="1-7-1">选项7</el-menu-item>
+          <template slot="title"><i class="el-icon-menu"></i>选项4</template>
+          <el-menu-item index="1-7-1"><i class="el-icon-document"></i>选项7</el-menu-item>
         </el-submenu>
       </el-submenu>
       <el-menu-item index="2">
@@ -78,7 +80,9 @@
     methods: {
         ...mapMutations(['ADD_OPTIONS',"SET_EDITABLETABSVALUE"]),
         initMenuCollapse(){
-            this.isCollapse=this.leftMenuCollapse
+            // console.log(this.leftMenuCollapse)
+            // this.isCollapse=this.leftMenuCollapse
+            // console.log(this.isCollapse)
         },
 
         handleOpen(key, keyPath) {
@@ -126,7 +130,8 @@
     },
     watch: {
         leftMenuCollapse(){
-            this.isCollapse=this.leftMenuCollapse
+            console.log(this.leftMenuCollapse)
+            return this.leftMenuCollapse
         }
     },
     created () {
