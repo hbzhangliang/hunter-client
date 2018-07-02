@@ -81,12 +81,11 @@
 
               setTimeout(function () {
                   //tab后边菜单处理
-                  var info="<span class='el-tabs__new-tab rt_tab_rm'><i class='el-icon-rank'></i></span>" +
+                  var info="<span class='el-tabs__new-tab rt_tab_rm'><i class='el-icon-search'></i></span>" +
                       "<span class='el-tabs__new-tab'><i class='el-icon-close'></i></span>" +
                       "<span class='el-tabs__new-tab'><i class='el-icon-refresh'></i></span>" +
                       "<span class='el-tabs__new-tab'><i class='el-icon-mobile-phone'></i></span>";
                   $(".el-tabs__new-tab").before(info)
-
 
                   //高度设置
                   var height=$(window).height()-138

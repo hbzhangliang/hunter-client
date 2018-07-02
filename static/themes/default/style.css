@@ -171,11 +171,19 @@ html,body{
 
 
 .el-tabs__new-tab{
-    border: 1px solid lightskyblue;
+
 }
 .el-tabs__new-tab:hover{
     background: lightskyblue;
 }
+
+.el-tabs__new-tab i{
+    color: blue;
+}
+.el-tabs__new-tab i:hover{
+    color: whitesmoke;
+}
+
 .rt_tab_rm{
     margin-right: 15px;
 }
