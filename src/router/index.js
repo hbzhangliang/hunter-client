@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Base from '@/modules/endPortManagement/base'
+import Base from '@/modules/hunter/base'
 import firstPage from 'endportView/firstPage'
 
 import test from 'endportView/test'

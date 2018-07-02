@@ -53,7 +53,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     // 多页面打包
     new HtmlWebpackPlugin({
       filename: config.build.index,
-      template: './src/modules/endPortManagement/index.html',
+      template: './src/modules/hunter/index.html',
       inject: true,
       minify: {
         removeComments: true,

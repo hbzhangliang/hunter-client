@@ -10,7 +10,7 @@ function resolve (dir) {
 console.log(resolve('src'),'********')
 module.exports = {
   entry: {
-    'main': './src/modules/endPortManagement/main.js' // 打包出来的filename为key值
+    'main': './src/modules/hunter/main.js' // 打包出来的filename为key值
   },
   output: {
     path: config.build.assetsRoot,
@@ -25,7 +25,7 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'style':resolve('src/style'),
-      'endportView':resolve('src/modules/endPortManagement/views')
+      'endportView':resolve('src/modules/hunter/views')
     }
   },
   module: {

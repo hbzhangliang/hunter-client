@@ -28,7 +28,7 @@ module.exports = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin(
       {
         filename: './index.html',  //输出路径
-        template: './src/modules/endPortManagement/index.html',  //模板所在路径
+        template: './src/modules/hunter/index.html',  //模板所在路径
         inject: true,
         chunks:['main']
       }
