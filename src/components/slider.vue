@@ -35,10 +35,10 @@
         <span slot="title">导航二</span>
       </el-menu-item>
       <el-menu-item index="3">
-        <template slot="title">
+        <!--<template slot="title">-->
           <i class="el-icon-location"></i>
-          <span>导航三</span>
-        </template>
+          <span slot="title">导航三</span>
+        <!--</template>-->
       </el-menu-item>
       <el-menu-item index="4">
         <i class="el-icon-setting"></i>
