@@ -27,14 +27,14 @@
     border-bottom: 2px outset #D3D3D3;
 }
 
-.deepblue{
-    /*background: deepskyblue;*/
+.azure{
     background: deepskyblue;
 }
 .green{
     background: green;
 }
-.azure{
+.purple{
+    /*background: deepskyblue;*/
     background: lightpink;
 }
 .silver{
