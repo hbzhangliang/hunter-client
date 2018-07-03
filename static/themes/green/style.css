@@ -24,8 +24,26 @@
     z-index: 2;
     min-width: 1080px;
     overflow: hidden;
-    border-bottom: 2px outset green;
+    border-bottom: 2px outset #FFFFFF;
 }
+
+.azure{
+    background: #5cbdec;
+}
+.green{
+    background: green;
+}
+.purple{
+    /*background: deepskyblue;*/
+    background: lightpink;
+}
+.silver{
+    background: silver;
+}
+.blue{
+    background: lightskyblue;
+}
+
 
 .hd_row{
     line-height: 64px!important;
@@ -35,17 +53,22 @@
 }
 .hd_icon_tog{
     height: 64px;float: right;width: 30px;
-    border: 1px solid lightgoldenrodyellow;
+    border: 1px solid #D3D3D3;
     cursor: pointer;
+}
+.hd_icon_tog:hover{
+    background: yellowgreen;
 }
 .hd_menu{
     float: left;
     width: 20%;
     border-right: 1px solid lightgray;
     cursor: pointer;
+    color: white;
+    font-weight: bolder;
 }
 .hd_menu:hover{
-    background: lightcyan;
+    background: yellowgreen;
 }
 .hd_menu_icon{
     line-height: 34px;height: 34px;padding: 5px;
@@ -59,7 +82,7 @@
 }
 .hd_menu_span:hover{
     line-height: 30px;
-    color: darkblue;
+    /*color: darkblue;*/
     text-decoration: underline;
 }
 
@@ -68,10 +91,11 @@
     padding: 2px 6px;
     margin: 2px;
     line-height: 28px;
+    color: white;
 }
 
 .hd_r_span:hover{
-    background: lightcyan;
+    background: #bababa;
 
 }
 
@@ -89,7 +113,7 @@
     z-index: 2;
     height: 28px;
     line-height: 28px;
-    border-top: 2px outset blue;
+    border-top: 2px outset #D3D3D3;
 }
 .ft_info{
     text-align: center;
@@ -123,14 +147,14 @@
     position: relative;
     height:100%;
     overflow-y: auto;
-    border-right: 2px outset blue;
-    background: lightgreen;
+    border-right: 2px outset #ffffff;
+    background: #d0ffc0;
+    /*color: whitesmoke;*/
 }
 
 .slider .el-menu{
-    background: lightgreen;
+    background: #d0ffc0;
 }
-
 /*left menu相关css 结束*/
 
 
@@ -165,18 +189,26 @@ html,body{
     /*background: red;*/
     padding: 2px;
     margin: 1px;
-    background: lightcyan;
+    background: whitesmoke;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 
 .el-tabs__new-tab{
-    border: 1px solid green;
+
 }
 .el-tabs__new-tab:hover{
-    background: greenyellow;
+    background: lightskyblue;
 }
+
+.el-tabs__new-tab i{
+    color: blue;
+}
+.el-tabs__new-tab i:hover{
+    color: whitesmoke;
+}
+
 .rt_tab_rm{
     margin-right: 15px;
 }

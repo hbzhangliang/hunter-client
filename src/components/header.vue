@@ -60,7 +60,7 @@
                                     主题<i class="el-icon-arrow-down el-icon--right"></i>
                                   </span>
                           <el-dropdown-menu slot="dropdown">
-                              <el-dropdown-item command="azure" class="azure">深蓝</el-dropdown-item>
+                              <el-dropdown-item command="azure" class="azure">浅蓝</el-dropdown-item>
                               <el-dropdown-item command="green" class="green">绿色</el-dropdown-item>
                               <el-dropdown-item command="purple" class="purple">浅红</el-dropdown-item>
                               <el-dropdown-item command="silver" class="silver">素银</el-dropdown-item>

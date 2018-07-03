@@ -19,7 +19,7 @@
     text-align: center;
     height: 64px;
     /*padding: 5px 0;*/
-    background-color: #3caddc;
+    background-color: #5cbdec;
     position: relative;
     z-index: 2;
     min-width: 1080px;
@@ -28,7 +28,7 @@
 }
 
 .azure{
-    background: deepskyblue;
+    background: lightblue;
 }
 .green{
     background: green;
@@ -68,7 +68,7 @@
     font-weight: bolder;
 }
 .hd_menu:hover{
-    background: #367fa9;
+    background: #66afd9;
 }
 .hd_menu_icon{
     line-height: 34px;height: 34px;padding: 5px;
@@ -105,7 +105,7 @@
 /*footer头部相关css 开始*/
 
 .footer {
-    background-color: #3c8dbc;
+    background-color: #5cbdec;
     position: absolute;
     bottom: 0px;
     width: 100%;
@@ -148,12 +148,12 @@
     height:100%;
     overflow-y: auto;
     border-right: 2px outset #D3D3D3;
-    background: #e5e5e5;
+    background: #efefef;
     /*color: whitesmoke;*/
 }
 
 .slider .el-menu{
-    background: #e5e5e5;
+    background: #efefef;
 }
 /*left menu相关css 结束*/
 
