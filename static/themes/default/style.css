@@ -27,6 +27,24 @@
     border-bottom: 2px outset #D3D3D3;
 }
 
+.deepblue{
+    /*background: deepskyblue;*/
+    background: deepskyblue;
+}
+.green{
+    background: green;
+}
+.azure{
+    background: lightpink;
+}
+.silver{
+    background: silver;
+}
+.blue{
+    background: lightskyblue;
+}
+
+
 .hd_row{
     line-height: 64px!important;
 }
