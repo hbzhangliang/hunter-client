@@ -12,23 +12,23 @@
           <el-col :span="8">
               <div style="position: relative">
                   <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/mobile.png"/></div>
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_15.png"/></div>
                       <div class="hd_menu_span"><span>静态演示</span></div>
                   </div>
                   <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/beian-ico.png"/></div>
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_16.png"/></div>
                       <div class="hd_menu_span"><span>动态演示</span></div>
                   </div>
                   <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/mobile.png"/></div>
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_17.png"/></div>
                       <div class="hd_menu_span"><span>我的管理</span></div>
                   </div>
                   <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/password.png"/></div>
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_18.png"/></div>
                       <div class="hd_menu_span"><span>系统配置</span></div>
                   </div>
                   <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/password.png"/></div>
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_19.png"/></div>
                       <div class="hd_menu_span"><span>系统配置</span></div>
                   </div>
               </div>
