@@ -129,7 +129,7 @@
             handleThemeCommand(command){
                 end.changeTheme(command)
                 //写入cookie
-                end.setCookie("theme",command,1);
+                end.setCookie("theme",command,0);
             }
         },
         created () {
