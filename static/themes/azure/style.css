@@ -4,7 +4,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
-    min-width: 1080px;
+    min-width: 1010px;
     overflow: hidden;
     position: relative;
     /*padding-bottom: 70px;*/
@@ -22,7 +22,7 @@
     background-color: #5cbdec;
     position: relative;
     z-index: 2;
-    min-width: 1080px;
+    min-width: 1010px;
     overflow: hidden;
     border-bottom: 2px outset #D3D3D3;
 }
@@ -88,15 +88,38 @@
 
 .hd_r_span{
     cursor: pointer;
-    padding: 2px 6px;
+    padding: 2px 4px;
     margin: 2px;
     line-height: 28px;
     color: white;
+    font-weight: bold;
 }
 
 .hd_r_span:hover{
     background: #dedede;
 
+}
+
+.hd_r_userInfo{
+    cursor: pointer;
+    padding: 18px 2px;
+    line-height: 28px;
+    height: 28px;
+    float: left;
+    color: ghostwhite;
+    font-weight: bold;
+}
+.hd_r_userInfo:hover{
+    color: navajowhite;
+    font-weight: bolder;
+}
+
+.hd_r_userIcon{
+    float: left;
+    margin: 10px;
+    line-height: 44px;
+    height: 44px;
+    width: 44px;
 }
 
 /*header头部相关css 结束*/
@@ -109,7 +132,7 @@
     position: absolute;
     bottom: 0px;
     width: 100%;
-    min-width: 1080px;
+    min-width: 1010px;
     z-index: 2;
     height: 28px;
     line-height: 28px;

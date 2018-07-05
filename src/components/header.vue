@@ -13,31 +13,45 @@
               <div style="position: relative">
                   <div class="hd_menu">
                       <div class="hd_menu_icon"><img src="~@/assets/images/xp_15.png"/></div>
-                      <div class="hd_menu_span"><span>静态演示</span></div>
+                      <div class="hd_menu_span"><span>人才</span></div>
                   </div>
                   <div class="hd_menu">
                       <div class="hd_menu_icon"><img src="~@/assets/images/xp_16.png"/></div>
-                      <div class="hd_menu_span"><span>动态演示</span></div>
+                      <div class="hd_menu_span"><span>公司</span></div>
                   </div>
                   <div class="hd_menu">
                       <div class="hd_menu_icon"><img src="~@/assets/images/xp_17.png"/></div>
-                      <div class="hd_menu_span"><span>我的管理</span></div>
+                      <div class="hd_menu_span"><span>项目</span></div>
                   </div>
                   <div class="hd_menu">
                       <div class="hd_menu_icon"><img src="~@/assets/images/xp_18.png"/></div>
-                      <div class="hd_menu_span"><span>系统配置</span></div>
+                      <div class="hd_menu_span"><span>其他</span></div>
                   </div>
                   <div class="hd_menu">
                       <div class="hd_menu_icon"><img src="~@/assets/images/xp_19.png"/></div>
-                      <div class="hd_menu_span"><span>系统配置</span></div>
+                      <div class="hd_menu_span"><span>报表</span></div>
                   </div>
               </div>
           </el-col>
-          <el-col :span="9" style="float: right;">
-              <div style="float: right;margin-right: 12px;">
+          <el-col :span="12" style="float: right;">
+              <div style="float: right;border-left: 1px solid #bdbdbd">
+                  <el-dropdown style="float: left">
+                                  <span class="el-dropdown-link hd_r_userInfo">
+                                    张三丰<i class="el-icon-arrow-down el-icon--right"></i>
+                                  </span>
+                      <el-dropdown-menu slot="dropdown">
+                          <el-dropdown-item>11</el-dropdown-item>
+                          <el-dropdown-item>22</el-dropdown-item>
+                          <el-dropdown-item>33</el-dropdown-item>
+                      </el-dropdown-menu>
+                  </el-dropdown>
+
+                  <img class="hd_r_userIcon" src="~@/assets/images/xp_19.png"/>
+              </div>
+              <div style="float: right;margin-right: 5px;">
                           <el-dropdown>
                                   <span class="el-dropdown-link hd_r_span">
-                                    设置<i class="el-icon-arrow-down el-icon--right"></i>
+                                    反馈<i class="el-icon-arrow-down el-icon--right"></i>
                                   </span>
                               <el-dropdown-menu slot="dropdown">
                                   <el-dropdown-item>密码设置</el-dropdown-item>
@@ -45,16 +59,21 @@
                                   <el-dropdown-item>我的图像</el-dropdown-item>
                               </el-dropdown-menu>
                           </el-dropdown>
-                          |<el-dropdown>
-                                  <span class="el-dropdown-link hd_r_span">
-                                    选择城市<i class="el-icon-arrow-down el-icon--right"></i>
-                                  </span>
-                          <el-dropdown-menu slot="dropdown">
-                              <el-dropdown-item>上海</el-dropdown-item>
-                              <el-dropdown-item>无锡</el-dropdown-item>
-                              <el-dropdown-item>苏州</el-dropdown-item>
-                          </el-dropdown-menu>
-                      </el-dropdown>
+                          |
+                          <span class="el-dropdown-link hd_r_span">
+                            <i class="el-icon-delete"></i>邮件
+                          </span>
+                        |
+                          <span class="el-dropdown-link hd_r_span">
+                            <i class="el-icon-date"></i>日历</span>
+
+                            |
+                          <span class="el-dropdown-link hd_r_span">
+                            <i class="el-icon-time"></i>代办</span>
+                        |
+                          <span class="el-dropdown-link hd_r_span">
+                            <i class="el-icon-document"></i>消息
+                          </span>
                           |<el-dropdown @command="handleThemeCommand">
                                   <span class="el-dropdown-link hd_r_span">
                                     主题<i class="el-icon-arrow-down el-icon--right"></i>
@@ -67,29 +86,6 @@
                               <el-dropdown-item command="default" divided class="blue">默认</el-dropdown-item>
                           </el-dropdown-menu>
                       </el-dropdown>
-                          |<el-dropdown>
-                                  <span class="el-dropdown-link hd_r_span">
-                                    工具箱<i class="el-icon-arrow-down el-icon--right"></i>
-                                  </span>
-                          <el-dropdown-menu slot="dropdown">
-                              <el-dropdown-item>锤子</el-dropdown-item>
-                              <el-dropdown-item>🔨</el-dropdown-item>
-                              <el-dropdown-item>斧头</el-dropdown-item>
-                              <el-dropdown-item>大刀</el-dropdown-item>
-                          </el-dropdown-menu>
-                        </el-dropdown>
-                      |<el-dropdown>
-                          <span class="el-dropdown-link hd_r_span">
-                            样式<i class="el-icon-arrow-down el-icon--right"></i>
-                          </span>
-                          <el-dropdown-menu slot="dropdown">
-                              <el-dropdown-item>aaa</el-dropdown-item>
-                              <el-dropdown-item>bbb</el-dropdown-item>
-                              <el-dropdown-item>ccc</el-dropdown-item>
-                              <el-dropdown-item disabled>ddd</el-dropdown-item>
-                              <el-dropdown-item divided>eee</el-dropdown-item>
-                          </el-dropdown-menu>
-                     </el-dropdown>
               </div>
           </el-col>
       </el-row>

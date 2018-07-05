@@ -88,15 +88,38 @@
 
 .hd_r_span{
     cursor: pointer;
-    padding: 2px 6px;
+    padding: 2px 4px;
     margin: 2px;
     line-height: 28px;
     color: white;
+    font-weight: bold;
 }
 
 .hd_r_span:hover{
     background: #ababab;
 
+}
+
+.hd_r_userInfo{
+    cursor: pointer;
+    padding: 18px 2px;
+    line-height: 28px;
+    height: 28px;
+    float: left;
+    color: ghostwhite;
+    font-weight: bold;
+}
+.hd_r_userInfo:hover{
+    color: navajowhite;
+    font-weight: bolder;
+}
+
+.hd_r_userIcon{
+    float: left;
+    margin: 10px;
+    line-height: 44px;
+    height: 44px;
+    width: 44px;
 }
 
 /*header头部相关css 结束*/
