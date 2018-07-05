@@ -17,6 +17,7 @@ io.interceptors.response.use((response) => {
   // console.log(response, 'res')
   response.headers['content-type'] = 'application/json;charset=UTF-8'
   if (response.data.resCode === '0' || response.data.code === 200){
+    console.log(response.data)
     return response.data.data
   }else{
     return Promise.reject(response.data)
@@ -40,7 +41,6 @@ io.interceptors.response.use((response) => {
     }
   } catch (e) {
     if(e.name=='TypeError') {
-        // setTimeout(() => { window.location.href=process.env.REDIRECT_URL+"/login"; }, 1500)
         return Promise.reject(new Error('抱歉！操作超时，请重新登录'))
     }
     else{

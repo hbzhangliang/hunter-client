@@ -8,6 +8,11 @@ let base = process.env.BASE_API
 // let base = config.host
 console.log(base)
  // let base2 = '/pagestyle'
+
+
+export const wsTest = (params) => { return io.post(`${base}/ws/1`, params) };
+export const wsTest2 = (params) => { return io.post(`${base}/ws/2`, params) };
+
 export const getApiSublist = (params) => { return io.post(`${base}/api/api-jssdk/funclistbytype`, params) };
 
 export const getWorkBenchData = () => { return io.get(`${base}/config/work-bench?spId=1c5d468652ba4af295f9dd83aa62e152`) };
