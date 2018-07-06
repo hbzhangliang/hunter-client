@@ -37,32 +37,39 @@
       methods:{
           ...mapMutations(['ADD_OPTIONS','REMOVE_OPTIONS','SET_EDITABLETABSVALUE']),
           removeTab(str){
-              let _this=this
+              let _this=this;
               _this.REMOVE_OPTIONS(str)
           },
           handleTabsEdit(targetName, action){
-              let _this=this
-              console.log(targetName)
-              console.log(action)
+              let _this=this;
               if (action === 'remove') {
                   if(targetName!="main") {
-                      _this.removeTab(targetName)
-                      _this.REMOVE_OPTIONS(targetName)
-                      _this.showOptionLast()
+                      var index=_this.tabIndex(targetName);
+                      index=index==0?0:index-1;
+                      _this.removeTab(targetName);
+                      _this.showOption(index)
                   }
               }
               if (action === 'add') {
                   // console.log("fffgsgs")
               }
           },
+          tabIndex(str){
+              let _this=this;
+              let _pt=0;
+              $.each(_this.$store.state.options,function (index,item) {
+                  if(item.key==str){
+                      _pt=index
+                  }
+              });
+              return _pt;
+          },
           tabClick(item){
-              let _this=this
+              let _this=this;
               this.$store.state.menus.forEach(p => {
                   if (item.name == p.key) {
-                      console.log("router")
-                      console.log(p.router)
                       // _this.ADD_OPTIONS(p)
-                      _this.$router.replace(p.key)
+                      _this.$router.replace(p.key);
                       _this.SET_EDITABLETABSVALUE(p.key)
                       // _this.$router.push({path: 'base/' + str})
                   }
@@ -70,13 +77,18 @@
           },
           //搜索option，将最后一个设置为可见路由
           showOptionLast(){
-              let _this=this
-              var length=_this.$store.state.options.length
-              var opLast=_this.$store.state.options[length-1]
-              _this.$router.replace(opLast.key)
+              let _this=this;
+              var length=_this.$store.state.options.length;
+              var opLast=_this.$store.state.options[length-1];
+              _this.$router.replace(opLast.key);
               _this.SET_EDITABLETABSVALUE(opLast.key)
           },
-
+          showOption(index){
+              let _this=this;
+              let opIndex=_this.$store.state.options[index];
+              _this.$router.replace(opIndex.key);
+              _this.SET_EDITABLETABSVALUE(opIndex.key)
+          },
           init_base(){
 
               setTimeout(function () {
@@ -85,11 +97,11 @@
                       "<span class='el-tabs__new-tab'><i class='el-icon-close'></i></span>" +
                       "<span class='el-tabs__new-tab'><i class='el-icon-refresh'></i></span>" +
                       "<span class='el-tabs__new-tab'><i class='el-icon-mobile-phone'></i></span>";
-                  $(".el-tabs__new-tab").before(info)
+                  $(".el-tabs__new-tab").before(info);
 
                   //高度设置
-                  var height=$(window).height()-138
-                  $(".el-tabs__content").css({height:height})
+                  var height=$(window).height()-138;
+                  $(".el-tabs__content").css({height:height});
                   $(".rt_view").css({height:height})
               },100)
 
@@ -101,13 +113,10 @@
     },
     computed: {
         options(){
-            console.log("dddd")
-            console.log(this.$store.state.options)
             return this.$store.state.options
         },
         editableTabsValue:{
             get: function () {
-                console.log("showshow"+this.$store.state.editableTabsValue)
                 return this.$store.state.editableTabsValue
             },
             set: function (value) {
