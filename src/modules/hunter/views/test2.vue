@@ -17,7 +17,7 @@
     import $ from 'jquery'
 
     export default {
-        name: 'base',
+        // name: 'base',
         data: function () {
             return {
                 msg:null,
