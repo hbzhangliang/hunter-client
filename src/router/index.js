@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Base from '@/modules/hunter/base'
 import firstPage from 'endportView/firstPage'
-
+import login from '@/modules/hunter/Login'
 import test from 'endportView/test'
 import test2 from 'endportView/test2'
 Vue.use(Router)
@@ -34,7 +34,6 @@ export default new Router({
           name: 'firstPage',
           component: firstPage
         },
-
         {
           path: '*',
           redirect: '/base/firstPage'
@@ -42,11 +41,11 @@ export default new Router({
       ]
     },
 
-
     //common
     {
       path: '*',
       redirect: '/base/firstPage'
     }
-  ]
+  ],
+    mode: "history"//干掉地址栏里边的#号键
 })
