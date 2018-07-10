@@ -10,6 +10,9 @@ console.log(base)
  // let base2 = '/pagestyle'
 
 
-export const index = (params) => { return io.post(`${base}/index`, params) };
+export const healthcheck = (params) => { return io.post(`${base}/health`, params) };
 export const wsTest = (params) => { return io.post(`${base}/ws/1`, params) };
 export const wsTest2 = (params) => { return io.post(`${base}/ws/2`, params) };
+
+
+export const accoutCheck = (params) => { return io.post(`${base}/account/check`, params) };
