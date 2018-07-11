@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <HeaderApp></HeaderApp>
-    <!--<div >-->
       <router-view v-if="isRouterAlive"></router-view>
-    <!--</div>-->
     <FooterApp></FooterApp>
   </div>
 </template>
