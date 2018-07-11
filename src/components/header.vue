@@ -11,24 +11,24 @@
           </el-col>
           <el-col :span="8">
               <div style="position: relative">
-                  <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_15.png"/></div>
+                  <div class="hd_menu" @click="headMenu('user')">
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_user.png"/></div>
                       <div class="hd_menu_span"><span>人才</span></div>
                   </div>
-                  <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_16.png"/></div>
+                  <div class="hd_menu" @click="headMenu('company')">
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_company.png"/></div>
                       <div class="hd_menu_span"><span>公司</span></div>
                   </div>
-                  <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_17.png"/></div>
+                  <div class="hd_menu" @click="headMenu('project')">
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_project.png"/></div>
                       <div class="hd_menu_span"><span>项目</span></div>
                   </div>
-                  <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_18.png"/></div>
-                      <div class="hd_menu_span"><span>其他</span></div>
+                  <div class="hd_menu" @click="headMenu('setting')">
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_setting.png"/></div>
+                      <div class="hd_menu_span"><span>配置</span></div>
                   </div>
-                  <div class="hd_menu">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_19.png"/></div>
+                  <div class="hd_menu" @click="headMenu('report')">
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_report.png"/></div>
                       <div class="hd_menu_span"><span>报表</span></div>
                   </div>
               </div>
@@ -126,6 +126,9 @@
                 end.changeTheme(command)
                 //写入cookie
                 end.setCookie("theme",command,0);
+            },
+            headMenu(item){
+                alert(item)
             }
         },
         created () {
