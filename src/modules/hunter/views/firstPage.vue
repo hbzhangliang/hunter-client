@@ -1,7 +1,7 @@
 <template>
   <section>
 this is main
-
+    <el-button type="primary" @click="searchAll">查询所有</el-button>
     <el-dialog title="请登录系统" :visible.sync="loginDialog" size="tiny"
                width="28%"
                @close="closeLoginDialog">
@@ -11,6 +11,9 @@ this is main
         </div>
         <div class="demo-input-suffix">
           密码:<el-input v-model="user.pwd" placeholder="请输入内容" size="medium"></el-input>
+        </div>
+        <div class="demo-input-suffix">
+          <span style="color: red">{{errorInfo}}</span>
         </div>
       </div>
       <div style="text-align: center;margin-top: 25px">
@@ -23,7 +26,7 @@ this is main
 </template>
 <script>
     import end from '@/common/js/utils.js'
-  import {healthcheck,accoutCheck} from '@/api/api'
+  import {healthcheck,accoutCheck,accoutListAll} from '@/api/api'
     import $ from 'jquery'
   export default{
     data () {
@@ -32,7 +35,8 @@ this is main
           user:{
               account:null,
               pwd:null
-          }
+          },
+          errorInfo:null
       }
     },
       methods:{
@@ -48,12 +52,19 @@ this is main
         login(){
             let _this=this
             accoutCheck(_this.user).then(p=>{
-                console.log(p)
                 if(p){
                     this.loginDialog=false
                 }
+                else {
+                    this.errorInfo="用户名或密码错误"
+                }
             })
 
+        },
+        searchAll(){
+            accoutListAll().then(p=>{
+                console.log(p)
+            })
         }
 
       },

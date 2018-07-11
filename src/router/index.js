@@ -46,6 +46,5 @@ export default new Router({
       path: '*',
       redirect: '/base/firstPage'
     }
-  ],
-    mode: "history"//干掉地址栏里边的#号键
+  ]
 })
