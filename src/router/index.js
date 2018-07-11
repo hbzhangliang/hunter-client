@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Base from '@/modules/hunter/base'
 import firstPage from 'endportView/firstPage'
-import login from '@/modules/hunter/Login'
 import test from 'endportView/test'
 import test2 from 'endportView/test2'
 Vue.use(Router)
