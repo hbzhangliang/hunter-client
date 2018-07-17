@@ -128,7 +128,7 @@
                 end.setCookie("theme",command,0);
             },
             headMenu(item){
-                alert(item)
+                this.$store.state.activeMenuContent="menu_"+item
             }
         },
         created () {

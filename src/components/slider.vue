@@ -8,60 +8,28 @@
             @open="handleOpen"
             @close="handleClose"
             :collapse="leftMenuCollapse">
-      <el-submenu index="1">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航一</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="1-1">
-            <i class="el-icon-menu"></i>选项1
-          </el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-          <el-menu-item index="1-3">选项3</el-menu-item>
-          <el-menu-item index="1-4">选项4</el-menu-item>
-          <el-menu-item index="1-5">选项5</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="分组2">
-          <el-menu-item index="1-6">选项6</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="1-7">
-          <template slot="title"><i class="el-icon-menu"></i>选项4</template>
-          <el-menu-item index="1-7-1"><i class="el-icon-document"></i>选项7</el-menu-item>
-        </el-submenu>
-      </el-submenu>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
-      <el-menu-item index="3">
-        <!--<template slot="title">-->
-          <i class="el-icon-location"></i>
-          <span slot="title">导航三</span>
-        <!--</template>-->
-      </el-menu-item>
-      <el-menu-item index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </el-menu-item>
 
-      <el-submenu index="5">
-        <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>导航五</span>
-        </template>
-        <el-menu-item-group>
-          <el-menu-item index="5-1">选项1</el-menu-item>
-          <el-menu-item index="5-2">选项2</el-menu-item>
-          <el-menu-item index="5-3">选项3</el-menu-item>
-          <el-menu-item index="5-4">选项4</el-menu-item>
-          <el-menu-item index="5-5">选项5</el-menu-item>
-        </el-menu-item-group>
-        <el-submenu index="5-6">
-          <template slot="title">选项6</template>
-          <el-menu-item index="5-6-1">选项1</el-menu-item>
-        </el-submenu>
+      <el-submenu :index="item1.id" v-for="item1 in activeMenuContent">
+           <template slot="title"><i :class="item1.icon"></i><span>{{item1.name}}</span></template>
+          <el-submenu :index="item2.id" v-for="item2 in item1.children">
+            <template slot="title"><i :class="item2.icon"></i><span>{{item2.name}}</span></template>
+            <el-menu-item :index="item3.id" v-for="item3 in item2.children"><i :class="item3.icon"></i><span>{{item3.name}}</span></el-menu-item>
+          </el-submenu>
       </el-submenu>
+
+      <!--<el-submenu index="1">-->
+        <!--<template slot="title"><i class="el-icon-location"></i><span>导航一</span></template>-->
+        <!--<el-submenu index="1-7">-->
+          <!--<template slot="title"><i class="el-icon-menu"></i><span>选项1</span></template>-->
+          <!--<el-menu-item index="1-7-1"><i class="el-icon-document"></i><span>选项2</span></el-menu-item>-->
+          <!--<el-menu-item index="1-7-2"><i class="el-icon-document"></i><span>选项4</span></el-menu-item>-->
+          <!--<el-menu-item index="1-7-3"><i class="el-icon-document"></i><span>选项5</span></el-menu-item>-->
+        <!--</el-submenu>-->
+        <!--<el-submenu index="1-8">-->
+          <!--<template slot="title"><i class="el-icon-menu"></i><span>选项5</span></template>-->
+          <!--<el-menu-item index="1-8-1"><i class="el-icon-document"></i><span>选项2</span></el-menu-item>-->
+        <!--</el-submenu>-->
+      <!--</el-submenu>-->
     </el-menu>
   </div>
 </template>
@@ -74,7 +42,25 @@
   export default {
     data () {
       return {
-          isCollapse:false
+          isCollapse:false,
+          menu_user:[{id:"1",path:"1",icon:"el-icon-menu",name:"订阅搜索",children:
+                  [{id:"1-1",path:"1-1",icon:"el-icon-menu",name:"我创建的",children:
+                      [{id:"1-1-1",path:"1-1-1",icon:"el-icon-document",name:"所有人才"},{id:"1-1-2",path:"1-1-2",icon:"el-icon-document",name:"我的候选人"},{id:"1-1-3",path:"1-1-3",icon:"el-icon-document",name:"客户联系人"},{id:"1-1-4",path:"1-1-4",icon:"el-icon-document",name:"cold call"}]},
+                  {id:"1-2",path:"1-2",icon:"el-icon-document",name:"共享人才",children:
+                          [{id:"1-2-1",path:"1-2-1",icon:"el-icon-document",name:"所有人才"},{id:"1-2-2",path:"1-2-2",icon:"el-icon-document",name:"候选人"},{id:"1-2-3",path:"1-2-3",icon:"el-icon-document",name:"客户联系人"},{id:"1-2-4",path:"1-2-4",icon:"el-icon-document",name:"cold call"}]},
+                      {id:"1-3",path:"1-3",icon:"el-icon-menu",name:"收取简历",children:
+                              [{id:"1-3-1",path:"1-3-1",icon:"el-icon-document",name:"收取邮箱简历"},{id:"1-3-2",path:"1-3-2",icon:"el-icon-document",name:"设置邮箱"}]},
+                      {id:"1-4",path:"1-4",icon:"el-icon-document",name:"回收站",children:
+                              [{id:"1-4-1",path:"1-4-1",icon:"el-icon-document",name:"我删除的"},{id:"1-4-2",path:"1-4-2",icon:"el-icon-document",name:"所有删除"}]}]},
+              {id:"2",path:"2",icon:"el-icon-menu",name:"文件夹",children:
+                      [{id:"2-1",path:"2-1",icon:"el-icon-document",name:"我的文件夹",children:
+                              [{id:"2-1-1",path:"2-1-1",icon:"el-icon-document",name:"A文件夹"},{id:"2-1-2",path:"2-1-2",icon:"el-icon-document",name:"B文件夹"},{id:"2-1-3",path:"2-1-3",icon:"el-icon-document",name:"C文件夹"},{id:"2-1-4",path:"2-1-4",icon:"el-icon-document",name:"D文件夹"}]}
+                         ]}],
+
+
+          menu_company:[{id:"1",path:"1",icon:"el-icon-document",name:"共享人才",children:[{id:"2",path:"2",icon:"el-icon-document",name:"所有人才",children:
+                      [{id:"4",path:"4",icon:"el-icon-document",name:"c",},{id:"5",path:"5",icon:"el-icon-document",name:"d"}]},
+                  {id:"3",path:"3",icon:"el-icon-document",name:"e",children:[{id:"6",path:"6",icon:"el-icon-document",name:"f"}]}]}]
       }
     },
     methods: {
@@ -122,10 +108,21 @@
 
         }
 
+
     },
     components: {},
     computed: {
-        ...mapState(["leftMenuCollapse","options"])
+        ...mapState(["leftMenuCollapse","options"]),
+        activeMenuContent(){
+            let _this=this
+            let paras=this.$store.state.activeMenuContent
+            if(paras=="menu_user"){
+                return _this.menu_user
+            }
+            else if(paras=="menu_company"){
+                return _this.menu_company
+            }
+        }
 
     },
     watch: {
