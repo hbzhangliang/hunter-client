@@ -35,14 +35,17 @@
           </el-col>
           <el-col :span="12" style="float: right;">
               <div style="float: right;border-left: 1px solid #bdbdbd">
-                  <el-dropdown style="float: left">
+                  <el-dropdown style="float: left" @command="handleMySetting">
                                   <span class="el-dropdown-link hd_r_userInfo">
                                     张三丰<i class="el-icon-arrow-down el-icon--right"></i>
                                   </span>
                       <el-dropdown-menu slot="dropdown">
-                          <el-dropdown-item>11</el-dropdown-item>
-                          <el-dropdown-item>22</el-dropdown-item>
-                          <el-dropdown-item>33</el-dropdown-item>
+                          <el-dropdown-item command="myInfo">我的信息</el-dropdown-item>
+                          <el-dropdown-item command="email">邮件设置</el-dropdown-item>
+                          <el-dropdown-item command="applyMail">应聘邮箱</el-dropdown-item>
+                          <el-dropdown-item command="warning">系统提醒</el-dropdown-item>
+                          <el-dropdown-item command="pwd">密码设置</el-dropdown-item>
+                          <el-dropdown-item divided  command="logout">退出</el-dropdown-item>
                       </el-dropdown-menu>
                   </el-dropdown>
 
@@ -96,7 +99,7 @@
     import $ from 'jquery'
     import end from '@/common/js/utils.js'
     import {mapState,mapMutations} from 'vuex'
-    import {} from '@/api/api'
+    import {accountLogout,healthcheck} from '@/api/api'
     export default {
         data () {
             return {
@@ -129,6 +132,25 @@
             },
             headMenu(item){
                 this.$store.state.activeMenuContent="menu_"+item
+            },
+            handleMySetting(command){
+                let _this=this
+                switch(command){
+                    case "logout":{
+                        accountLogout().then(p=>{
+                            if(p){
+                                _this.$message({
+                                    message: '退出成功',
+                                    type: 'success'
+                                });
+                            }
+                            else {
+                                _this.$message.error('退出失败');
+                            }
+                        })
+                    }break;
+                    default:break;
+                }
             }
         },
         created () {

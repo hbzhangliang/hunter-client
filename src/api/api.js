@@ -16,4 +16,6 @@ export const wsTest2 = (params) => { return io.post(`${base}/ws/2`, params) };
 
 
 export const accoutCheck = (params) => { return io.post(`${base}/account/check`, params) };
+export const accoutCheckInfo = (params) => { return io.post(`${base}/account/check_info`, params) };
+export const accountLogout = (params) => { return io.post(`${base}/account/logout`, params) };
 export const accoutListAll = (params) => { return io.post(`${base}/account/listall`, params) };

@@ -26,7 +26,7 @@ this is main
 </template>
 <script>
     import end from '@/common/js/utils.js'
-  import {healthcheck,accoutCheck,accoutListAll} from '@/api/api'
+  import {healthcheck,accoutCheck,accoutCheckInfo,accoutListAll} from '@/api/api'
     import $ from 'jquery'
   export default{
     data () {
@@ -51,9 +51,11 @@ this is main
           },
         login(){
             let _this=this
-            accoutCheck(_this.user).then(p=>{
-                if(p){
+            console.log(this.user)
+            accoutCheckInfo(_this.user).then(p=>{
+                if(null!=p){
                     this.loginDialog=false
+                    console.log(p)
                 }
                 else {
                     this.errorInfo="用户名或密码错误"
