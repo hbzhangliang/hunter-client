@@ -54,11 +54,11 @@ this is main
             console.log(this.user)
             accoutCheckInfo(_this.user).then(p=>{
                 if(null!=p){
-                    this.loginDialog=false
+                    _this.loginDialog=false
                     console.log(p)
                 }
                 else {
-                    this.errorInfo="用户名或密码错误"
+                    _this.errorInfo="用户名或密码错误"
                 }
             })
 
