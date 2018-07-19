@@ -37,7 +37,8 @@ export default new Vuex.Store({
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],
       editableTabsValue:"main",//当前编辑项
-      activeMenuContent:"menu_user"
+      activeMenuContent:"menu_user",
+      userInfo:null
   },
   mutations,
   actions,

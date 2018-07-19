@@ -23,13 +23,13 @@
                       <div class="hd_menu_icon"><img src="~@/assets/images/xp_project.png"/></div>
                       <div class="hd_menu_span"><span>项目</span></div>
                   </div>
-                  <div class="hd_menu" @click="headMenu('setting')">
-                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_setting.png"/></div>
-                      <div class="hd_menu_span"><span>配置</span></div>
-                  </div>
                   <div class="hd_menu" @click="headMenu('report')">
                       <div class="hd_menu_icon"><img src="~@/assets/images/xp_report.png"/></div>
                       <div class="hd_menu_span"><span>报表</span></div>
+                  </div>
+                  <div class="hd_menu" @click="headMenu('setting')">
+                      <div class="hd_menu_icon"><img src="~@/assets/images/xp_setting.png"/></div>
+                      <div class="hd_menu_span"><span>配置</span></div>
                   </div>
               </div>
           </el-col>
@@ -37,7 +37,7 @@
               <div style="float: right;border-left: 1px solid #bdbdbd">
                   <el-dropdown style="float: left" @command="handleMySetting">
                                   <span class="el-dropdown-link hd_r_userInfo">
-                                    张三丰<i class="el-icon-arrow-down el-icon--right"></i>
+                                    {{userInfo==null?'未登录':userInfo.name}}<i class="el-icon-arrow-down el-icon--right"></i>
                                   </span>
                       <el-dropdown-menu slot="dropdown">
                           <el-dropdown-item command="myInfo">我的信息</el-dropdown-item>
@@ -139,6 +139,7 @@
                     case "logout":{
                         accountLogout().then(p=>{
                             if(p){
+                                _this.$store.state.userInfo=null
                                 _this.$message({
                                     message: '退出成功',
                                     type: 'success'
@@ -157,7 +158,10 @@
             this.init_header()
         },
         computed: {
-            ...mapState(["leftMenuCollapse"])
+            ...mapState(["leftMenuCollapse"]),
+            userInfo(){
+                return this.$store.state.userInfo
+            }
         }
 
     }

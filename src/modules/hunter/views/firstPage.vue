@@ -54,6 +54,7 @@ this is main
             console.log(this.user)
             accoutCheckInfo(_this.user).then(p=>{
                 if(null!=p){
+                    _this.$store.state.userInfo=p
                     _this.loginDialog=false
                     console.log(p)
                 }
