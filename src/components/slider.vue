@@ -60,7 +60,15 @@
 
           menu_company:[{id:"1",path:"1",icon:"el-icon-document",name:"共享人才",children:[{id:"2",path:"2",icon:"el-icon-document",name:"所有人才",children:
                       [{id:"4",path:"4",icon:"el-icon-document",name:"c",},{id:"5",path:"5",icon:"el-icon-document",name:"d"}]},
-                  {id:"3",path:"3",icon:"el-icon-document",name:"e",children:[{id:"6",path:"6",icon:"el-icon-document",name:"f"}]}]}]
+                  {id:"3",path:"3",icon:"el-icon-document",name:"e",children:[{id:"6",path:"6",icon:"el-icon-document",name:"f"}]}]}],
+
+          menu_setting:[{id:"5",path:"5",icon:"el-icon-document",name:"设置",children:[{id:"5-1",path:"5-1",icon:"el-icon-document",name:"系统设置",children:[
+                      {id:"5-1-1",path:"5-1-1",icon:"el-icon-document",name:"企业信息维护"},
+                      {id:"5-1-2",path:"5-1-2",icon:"el-icon-document",name:"用户管理"},
+                      {id:"5-1-3",path:"5-1-3",icon:"el-icon-document",name:"角色管理"},
+                      {id:"5-1-4",path:"5-1-4",icon:"el-icon-document",name:"权限管理"},
+                      {id:"5-1-5",path:"5-1-5",icon:"el-icon-document",name:"字典项管理"}
+                  ]}]}]
       }
     },
     methods: {
@@ -116,18 +124,21 @@
         activeMenuContent(){
             let _this=this
             let paras=this.$store.state.activeMenuContent
+            console.log(paras)
             if(paras=="menu_user"){
                 return _this.menu_user
             }
             else if(paras=="menu_company"){
                 return _this.menu_company
             }
+            else if(paras=="menu_setting"){
+                return _this.menu_setting
+            }
         }
 
     },
     watch: {
         leftMenuCollapse(){
-            console.log(this.leftMenuCollapse)
             return this.leftMenuCollapse
         }
     },
