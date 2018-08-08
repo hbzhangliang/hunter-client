@@ -8,6 +8,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import * as filters from './filters'
 
+import VueContextMenu from 'vue-contextmenu'
 
 Vue.config.productionTip = false
 import $ from 'jquery'
@@ -19,6 +20,9 @@ $(function () {
 });
 Vue.prototype.echarts = require('echarts')
 Vue.use(ElementUI,VueCookie)
+
+Vue.use(VueContextMenu)
+
 /* eslint-disable no-new */
 Object.keys(filters).forEach(function (key,index) {
   console.log(key)
@@ -51,3 +55,4 @@ Date.prototype.Format = function (fmt) { //author: meizz
     if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
   return fmt;
 }
+

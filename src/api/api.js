@@ -19,3 +19,6 @@ export const accoutCheck = (params) => { return io.post(`${base}/account/check`,
 export const accoutCheckInfo = (params) => { return io.post(`${base}/account/check_info`, params) };
 export const accountLogout = (params) => { return io.post(`${base}/account/logout`, params) };
 export const accoutListAll = (params) => { return io.post(`${base}/account/listall`, params) };
+
+//城市配置
+export const cityTree = (params) => { return io.post(`${base}/city/tree`, params) };
