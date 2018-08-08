@@ -4,6 +4,9 @@ import Base from '@/modules/hunter/base'
 import firstPage from 'endportView/firstPage'
 import test from 'endportView/test'
 import test2 from 'endportView/test2'
+
+import city from 'endportView/setting/city'
+
 Vue.use(Router)
 
 export default new Router({
@@ -33,6 +36,11 @@ export default new Router({
           name: 'firstPage',
           component: firstPage
         },
+          {
+              path:'city',
+              name:'city',
+              component:city
+          },
         {
           path: '*',
           redirect: '/base/firstPage'

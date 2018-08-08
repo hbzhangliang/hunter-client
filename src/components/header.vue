@@ -40,6 +40,7 @@
                                     {{userInfo==null?'未登录':userInfo.name}}<i class="el-icon-arrow-down el-icon--right"></i>
                                   </span>
                       <el-dropdown-menu slot="dropdown">
+                          <el-dropdown-item command="city">城市设置</el-dropdown-item>
                           <el-dropdown-item command="myInfo">我的信息</el-dropdown-item>
                           <el-dropdown-item command="email">邮件设置</el-dropdown-item>
                           <el-dropdown-item command="applyMail">应聘邮箱</el-dropdown-item>
@@ -150,8 +151,29 @@
                             }
                         })
                     }break;
+                    case "city":_this.doSelect("city");break;
                     default:break;
                 }
+            },
+            doSelect(str) {
+                console.log(str)
+                let _this = this
+                //不存在才加上去
+                var bool = false
+                _this.$store.state.options.forEach(p => {
+                    if (p.key == str) {
+                        bool = true
+                    }
+                })
+                _this.$store.state.menus.forEach(p => {
+                    if (str == p.key) {
+                        if(!bool) {
+                            _this.$store.state.options.push(p)
+                        }
+                        _this.$router.replace(p.key)
+                        _this.$store.state.editableTabsValue=p.key
+                    }
+                })
             }
         },
         created () {
