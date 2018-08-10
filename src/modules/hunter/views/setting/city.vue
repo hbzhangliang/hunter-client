@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section v-on:click="hideMenuCss">
         <div>
             <el-input
                     placeholder="输入关键字进行过滤"
@@ -16,8 +16,8 @@
             </el-tree>
 
 
-            <div @contextmenu="showMenu" style="height: 200px;width: 300px;background: green">
-                <VueContextMenu :contextMenuData="menuData" @refresh="refresh" @add="add" @del="del">
+            <div @contextmenu="showMenu" style="height: 200px;width: 300px;background: lightcyan">
+                <VueContextMenu id="contextmenu" :contextMenuData="menuData" @refresh="refresh" @add="add" @del="del">
                 </VueContextMenu>
             </div>
 
@@ -29,6 +29,7 @@
 <script>
     import end from '@/common/js/utils.js'
     import {cityTree} from '@/api/api'
+    // import VueContextMenu from './ContextMenu.vue'
     import $ from 'jquery'
     export default {
         data() {
@@ -40,7 +41,7 @@
                     label: 'name'
                 },
                 menuData:{
-                    menuName:'name1',
+                    menuName:'abc',
                     axios:{x:null, y:null},
                     menulists:[
                         {fnHandler:'refresh',icoName:'el-icon-setting',btnName:'刷新'},
@@ -70,22 +71,36 @@
                 parameter.preventDefault()
                 var x = parameter.clientX
                 var y = parameter.clientY
-                this.entityTreeContextMenu.axios = {
+                this.menuData.axios = {
                     x, y
                 }
+                this.showMenuCss()
             },
             add(){
-
+                alert("add")
+                this.hideMenuCss()
             },
             del(){
-
+                alert("del")
+                this.hideMenuCss()
             },
             refresh(){
-
+                alert("refresh")
+                this.hideMenuCss()
+            },
+            showMenuCss(){
+                var _this=this
+                $(".vue-contextmenuName-"+this.menuData.menuName).css({display:"block",left:_this.menuData.axios.x,top:_this.menuData.axios.y})
+            },
+            hideMenuCss(){
+                $(".vue-contextmenuName-"+this.menuData.menuName).hide()
             }
         },
         created () {
             this.initCity()
+        },
+        components: {
+            // VueContextMenu
         }
     }
 </script>
