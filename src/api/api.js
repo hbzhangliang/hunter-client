@@ -27,3 +27,4 @@ export const cityList = (params) => { return io.post(`${base}/city/list`, params
 export const cityListAll = (params) => { return io.post(`${base}/city/list-all`, params) };
 export const cityDel = (params) => { return io.post(`${base}/city/del`, params) };
 export const citySave = (params) => { return io.post(`${base}/city/save`, params) };
+export const cityImport = (params) => { return io.post(`${base}/city/import`, params) };

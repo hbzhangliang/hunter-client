@@ -1,17 +1,19 @@
 <template>
     <section>
-        <div>
+        <div style="height: 92%;overflow: hidden">
+            <div style="margin:5px">
+                <el-button type="primary" @click="importCitys">导入数据</el-button>
+            </div>
             <el-input
                     placeholder="输入关键字进行过滤"
                     v-model="filterText">
             </el-input>
 
-            <div @contextmenu="showMenu">
+            <div @contextmenu="showMenu" >
                 <el-tree
-                        class="filter-tree"
+                        class="filter-tree city-tree"
                         :data="data"
                         :props="defaultProps"
-                        default-expand-all
                         :filter-node-method="filterNode"
                         ref="tree2">
                     <span class="custom-tree-node" slot-scope="{ node, data }">
@@ -62,7 +64,7 @@
 </template>
 <script>
     import end from '@/common/js/utils.js'
-    import {cityTree,cityGet,cityList,cityDel,citySave,cityListAll} from '@/api/api'
+    import {cityTree,cityGet,cityList,cityDel,citySave,cityListAll,cityImport} from '@/api/api'
     import $ from 'jquery'
     export default {
         data() {
@@ -113,6 +115,7 @@
                     _this.data=p
                 })
                 cityListAll().then(p=>{
+                    console.log(p)
                     _this.cityDataList=p
                 })
             },
@@ -218,6 +221,18 @@
                 }).catch(function (error) {
                     this.$message.error('后端错误:'+error.message);
                 })
+            },
+            importCitys(){
+                let _this=this
+                cityImport().then(p=>{
+                    _this.$message({
+                        message: '导入城市数据成功',
+                        type: 'success'
+                    });
+                    _this.initCity()
+                }).catch(function (error) {
+                    _this.$message.error('数据导入出错');
+                })
             }
         },
         created () {
@@ -228,5 +243,11 @@
     }
 </script>
 <style lang="scss" scoped>
+    .city-tree{
+        overflow-y: scroll;
+        max-height: 560px;
+        height: 70%;
+        margin: 10px 5px;
 
+    }
 </style>
