@@ -24,5 +24,6 @@ export const accoutListAll = (params) => { return io.post(`${base}/account/lista
 export const cityTree = (params) => { return io.post(`${base}/city/tree`, params) };
 export const cityGet = (params) => { return io.post(`${base}/city/get`, params) };
 export const cityList = (params) => { return io.post(`${base}/city/list`, params) };
+export const cityListAll = (params) => { return io.post(`${base}/city/list-all`, params) };
 export const cityDel = (params) => { return io.post(`${base}/city/del`, params) };
 export const citySave = (params) => { return io.post(`${base}/city/save`, params) };

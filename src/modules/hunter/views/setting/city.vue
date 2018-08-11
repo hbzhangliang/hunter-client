@@ -36,7 +36,17 @@
                     <el-input v-model="city.name" placeholder="请输入内容" size="medium"></el-input>
                 </el-form-item>
                 <el-form-item label="父节点">
-                    <el-input :disabled="isCreateRoot" v-model="city.parentId" placeholder="请输入内容" size="medium"></el-input>
+                    <!--<el-input :disabled="isCreateRoot" v-model="city.parentId" placeholder="请输入内容" size="medium"></el-input>-->
+
+                    <el-select :disabled="isCreateRoot" v-model="city.parentId" placeholder="根节点">
+                        <el-option
+                                v-for="item in cityDataList"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                        </el-option>
+                    </el-select>
+
                 </el-form-item>
                 <el-form-item label="排序号">
                     <el-input v-model="city.seq" placeholder="请输入内容" size="medium"></el-input>
@@ -52,7 +62,7 @@
 </template>
 <script>
     import end from '@/common/js/utils.js'
-    import {cityTree,cityGet,cityList,cityDel,citySave} from '@/api/api'
+    import {cityTree,cityGet,cityList,cityDel,citySave,cityListAll} from '@/api/api'
     import $ from 'jquery'
     export default {
         data() {
@@ -83,7 +93,8 @@
                     seq:null,
                     flag:1
                 },
-                isCreateRoot:false
+                isCreateRoot:true,
+                cityDataList:[]
             }
         },
         watch: {
@@ -100,6 +111,9 @@
                 let _this=this
                 cityTree().then(p=>{
                     _this.data=p
+                })
+                cityListAll().then(p=>{
+                    _this.cityDataList=p
                 })
             },
             showMenu:function (parameter) {
@@ -120,7 +134,6 @@
             },
             edit(){
                 let _this=this
-                _this.isCreateRoot=false
                 cityGet({id:_this.currentCityId}).then(p=>{
                     _this.city=p
                     _this.cityVisible=true
@@ -171,11 +184,9 @@
                         flag:1
                 }
                 this.cityVisible=true
-                this.isCreateRoot=true
             },
             add(){
                 let _this=this
-                _this.isCreateRoot=true
                 cityGet({id:_this.currentCityId}).then(p=>{
                     _this.city={
                         id:null,
