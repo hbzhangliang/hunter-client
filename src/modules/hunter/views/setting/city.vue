@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section v-loading="loading" v-on:click="hideMenuCss">
         <div style="height: 92%;overflow: hidden">
             <div style="margin:5px">
                 <el-button type="primary" @click="importCitys">导入数据</el-button>
@@ -69,6 +69,7 @@
     export default {
         data() {
             return {
+                loading:false,
                 filterText: '',
                 data: [],
                 defaultProps: {
@@ -111,8 +112,10 @@
             },
             initCity(){
                 let _this=this
+                _this.loading=true
                 cityTree().then(p=>{
                     _this.data=p
+                    _this.loading=false
                 })
                 cityListAll().then(p=>{
                     console.log(p)
@@ -129,11 +132,13 @@
                 //捕获当前操作的city id
                 this.currentCityId=parseInt($(parameter.target).attr("id").substr(5))
                 //如果没有alert，右键菜单无法显示
-                alert("对城市数据进行编辑")
+                // alert("对城市数据进行编辑")
+                this.showMenuCss();
             },
 
             refresh(){
                 this.initCity()
+                this.hideMenuCss()
             },
             edit(){
                 let _this=this
@@ -143,7 +148,7 @@
                 }).catch(function (error) {
                     this.$message.error('后端错误:'+error.message);
                 })
-
+                this.hideMenuCss()
             },
             del(){
 
@@ -176,6 +181,7 @@
                         message: '已取消删除'
                     });
                 });
+                this.hideMenuCss()
 
             },
             addRoot(){
@@ -233,6 +239,14 @@
                 }).catch(function (error) {
                     _this.$message.error('数据导入出错');
                 })
+            },
+            showMenuCss(){
+                var _this=this
+                $(".vue-contextmenuName-"+_this.menuData.menuName)
+                    .css({display:"block",left:_this.menuData.axios.x,top:_this.menuData.axios.y})
+            },
+            hideMenuCss(){
+                $(".vue-contextmenuName-"+this.menuData.menuName).css({display:"none"});
             }
         },
         created () {
