@@ -41,6 +41,8 @@
                                   </span>
                       <el-dropdown-menu slot="dropdown">
                           <el-dropdown-item command="city">城市设置</el-dropdown-item>
+                          <el-dropdown-item command="business">行业设置</el-dropdown-item>
+                          <el-dropdown-item command="career">职能设置</el-dropdown-item>
                           <el-dropdown-item command="myInfo">我的信息</el-dropdown-item>
                           <el-dropdown-item command="email">邮件设置</el-dropdown-item>
                           <el-dropdown-item command="applyMail">应聘邮箱</el-dropdown-item>
@@ -152,11 +154,13 @@
                         })
                     }break;
                     case "city":_this.doSelect("city");break;
+                    case "business":_this.doSelect("business");break;
                     default:break;
                 }
             },
             doSelect(str) {
                 console.log(str)
+                console.log(this.$store.state.menus)
                 let _this = this
                 //不存在才加上去
                 var bool = false

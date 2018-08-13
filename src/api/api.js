@@ -28,3 +28,11 @@ export const cityListAll = (params) => { return io.post(`${base}/city/list-all`,
 export const cityDel = (params) => { return io.post(`${base}/city/del`, params) };
 export const citySave = (params) => { return io.post(`${base}/city/save`, params) };
 export const cityImport = (params) => { return io.post(`${base}/city/import`, params) };
+//行业配置
+export const businessTree = (params) => { return io.post(`${base}/business/tree`, params) };
+export const businessGet = (params) => { return io.post(`${base}/business/get`, params) };
+export const businessList = (params) => { return io.post(`${base}/business/list`, params) };
+export const businessListAll = (params) => { return io.post(`${base}/business/list-all`, params) };
+export const businessDel = (params) => { return io.post(`${base}/business/del`, params) };
+export const businessSave = (params) => { return io.post(`${base}/business/save`, params) };
+export const businessImport = (params) => { return io.post(`${base}/business/import`, params) };

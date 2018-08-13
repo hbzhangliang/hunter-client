@@ -6,6 +6,9 @@ import test from 'endportView/test'
 import test2 from 'endportView/test2'
 
 import city from 'endportView/setting/city'
+import business from 'endportView/setting/business'
+import career from 'endportView/setting/career'
+
 
 Vue.use(Router)
 
@@ -40,6 +43,16 @@ export default new Router({
               path:'city',
               name:'city',
               component:city
+          },
+          {
+              path:'business',
+              name:'business',
+              component:business
+          },
+          {
+              path:'career',
+              name:'career',
+              component:career
           },
         {
           path: '*',
