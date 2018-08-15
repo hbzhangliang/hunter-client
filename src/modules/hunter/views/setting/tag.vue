@@ -51,7 +51,28 @@
 
 
         <div style="float: left;width: 60%;height: 97%;background: lightblue">
+            <div style="margin:5px">
+                <el-button type="primary" icon="el-icon-plus" @click="tagAdd">新增</el-button>
+            </div>
+            <el-input
+                    placeholder="输入关键字进行过滤"
+                    v-model="filterTagText">
+            </el-input>
 
+            <div @contextmenu="showMenu" >
+                <el-tree
+                        class="filter-tree tag-tree"
+                        :data="tagList"
+                        :props="defaultProps"
+                        :filter-node-method="filterNode"
+                        ref="tag">
+                    <span class="custom-tree-node" slot-scope="{ node, data }">
+                                <span :id="generateTagId(data)">{{ data.name }}</span>
+                    </span>
+                </el-tree>
+                <VueContextMenu id="contextmenu" :contextMenuData="menuData" @refresh="refresh" @edit="edit" @del="del"  @addRoot="addRoot" @add="add">
+                </VueContextMenu>
+            </div>
         </div>
 
     </section>
@@ -67,6 +88,7 @@
             return {
                 loading:false,
                 filterText: '',
+                filterTagText:'',
                 tagGroupList: [],
                 defaultProps: {
                     children: 'children',
@@ -78,11 +100,26 @@
                     code:null,
                     name:null,
                     seq:null
-                }
+                },
+                tagList:[],
+                menuData:{
+                    menuName:'abc',
+                    axios:{x:null, y:null},
+                    menulists:[
+                        {fnHandler:'refresh',icoName:'el-icon-refresh',btnName:'刷新'},
+                        {fnHandler:'edit',icoName:'el-icon-edit',btnName:'编辑'},
+                        {fnHandler:'del',icoName:'el-icon-delete',btnName:'删除'},
+                        {fnHandler:'addRoot',icoName:'el-icon-circle-plus-outline',btnName:'添加根节点'},
+                        {fnHandler:'add',icoName:'el-icon-plus',btnName:'添加子项'}
+                    ],
+                },
             }
         },
         watch: {
             filterText(val) {
+                this.$refs.tagGroup.filter(val);
+            },
+            filterTagText(val){
                 this.$refs.tagGroup.filter(val);
             }
         },
@@ -117,6 +154,9 @@
             },
             generateId(item){
                 return "tagGroup_"+item.id
+            },
+            generateTagId(item){
+                return "tag_"+item.id
             },
             groupAdd(){
                 this.group={
@@ -162,6 +202,12 @@
                         message: '已取消删除'
                     });
                 });
+            },
+            showMenu(){
+
+            },
+            tagAdd(){
+
             }
         },
         created () {
