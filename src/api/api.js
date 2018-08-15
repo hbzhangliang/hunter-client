@@ -36,7 +36,7 @@ export const businessListAll = (params) => { return io.post(`${base}/business/li
 export const businessDel = (params) => { return io.post(`${base}/business/del`, params) };
 export const businessSave = (params) => { return io.post(`${base}/business/save`, params) };
 export const businessImport = (params) => { return io.post(`${base}/business/import`, params) };
-只能配置
+// 职能配置
 export const careerTree = (params) => { return io.post(`${base}/career/tree`, params) };
 export const careerGet = (params) => { return io.post(`${base}/career/get`, params) };
 export const careerList = (params) => { return io.post(`${base}/career/list`, params) };
