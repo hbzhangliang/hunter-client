@@ -35,7 +35,8 @@ export default new Vuex.Store({
           {key:"1-3",label:"第三个页面页面",router:"base/1-3"},
           {key:"city",label:"城市设置",router:"base/city"},
           {key:"business",label:"行业设置",router:"base/business"},
-          {key:"career",label:"职能设置",router:"base/career"}
+          {key:"career",label:"职能设置",router:"base/career"},
+          {key:"calendar",label:"我的日历",router:"base/calendar"}
           ],
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],

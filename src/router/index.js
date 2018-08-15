@@ -8,7 +8,7 @@ import test2 from 'endportView/test2'
 import city from 'endportView/setting/city'
 import business from 'endportView/setting/business'
 import career from 'endportView/setting/career'
-
+import calendar from 'endportView/setting/calendar'
 
 Vue.use(Router)
 
@@ -53,6 +53,11 @@ export default new Router({
               path:'career',
               name:'career',
               component:career
+          },
+          {
+              path:'calendar',
+              name:'calendar',
+              component:calendar
           },
         {
           path: '*',
