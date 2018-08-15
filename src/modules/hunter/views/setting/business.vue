@@ -231,7 +231,7 @@
                 let _this=this
                 businessImport().then(p=>{
                     _this.$message({
-                        message: '导入城市数据成功',
+                        message: '导入行业数据成功',
                         type: 'success'
                     });
                     _this.initCity()
