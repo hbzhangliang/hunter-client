@@ -36,3 +36,11 @@ export const businessListAll = (params) => { return io.post(`${base}/business/li
 export const businessDel = (params) => { return io.post(`${base}/business/del`, params) };
 export const businessSave = (params) => { return io.post(`${base}/business/save`, params) };
 export const businessImport = (params) => { return io.post(`${base}/business/import`, params) };
+只能配置
+export const careerTree = (params) => { return io.post(`${base}/career/tree`, params) };
+export const careerGet = (params) => { return io.post(`${base}/career/get`, params) };
+export const careerList = (params) => { return io.post(`${base}/career/list`, params) };
+export const careerListAll = (params) => { return io.post(`${base}/career/list-all`, params) };
+export const careerDel = (params) => { return io.post(`${base}/career/del`, params) };
+export const careerSave = (params) => { return io.post(`${base}/career/save`, params) };
+export const careerImport = (params) => { return io.post(`${base}/career/import`, params) };

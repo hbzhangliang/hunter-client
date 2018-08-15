@@ -155,6 +155,7 @@
                     }break;
                     case "city":_this.doSelect("city");break;
                     case "business":_this.doSelect("business");break;
+                    case "career":_this.doSelect("career");break;
                     default:break;
                 }
             },

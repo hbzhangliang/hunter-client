@@ -151,7 +151,7 @@
             },
             del(){
 
-                this.$confirm('此操作将永久删除该城市及其子城市, 是否继续?', '提示', {
+                this.$confirm('此操作将永久删除该行业及其子行业, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
@@ -166,7 +166,7 @@
                     ids.push(this.currentCityId)
                     businessDel({ids:ids}).then(p=>{
                         _this.$message({
-                            message: '删除城市数据成功',
+                            message: '删除行业数据成功',
                             type: 'success'
                         });
                         _this.initCity()
@@ -219,7 +219,7 @@
                 businessSave(_this.business).then(p=>{
                     _this.businessVisible=false
                     _this.$message({
-                        message: '保存城市数据成功',
+                        message: '保存行业数据成功',
                         type: 'success'
                     });
                     _this.initCity()
