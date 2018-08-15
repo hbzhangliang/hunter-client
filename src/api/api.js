@@ -44,3 +44,17 @@ export const careerListAll = (params) => { return io.post(`${base}/career/list-a
 export const careerDel = (params) => { return io.post(`${base}/career/del`, params) };
 export const careerSave = (params) => { return io.post(`${base}/career/save`, params) };
 export const careerImport = (params) => { return io.post(`${base}/career/import`, params) };
+//标签组和标签操作
+export const tagGroupTree = (params) => { return io.post(`${base}/tag_group/tree`, params) };
+export const tagGroupGet = (params) => { return io.post(`${base}/tag_group/get`, params) };
+export const tagGroupList = (params) => { return io.post(`${base}/tag_group/list`, params) };
+export const tagGroupListAll = (params) => { return io.post(`${base}/tag_group/list-all`, params) };
+export const tagGroupDel = (params) => { return io.post(`${base}/tag_group/del`, params) };
+export const tagGroupSave = (params) => { return io.post(`${base}/tag_group/save`, params) };
+
+export const tagTree = (params) => { return io.post(`${base}/tag/tree`, params) };
+export const tagGet = (params) => { return io.post(`${base}/tag/get`, params) };
+export const tagList = (params) => { return io.post(`${base}/tag/list`, params) };
+export const tagListAll = (params) => { return io.post(`${base}/tag/list-all`, params) };
+export const tagDel = (params) => { return io.post(`${base}/tag/del`, params) };
+export const tagSave = (params) => { return io.post(`${base}/tag/save`, params) };

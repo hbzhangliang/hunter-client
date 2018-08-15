@@ -36,6 +36,7 @@ export default new Vuex.Store({
           {key:"city",label:"城市设置",router:"base/city"},
           {key:"business",label:"行业设置",router:"base/business"},
           {key:"career",label:"职能设置",router:"base/career"},
+          {key:"tag",label:"标签管理",router:"base/tag"},
           {key:"calendar",label:"我的日历",router:"base/calendar"}
           ],
       //选择到tab中的数据
