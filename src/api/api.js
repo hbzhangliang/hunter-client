@@ -58,3 +58,11 @@ export const tagList = (params) => { return io.post(`${base}/tag/list`, params) 
 export const tagListAll = (params) => { return io.post(`${base}/tag/list-all`, params) };
 export const tagDel = (params) => { return io.post(`${base}/tag/del`, params) };
 export const tagSave = (params) => { return io.post(`${base}/tag/save`, params) };
+//字典项管理
+export const dictList = (params) => { return io.post(`${base}/dict/list`, params) };
+export const dictListChildren = (params) => { return io.post(`${base}/dict/list-children`, params) };
+export const dictListAll = (params) => { return io.post(`${base}/dict/list-all`, params) };
+export const dictSave = (params) => { return io.post(`${base}/dict/save`, params) };
+export const dictGet = (params) => { return io.post(`${base}/dict/get`, params) };
+export const dictDel = (params) => { return io.post(`${base}/dict/del`, params) };
+

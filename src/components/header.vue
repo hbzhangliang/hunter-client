@@ -44,6 +44,7 @@
                           <el-dropdown-item command="business">行业设置</el-dropdown-item>
                           <el-dropdown-item command="career">职能设置</el-dropdown-item>
                           <el-dropdown-item command="tag">标签管理</el-dropdown-item>
+                          <el-dropdown-item command="dict">字典项管理</el-dropdown-item>
                           <el-dropdown-item command="calendar">我的日历</el-dropdown-item>
                           <el-dropdown-item command="myInfo">我的信息</el-dropdown-item>
                           <el-dropdown-item command="email">邮件设置</el-dropdown-item>
@@ -155,12 +156,13 @@
                             }
                         })
                     }break;
-                    case "city":_this.doSelect("city");break;
-                    case "business":_this.doSelect("business");break;
-                    case "career":_this.doSelect("career");break;
-                    case "tag":_this.doSelect("tag");break;
-                    case "calendar":_this.doSelect("calendar");break;
-                    default:break;
+                    // case "city":_this.doSelect("city");break;
+                    // case "business":_this.doSelect("business");break;
+                    // case "career":_this.doSelect("career");break;
+                    // case "tag":_this.doSelect("tag");break;
+                    // case "calendar":_this.doSelect("calendar");break;
+                    // case "dict":_this.doSelect("dict");break;
+                    default:_this.doSelect(command);break
                 }
             },
             doSelect(str) {

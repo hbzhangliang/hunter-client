@@ -9,6 +9,7 @@ import city from 'endportView/setting/city'
 import business from 'endportView/setting/business'
 import career from 'endportView/setting/career'
 import tag from 'endportView/setting/tag'
+import dict from 'endportView/setting/dict'
 import calendar from 'endportView/setting/calendar'
 
 Vue.use(Router)
@@ -59,6 +60,11 @@ export default new Router({
               path:'tag',
               name:'tag',
               component:tag
+          },
+          {
+              path:'dict',
+              name:'dict',
+              component:dict
           },
           {
               path:'calendar',
