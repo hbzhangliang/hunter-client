@@ -50,7 +50,7 @@
         </el-dialog>
 
 
-        <div style="float: left;width: 60%;height: 97%;background: lightblue">
+        <div style="float: left;width: 60%;height: 97%;" v-loading="loading2" @click="hideMenuCss">
             <div style="margin:5px">
                 <el-button type="primary" icon="el-icon-plus" @click="tagAdd">新增</el-button>
             </div>
@@ -75,6 +75,48 @@
             </div>
         </div>
 
+
+        <el-dialog title="标签信息维护" :visible.sync="tagVisible" size="tiny"
+                   @close="closeTagDialog">
+            <el-form label-width="160px" size="small">
+                <el-form-item label="id" class="hidden">
+                    <el-input v-model="tag.id" placeholder="请输入内容" size="medium"></el-input>
+                </el-form-item>
+                <el-form-item label="所属分组">
+                    <el-select :disabled="parentStatus" v-model="tag.groupId" placeholder="所属分组">
+                        <el-option
+                                v-for="item in tagGroupList"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="名称">
+                    <el-input v-model="tag.name" placeholder="请输入内容" size="medium"></el-input>
+                </el-form-item>
+                <el-form-item label="父节点">
+                    <el-select :disabled="parentStatus" v-model="tag.parentId" placeholder="父节点">
+                        <el-option
+                                v-for="item in tagDataList"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                        </el-option>
+                    </el-select>
+
+                </el-form-item>
+                <el-form-item label="排序号">
+                    <el-input v-model="tag.seq" placeholder="请输入内容" size="medium"></el-input>
+                </el-form-item>
+            </el-form>
+            <div style="text-align: center;margin-top: 25px">
+                <el-button @click="closeTagDialog">取消</el-button>
+                <el-button type="primary" @click="saveTag">确定</el-button>
+            </div>
+        </el-dialog>
+
+
     </section>
 </template>
 <script>
@@ -87,6 +129,7 @@
         data() {
             return {
                 loading:false,
+                loading2:false,
                 filterText: '',
                 filterTagText:'',
                 tagGroupList: [],
@@ -102,8 +145,9 @@
                     seq:null
                 },
                 tagList:[],
+                tagDataList:[],
                 menuData:{
-                    menuName:'abc',
+                    menuName:'tag',
                     axios:{x:null, y:null},
                     menulists:[
                         {fnHandler:'refresh',icoName:'el-icon-refresh',btnName:'刷新'},
@@ -113,6 +157,20 @@
                         {fnHandler:'add',icoName:'el-icon-plus',btnName:'添加子项'}
                     ],
                 },
+                tagVisible:false,
+                currentGroupId:null,
+                currentTagId:null,
+                parentStatus:true,
+                tag:{
+                    id:null,
+                    groupId:null,
+                    groupCode:null,
+                    parentId:null,
+                    name:null,
+                    remark:null,
+                    seq:null
+                }
+
             }
         },
         watch: {
@@ -168,7 +226,16 @@
                 this.groupVisible=true
             },
             groupView(id){
-                alert(id)
+                this.currentGroupId=id
+                let _this=this
+                _this.loading2=true
+                tagTree({groupId:id}).then(p=>{
+                    _this.tagList=p
+                    _this.loading2=false
+                })
+                tagListAll({groupId:id}).then(p=>{
+                    _this.tagDataList=p
+                })
             },
             groupEdit(id){
                 let _this=this
@@ -203,11 +270,118 @@
                     });
                 });
             },
-            showMenu(){
+            showMenu(parameter){
+                parameter.preventDefault()
+                var x = parameter.clientX
+                var y = parameter.clientY
+                this.menuData.axios = {
+                    x, y
+                }
+                //捕获当前操作的groupId
+                this.currentTagId=parseInt($(parameter.target).attr("id").substr(4))
+                //如果没有alert，右键菜单无法显示
+                // alert("对城市数据进行编辑")
+                this.showMenuCss();
+            },
+            showMenuCss(){
+                var _this=this
+                $(".vue-contextmenuName-"+_this.menuData.menuName)
+                    .css({display:"block",left:_this.menuData.axios.x,top:_this.menuData.axios.y})
+            },
+            hideMenuCss(){
+                $(".vue-contextmenuName-"+this.menuData.menuName).css({display:"none"});
+            },
+            refresh(){
+                let _this=this
+                this.groupView(_this.currentGroupId)
+                this.hideMenuCss()
+            },
+            edit(){
+                let _this=this
+                console.log(_this.currentTagId)
+                tagGet({id:_this.currentTagId}).then(p=>{
+                    _this.tag=p
+                    _this.tagVisible=true
+                }).catch(function (error) {
+                    _this.$message.error('后端错误:'+error.message);
+                })
+                this.hideMenuCss()
+            },
+            del(){
+                this.$confirm('此操作将永久删除该标签及其子城市, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    let _this=this
+                    var ids=[]
+                    ids.push(this.currentTagId)
+                    tagDel({ids:ids}).then(p=>{
+                        _this.$message({
+                            message: '删除城市数据成功',
+                            type: 'success'
+                        });
+                         _this.refresh()
+                    }).catch(function (error) {
+                        _this.$message.error('后端错误:'+error.message);
+                    })
 
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+                this.hideMenuCss()
+            },
+            addRoot(){
+                let _this=this
+                this.tag={
+                    id:null,
+                    groupId:_this.currentGroupId,
+                    groupCode:null,
+                    parentId:null,
+                    name:null,
+                    remark:null,
+                    seq:null
+                }
+                this.tagVisible=true
+            },
+            add(){
+                let _this=this
+                tagGet({id:_this.currentTagId}).then(p=>{
+                    _this.tag={
+                        id:null,
+                        groupId:_this.currentGroupId,
+                        groupCode:null,
+                        parentId:p.id,
+                        name:null,
+                        remark:null,
+                        seq:null
+                    }
+                    _this.tagVisible=true
+                }).catch(function (error) {
+                    this.$message.error('后端错误:'+error.message);
+                })
             },
             tagAdd(){
-
+                this.addRoot()
+            },
+            saveTag(){
+                let _this=this
+                tagSave(_this.tag).then(p=>{
+                    _this.tagVisible=false
+                    _this.$message({
+                        message: '保存标签数据成功',
+                        type: 'success'
+                    });
+                    _this.refresh()
+                }).catch(function (error) {
+                    this.$message.error('后端错误:'+error.message);
+                })
+            },
+            closeTagDialog(){
+                this.tagVisible=false
             }
         },
         created () {
