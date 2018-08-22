@@ -137,21 +137,9 @@
                 console.log(item)
             },
             del(item){
-                let _this=this
-                this.$confirm('此操作将永久删除该字典项, 是否继续?', '提示', {
-                    confirmButtonText: '确定',
-                    cancelButtonText: '取消',
-                    type: 'warning'
-                }).then(() => {
-                    _this.multipleSelection=[]
-                    _this.multipleSelection.push(item.id)
-                    _this.delBatchDict()
-                }).catch(() => {
-                    _this.$message({
-                        type: 'info',
-                        message: '已取消删除'
-                    });
-                });
+                this.multipleSelection=[]
+                this.multipleSelection.push(item.id)
+                this.delBatchDict()
             },
             sortChange(column){
                 let _this=this
@@ -161,15 +149,27 @@
             },
             delBatchDict(){
                 let _this=this
-                dictDel({ids:_this.multipleSelection}).then(p=>{
+                this.$confirm('此操作将永久删除该字典项, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    dictDel({ids:_this.multipleSelection}).then(p=>{
+                        _this.$message({
+                            message: '删除字典数据成功',
+                            type: 'success'
+                        });
+                        _this.init()
+                    }).catch(function (error) {
+                        _this.$message.error('后端错误:'+error.message);
+                    })
+                }).catch(() => {
                     _this.$message({
-                        message: '删除字典数据成功',
-                        type: 'success'
+                        type: 'info',
+                        message: '已取消删除'
                     });
-                    _this.init()
-                }).catch(function (error) {
-                    _this.$message.error('后端错误:'+error.message);
-                })
+                });
+
             },
             handleSelectionChange(val){
                 let _this=this
