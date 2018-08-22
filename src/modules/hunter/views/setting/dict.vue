@@ -8,13 +8,19 @@
 
         <div class="tableBox">
             <div class="pageTableContent">
-                <el-button type="primary" class="addBanner" @click="addDict"><i class="el-icon-plus"></i>新增字典项</el-button>
+                <el-button type="primary" class="addBanner" @click="addDict"><i class="el-icon-plus"></i>新增</el-button>
+                <el-button type="danger" class="addBanner" @click="delBatchDict"><i class="el-icon-plus"></i>批量删除</el-button>
                 <el-table :data="pageParams.data" border width="100%" v-loading="loading"
                           :stripe="tableCss.stripe" size="mini"
                           border
                           :cell-style=cellStyle
                           @sort-change="sortChange"
+                          @selection-change="handleSelectionChange"
                           >
+                    <el-table-column min-width="5%"
+                            type="selection"
+                            width="55">
+                    </el-table-column>
                     <el-table-column sortable="custom" prop="id" label="编号" min-width="10%">
                     </el-table-column>
                     <!--<el-table-column prop="parentId" label="parentId" min-width="10%">-->
@@ -41,7 +47,7 @@
                         <template slot-scope="scope">
                             <el-button size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"></el-button>
                             <el-button size="mini" type="success" icon="el-icon-view" @click="edit(scope.row)"></el-button>
-                            <el-button size="mini" type="danger" icon="el-icon-delete" @click="edit(scope.row)"></el-button>
+                            <el-button size="mini" type="danger" icon="el-icon-delete" @click="del(scope.row)"></el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -89,7 +95,8 @@
                 },
                 cellStyle:{
                     padding:6
-                }
+                },
+                multipleSelection:[]
 
             }
         },
@@ -129,11 +136,48 @@
                 alert("edit")
                 console.log(item)
             },
+            del(item){
+                let _this=this
+                this.$confirm('此操作将永久删除该字典项, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    _this.multipleSelection=[]
+                    _this.multipleSelection.push(item.id)
+                    _this.delBatchDict()
+                }).catch(() => {
+                    _this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            },
             sortChange(column){
                 let _this=this
                 _this.pageParams.orderBy=column.prop
                 _this.pageParams.direction=column.order=="descending"?"desc":"asc"
                 _this.init();
+            },
+            delBatchDict(){
+                let _this=this
+                dictDel({ids:_this.multipleSelection}).then(p=>{
+                    _this.$message({
+                        message: '删除字典数据成功',
+                        type: 'success'
+                    });
+                    _this.init()
+                }).catch(function (error) {
+                    _this.$message.error('后端错误:'+error.message);
+                })
+            },
+            handleSelectionChange(val){
+                let _this=this
+                var delIds=[]
+                val.forEach(p=>{
+                    delIds.push(p.id)
+                })
+                _this.multipleSelection=delIds
             }
 
         },
