@@ -9,7 +9,7 @@
         <div class="tableBox">
             <div class="pageTableContent">
                 <el-button type="primary" class="addBanner" @click="addDict"><i class="el-icon-plus"></i>新增</el-button>
-                <el-button type="danger" class="addBanner" @click="delBatchDict"><i class="el-icon-plus"></i>批量删除</el-button>
+                <el-button type="danger" class="addBanner" @click="delBatchDict"><i class="el-icon-delete"></i>批量删除</el-button>
                 <el-table :data="pageParams.data" border width="100%" v-loading="loading"
                           :stripe="tableCss.stripe" size="mini"
                           border
