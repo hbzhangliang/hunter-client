@@ -155,3 +155,10 @@
 .cursor-a-s{cursor: all-scroll;}
 .cursor-a{cursor: auto;}
 .cursor-c{cursor: copy;}
+
+
+/*searchBar*/
+.searchBar{
+    margin-bottom: 10px;
+}
+

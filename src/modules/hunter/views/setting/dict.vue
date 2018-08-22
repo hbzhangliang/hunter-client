@@ -1,36 +1,47 @@
 <template>
     <section>
-        <div>
-            <p style="margin: 5px 2px">
-                <b>字典项编码:</b> <el-input class="search_input w-240" v-model="pageParams.filter.code" placeholder="请输入内容"></el-input>
-                <b>字典项名称:</b> <el-input  class="search_input w-240" v-model="pageParams.filter.name" placeholder="请输入内容"></el-input>
-                <el-button type="primary" icon="el-icon-search"  @click="searchDict">搜索</el-button>
-            </p>
+        <div class="searchBar">
+            <b>字典项编码:</b> <el-input class="search_input w-240" v-model="pageParams.filter.code" placeholder="请输入内容"></el-input>
+            <b>字典项名称:</b> <el-input  class="search_input w-240" v-model="pageParams.filter.name" placeholder="请输入内容"></el-input>
+            <el-button type="primary" icon="el-icon-search"  @click="searchDict">搜索</el-button>
         </div>
 
         <div class="tableBox">
             <div class="pageTableContent">
                 <el-button type="primary" class="addBanner" @click="addDict"><i class="el-icon-plus"></i>新增字典项</el-button>
-                <el-table :data="pageParams.data" border width="100%" v-loading="loading">
-                    <el-table-column prop="id" label="编号" width="180px">
+                <el-table :data="pageParams.data" border width="100%" v-loading="loading"
+                          :stripe="tableCss.stripe" size="mini"
+                          border
+                          :cell-style=cellStyle
+                          @sort-change="sortChange"
+                          >
+                    <el-table-column sortable="custom" prop="id" label="编号" min-width="10%">
                     </el-table-column>
-                    <el-table-column prop="parentId" label="parentId" width="200px">
+                    <!--<el-table-column prop="parentId" label="parentId" min-width="10%">-->
+                    <!--</el-table-column>-->
+                    <el-table-column sortable="custom" prop="code" label="编码" min-width="10%">
                     </el-table-column>
-                    <el-table-column prop="name" label="name" width="160px">
+                    <el-table-column sortable="custom" prop="name" label="名称" min-width="10%">
                     </el-table-column>
-                    <el-table-column prop="code" label="code" width="200px">
+                    <el-table-column sortable="custom" prop="createBy" label="创建人" min-width="8%">
                     </el-table-column>
-                    <el-table-column prop="createBy" label="createBy" width="200px">
-                    </el-table-column>
-                    <el-table-column prop="createTime" label="createTime" width="100px">
-                    </el-table-column>
-                    <el-table-column prop="modifyBy" label="modifyBy" width="200px">
-                    </el-table-column>
-                    <el-table-column prop="modifyTime" label="modifyTime" width="100px">
-                    </el-table-column>
-                    <el-table-column  label="操作" width="220px">
+                    <el-table-column sortable="custom" prop="createTime" label="创建时间" min-width="8%">
                         <template slot-scope="scope">
-                            <el-button type="text" @click="edit(scope.row)">修改</el-button>
+                            {{scope.row.createTime?scope.row.createTime:'--'|formatTime('yyyy-MM-dd hh:mm')}}
+                        </template>
+                    </el-table-column>
+                    <el-table-column sortable="custom" prop="modifyBy" label="修改人" min-width="8%">
+                    </el-table-column>
+                    <el-table-column sortable="custom" prop="" label="修改时间" min-width="8%">
+                        <template slot-scope="scope">
+                            {{scope.row.modifyTime?scope.row.modifyTime:'--'|formatTime('yyyy-MM-dd hh:mm')}}
+                        </template>
+                    </el-table-column>
+                    <el-table-column  label="操作" min-width="15%">
+                        <template slot-scope="scope">
+                            <el-button size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"></el-button>
+                            <el-button size="mini" type="success" icon="el-icon-view" @click="edit(scope.row)"></el-button>
+                            <el-button size="mini" type="danger" icon="el-icon-delete" @click="edit(scope.row)"></el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -71,6 +82,13 @@
                         code:null
                     },
                     data:[]
+                },
+
+                tableCss:{
+                    stripe:true
+                },
+                cellStyle:{
+                    padding:6
                 }
 
             }
@@ -90,11 +108,19 @@
                     _this.loading=false;
                 });
             },
+            init(){
+                var _this=this;
+                _this.loading=true;
+                dictList(_this.pageParams).then(res => {
+                    _this.pageParams=res
+                    _this.loading=false;
+                });
+            },
             handleCurrentChange(item){
-                this.init(item,this.defaultPageSize);
+                this.init(item,this.defaultPageSize)
             },
             searchDict(){
-                alert("search")
+                this.init(1,this.defaultPageSize)
             },
             addDict(){
                 alert("add")
@@ -102,6 +128,12 @@
             edit(item){
                 alert("edit")
                 console.log(item)
+            },
+            sortChange(column){
+                let _this=this
+                _this.pageParams.orderBy=column.prop
+                _this.pageParams.direction=column.order=="descending"?"desc":"asc"
+                _this.init();
             }
 
         },
@@ -117,5 +149,11 @@
     }
 </script>
 <style lang="scss" scoped>
-
+    .addBanner{
+        margin-bottom: 6px;
+    }
+    .table_row{
+        line-height: 20px;
+        height: 20px;
+    }
 </style>
