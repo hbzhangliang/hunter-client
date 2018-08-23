@@ -10,10 +10,11 @@
             <div class="pageTableContent">
                 <el-button type="primary" class="addBanner" @click="addDict"><i class="el-icon-plus"></i>新增</el-button>
                 <el-button type="danger" class="addBanner" @click="delBatchDict"><i class="el-icon-delete"></i>批量删除</el-button>
-                <el-table :data="pageParams.data" border width="100%" v-loading="loading"
+                <el-table :data="pageParams.data" border class="maintb"  v-loading="loading"
                           :stripe="tableCss.stripe" size="mini"
                           border
                           :cell-style=cellStyle
+                          :header-cell-style=headerCellStyle
                           @sort-change="sortChange"
                           @selection-change="handleSelectionChange"
                           >
@@ -23,8 +24,6 @@
                     </el-table-column>
                     <el-table-column sortable="custom" prop="id" label="编号" min-width="10%">
                     </el-table-column>
-                    <!--<el-table-column prop="parentId" label="parentId" min-width="10%">-->
-                    <!--</el-table-column>-->
                     <el-table-column sortable="custom" prop="code" label="编码" min-width="10%">
                     </el-table-column>
                     <el-table-column sortable="custom" prop="name" label="名称" min-width="10%">
@@ -58,9 +57,11 @@
             <span class="demonstration"></span>
             <el-pagination v-if="pageParams.totalRows"
                            @current-change="handleCurrentChange"
+                           @size-change="handleSizeChange"
                            :current-page.sync="pageParams.page"
+                           :page-sizes="[10, 20, 50, 100,200]"
                            :page-size="pageParams.pageSize"
-                           layout="prev, pager, next, jumper"
+                           layout="total,sizes,prev, pager, next, jumper"
                            :total="pageParams.totalRows">
             </el-pagination>
         </div>
@@ -89,32 +90,43 @@
                     },
                     data:[]
                 },
-
                 tableCss:{
                     stripe:true
                 },
                 cellStyle:{
                     padding:6
                 },
+                headerCellStyle:{
+                  background:"#ededed",
+                    fontSize:"18px",
+                    fontWeight:"bolder",
+                    border:'1px groove #dedede'
+                },
                 multipleSelection:[]
 
             }
         },
         methods:{
+            /**
+             * 初始化
+             * @param page
+             * @param pageSize
+             */
             init(page,pageSize){
                 var _this=this;
                 _this.loading=true;
                 _this.pageParams.page=page;
                 _this.pageParams.pageSize=pageSize;
+                console.log(_this.pageParams)
                 dictList(_this.pageParams).then(res => {
-                    _this.pageParams=res
                     console.log(res)
-                    // _this.dictData=res.data;
-                    // _this.pageParams.totalRows=res.totalRows;
-                    // _this.pageParams.totalPage=res.totalPage;
+                    _this.pageParams=res
                     _this.loading=false;
                 });
             },
+            /**
+             * 初始化
+             */
             init(){
                 var _this=this;
                 _this.loading=true;
@@ -123,30 +135,65 @@
                     _this.loading=false;
                 });
             },
+            /**
+             * 修改页码
+             * @param item
+             */
             handleCurrentChange(item){
                 this.init(item,this.defaultPageSize)
             },
+            /**
+             * 检索
+             */
             searchDict(){
                 this.init(1,this.defaultPageSize)
             },
+            /**
+             * 新增
+             */
             addDict(){
                 alert("add")
             },
+            /**
+             * 编辑
+             * @param item
+             */
             edit(item){
                 alert("edit")
                 console.log(item)
             },
+            /**
+             * 删除
+             * @param item
+             */
             del(item){
                 this.multipleSelection=[]
                 this.multipleSelection.push(item.id)
                 this.delBatchDict()
             },
-            sortChange(column){
-                let _this=this
-                _this.pageParams.orderBy=column.prop
-                _this.pageParams.direction=column.order=="descending"?"desc":"asc"
-                _this.init();
+            /**
+             * pageSize更改
+             *
+             */
+            handleSizeChange(count){
+                this.pageParams.pageSize=count
+                this.init();
             },
+            /**
+             * 批量删除的选择
+             * @param val
+             */
+            handleSelectionChange(val){
+                let _this=this
+                var delIds=[]
+                val.forEach(p=>{
+                    delIds.push(p.id)
+                })
+                _this.multipleSelection=delIds
+            },
+            /**
+             * 批量删除
+             */
             delBatchDict(){
                 let _this=this
                 this.$confirm('此操作将永久删除该字典项, 是否继续?', '提示', {
@@ -171,14 +218,16 @@
                 });
 
             },
-            handleSelectionChange(val){
+            /**
+             * 重新排序
+             * @param column
+             */
+            sortChange(column){
                 let _this=this
-                var delIds=[]
-                val.forEach(p=>{
-                    delIds.push(p.id)
-                })
-                _this.multipleSelection=delIds
-            }
+                _this.pageParams.orderBy=column.prop
+                _this.pageParams.direction=column.order=="descending"?"desc":"asc"
+                _this.init();
+            },
 
         },
         components: {
@@ -196,8 +245,9 @@
     .addBanner{
         margin-bottom: 6px;
     }
-    .table_row{
-        line-height: 20px;
-        height: 20px;
+    .maintb{
+        overflow-y: auto;
+        max-height: 460px;
+        width: 100%;
     }
 </style>
