@@ -10,6 +10,7 @@
             <div class="pageTableContent">
                 <el-button type="primary" class="addBanner" @click="addDict"><i class="el-icon-plus"></i>新增</el-button>
                 <el-button type="danger" class="addBanner" @click="delBatchDict"><i class="el-icon-delete"></i>批量删除</el-button>
+                <el-button type="warning" @click="colSetting"><i class="el-icon-setting"></i>配置列</el-button>
                 <el-table :data="pageParams.data" border class="maintb"  v-loading="loading"
                           :stripe="tableCss.stripe" size="mini"
                           border
@@ -19,28 +20,9 @@
                           @selection-change="handleSelectionChange"
                           >
                     <el-table-column min-width="5%"
-                            type="selection"
-                            width="55">
+                            type="selection">
                     </el-table-column>
-                    <el-table-column sortable="custom" prop="id" label="编号" min-width="10%">
-                    </el-table-column>
-                    <el-table-column sortable="custom" prop="code" label="编码" min-width="10%">
-                    </el-table-column>
-                    <el-table-column sortable="custom" prop="name" label="名称" min-width="10%">
-                    </el-table-column>
-                    <el-table-column sortable="custom" prop="createBy" label="创建人" min-width="8%">
-                    </el-table-column>
-                    <el-table-column sortable="custom" prop="createTime" label="创建时间" min-width="8%">
-                        <template slot-scope="scope">
-                            {{scope.row.createTime?scope.row.createTime:'--'|formatTime('yyyy-MM-dd hh:mm')}}
-                        </template>
-                    </el-table-column>
-                    <el-table-column sortable="custom" prop="modifyBy" label="修改人" min-width="8%">
-                    </el-table-column>
-                    <el-table-column sortable="custom" prop="" label="修改时间" min-width="8%">
-                        <template slot-scope="scope">
-                            {{scope.row.modifyTime?scope.row.modifyTime:'--'|formatTime('yyyy-MM-dd hh:mm')}}
-                        </template>
+                    <el-table-column v-for="item in showsOrgin" :sortable="item.sortable" :prop="item.prop" :label="item.label" :min-width="item.width">
                     </el-table-column>
                     <el-table-column  label="操作" min-width="15%">
                         <template slot-scope="scope">
@@ -65,6 +47,20 @@
                            :total="pageParams.totalRows">
             </el-pagination>
         </div>
+
+
+        <!--配置 列数据的显示与否-->
+        <el-dialog title="字典项列展示选择" :visible.sync="colSettingVisible" size="tiny"
+                   @close="closeColSettingDialog" width="550px">
+            <template>
+                <el-transfer v-model="chShows" :data="nchShows"></el-transfer>
+            </template>
+            <div style="text-align: center;margin-top: 25px">
+                <el-button @click="closeColSettingDialog">取消</el-button>
+                <el-button type="primary" @click="saveColSetting">确定</el-button>
+            </div>
+        </el-dialog>
+
 
     </section>
 </template>
@@ -94,7 +90,7 @@
                     stripe:true
                 },
                 cellStyle:{
-                    padding:6
+                    padding:6,
                 },
                 headerCellStyle:{
                   background:"#ededed",
@@ -102,11 +98,43 @@
                     fontWeight:"bolder",
                     border:'1px groove #dedede'
                 },
-                multipleSelection:[]
-
+                multipleSelection:[],
+                shows:[
+                    {key:1,prop:'id',label:'编号',sortable:'custom',type:'',orgin:'id',width:'10%'},
+                    {key:2,prop:'code',label:'编码',sortable:'custom',type:'',orgin:'code',width:'10%'},
+                    {key:3,prop:'name',label:'名称',sortable:'custom',type:'',orgin:'name',width:'10%'},
+                    {key:4,prop:'createTimeStr',label:'创建时间',sortable:'custom',type:'date',orgin:'createTime',width:'10%'},
+                    {key:5,prop:'createBy',label:'创建人',sortable:'custom',type:'',orgin:'createBy',width:'10%'},
+                    {key:6,prop:'modifyTimeStr',label:'修改时间',sortable:'custom',type:'date',orgin:'modifyTime',width:'10%'},
+                    {key:7,prop:'modifyBy',label:'修改人',sortable:'custom',type:'',orgin:'modifyBy',width:'10%'}
+                ],
+                showsOrgin:[
+                    {key:1,prop:'id',label:'编号',sortable:'custom',type:'',orgin:'id',width:'10%'}
+                ],
+                chShows:[],
+                nchShows:[],
+                colSettingVisible:false,
             }
         },
         methods:{
+            init_chShows(){
+                let _this=this
+                this.showsOrgin.forEach(p=>{
+                    _this.chShows.push(p.key)
+                })
+                this.shows.forEach(p=>{
+                    let b=false
+                    _this.showsOrgin.forEach(v=>{
+                        if(p.key==v){
+                            b=true
+                        }
+                    })
+                    if(!b){
+                        _this.nchShows.push(p)
+                    }
+                })
+            },
+
             /**
              * 初始化
              * @param page
@@ -117,9 +145,7 @@
                 _this.loading=true;
                 _this.pageParams.page=page;
                 _this.pageParams.pageSize=pageSize;
-                console.log(_this.pageParams)
                 dictList(_this.pageParams).then(res => {
-                    console.log(res)
                     _this.pageParams=res
                     _this.loading=false;
                 });
@@ -131,6 +157,10 @@
                 var _this=this;
                 _this.loading=true;
                 dictList(_this.pageParams).then(res => {
+                    res.data.forEach(p => {
+                        p.modifyTimeStr = end.getDate_YMDHM(p.modifyTime)
+                        p.createTimeStr = end.getDate_YMDHM(p.createTime)
+                    })
                     _this.pageParams=res
                     _this.loading=false;
                 });
@@ -224,10 +254,33 @@
              */
             sortChange(column){
                 let _this=this
-                _this.pageParams.orderBy=column.prop
+                _this.shows.forEach(p=>{
+                    if(p.prop==column.prop){
+                        _this.pageParams.orderBy=p.orgin
+                    }
+                })
                 _this.pageParams.direction=column.order=="descending"?"desc":"asc"
                 _this.init();
             },
+            colSetting(){
+                this.colSettingVisible=true
+            },
+            closeColSettingDialog(){
+                this.colSettingVisible=false
+            },
+            saveColSetting(){
+                console.log(this.chShows)
+                let _this=this
+                _this.showsOrgin=[]
+                _this.chShows.forEach(p=>{
+                    _this.shows.forEach(v=>{
+                        if(p==v.key){
+                            _this.showsOrgin.push(v)
+                        }
+                    })
+                })
+                _this.colSettingVisible=false
+            }
 
         },
         components: {
@@ -238,6 +291,7 @@
         },
         created () {
             this.init(1,this.defaultPageSize);
+            this.init_chShows();
         }
     }
 </script>
@@ -246,6 +300,7 @@
         margin-bottom: 6px;
     }
     .maintb{
+        overflow-x: auto;
         overflow-y: auto;
         max-height: 460px;
         width: 100%;

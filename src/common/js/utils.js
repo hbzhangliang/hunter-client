@@ -41,4 +41,31 @@ end.removeCookie=(objName)=>{
     document.cookie = objName + "=a; expires=" + date.toGMTString();
 }
 
+
+end.getDate_YMDHMS=(timeStamp)=>{
+    var now=new Date(timeStamp),
+        y = now.getFullYear(),
+        m = now.getMonth() + 1,
+        d = now.getDate();
+    return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 8);
+}
+end.getDate_YMDHM=(timeStamp)=>{
+    var now=new Date(timeStamp),
+        y = now.getFullYear(),
+        m = now.getMonth() + 1,
+        d = now.getDate();
+    return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 5);
+}
+end.getDate_YMD=(timeStamp)=>{
+    var now=new Date(timeStamp),
+        y = now.getFullYear(),
+        m = now.getMonth() + 1,
+        d = now.getDate();
+    return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) ;
+}
+end.getDate_HM=(timeStamp)=>{
+    var now=new Date(timeStamp)
+    return now.toTimeString().substr(0, 5);
+}
+
 export default end
