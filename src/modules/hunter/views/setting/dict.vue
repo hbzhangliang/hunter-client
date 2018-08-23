@@ -15,6 +15,7 @@
                           :stripe="tableCss.stripe" size="mini"
                           border
                           :cell-style=cellStyle
+                          :row-style=rowStyle
                           :header-cell-style=headerCellStyle
                           @sort-change="sortChange"
                           @selection-change="handleSelectionChange"
@@ -90,7 +91,10 @@
                     stripe:true
                 },
                 cellStyle:{
-                    padding:6,
+                    padding:6
+                },
+                rowStyle:{
+
                 },
                 headerCellStyle:{
                   background:"#ededed",
@@ -109,7 +113,13 @@
                     {key:7,prop:'modifyBy',label:'修改人',sortable:'custom',type:'',orgin:'modifyBy',width:'10%'}
                 ],
                 showsOrgin:[
-                    {key:1,prop:'id',label:'编号',sortable:'custom',type:'',orgin:'id',width:'10%'}
+                    {key:1,prop:'id',label:'编号',sortable:'custom',type:'',orgin:'id',width:'10%'},
+                    {key:2,prop:'code',label:'编码',sortable:'custom',type:'',orgin:'code',width:'10%'},
+                    {key:3,prop:'name',label:'名称',sortable:'custom',type:'',orgin:'name',width:'10%'},
+                    {key:4,prop:'createTimeStr',label:'创建时间',sortable:'custom',type:'date',orgin:'createTime',width:'10%'},
+                    {key:5,prop:'createBy',label:'创建人',sortable:'custom',type:'',orgin:'createBy',width:'10%'},
+                    {key:6,prop:'modifyTimeStr',label:'修改时间',sortable:'custom',type:'date',orgin:'modifyTime',width:'10%'},
+                    {key:7,prop:'modifyBy',label:'修改人',sortable:'custom',type:'',orgin:'modifyBy',width:'10%'}
                 ],
                 chShows:[],
                 nchShows:[],
