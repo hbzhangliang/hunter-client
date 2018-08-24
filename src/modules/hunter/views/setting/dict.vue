@@ -99,7 +99,7 @@
                         <label class="lb-left">父节点：</label>
                     </div></el-col>
                     <el-col :span="8"><div class="grid-content bg-right">
-                        <el-input v-model="dictBean.parentId" placeholder="请输入内容" size="medium"></el-input>
+                        <el-input disabled v-model="dictBean.parentId" placeholder="请输入内容" size="medium"></el-input>
                     </div></el-col>
                     <el-col :span="4"><div class="grid-content bg-left">
                         <label class="lb-left">排序号：</label>
