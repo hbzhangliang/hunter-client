@@ -68,7 +68,12 @@
 
         <el-dialog title="字典项编辑" :visible.sync="dicVisible" size="tiny"
                    @close="closedicDialog">
-            <region></region>
+            <el-row>
+                <el-col :span="24"><div class="grid-content bg-header">
+                    <label style="float:left;">字典项信息</label>
+                </div></el-col>
+            </el-row>
+
             <el-form  size="small">
                 <el-form-item label="编号" class="hidden">
                     <el-input v-model="dictBean.id" placeholder="请输入内容" size="medium"></el-input>
@@ -112,12 +117,65 @@
                         <el-input v-model="dictBean.status" placeholder="请输入内容" size="medium"></el-input>
                     </div></el-col>
                 </el-row>
-
             </el-form>
-            <div style="text-align: center;margin-top: 25px">
+
+            <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
                 <el-button @click="closedicDialog">取消</el-button>
                 <el-button type="primary" @click="saveDic">确定</el-button>
             </div>
+
+
+            <el-row>
+                <el-col :span="24"><div class="grid-content bg-header">
+                    <label style="float:left;">子项信息</label>
+                </div></el-col>
+            </el-row>
+            <el-button size="mini" type="primary" icon="el-icon-plus" @click="addChild"></el-button>
+            <el-table :data="childrenData" border
+                      :stripe="tableCss.stripe" size="mini"
+                      border
+                      :cell-style=cellStyle
+                      :row-style=rowStyle
+                      :header-cell-style=childheaderCellStyle
+                      max-height="480" >
+                <el-table-column prop="id" label="编号" align="center" min-width="20%">
+
+                </el-table-column>
+                <el-table-column prop="code" label="编码" align="center" min-width="20%">
+                    <template scope="scope">
+                        <el-input v-show="scope.row.edit" size="small" v-model="scope.row.code"></el-input>
+                        <span v-show="!scope.row.edit">{{ scope.row.code }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="name" label="名称" align="center" min-width="20%">
+                    <template scope="scope">
+                        <el-input v-show="scope.row.edit" size="small" v-model="scope.row.name"></el-input>
+                        <span v-show="!scope.row.edit">{{ scope.row.name }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="seq" label="排序号" align="center" min-width="20%">
+                    <template scope="scope">
+                        <el-input v-show="scope.row.edit" size="small" v-model="scope.row.seq"></el-input>
+                        <span v-show="!scope.row.edit">{{ scope.row.seq }}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="status" label="状态" align="center" min-width="20%">
+                    <template scope="scope">
+                        <el-input v-show="scope.row.edit" size="small" v-model="scope.row.status"></el-input>
+                        <span v-show="!scope.row.edit">{{ scope.row.status }}</span>
+                    </template>
+                </el-table-column>
+
+                <el-table-column  label="操作" width="210" fixed="right">
+                    <template slot-scope="scope">
+                        <el-button v-if="!scope.row.edit" size="mini" type="primary" icon="el-icon-edit" @click="editChild(scope.row)"></el-button>
+                        <el-button v-if="scope.row.edit" size="mini" type="success" icon="el-icon-check" @click="saveChild(scope.row)"></el-button>
+                        <el-button v-if="scope.row.edit" size="mini" type="info" icon="el-icon-close" @click="cancelChild(scope.row)"></el-button>
+                        <el-button size="mini" type="danger" icon="el-icon-delete" @click="delChild(scope.row)"></el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+
         </el-dialog>
 
     </section>
@@ -159,6 +217,12 @@
                     fontWeight:"bolder",
                     border:'1px groove #dedede'
                 },
+                childheaderCellStyle:{
+                    background:"#c9E5FF",
+                    fontSize:"18px",
+                    fontWeight:"bolder",
+                    border:'1px groove #dedede'
+                },
                 multipleSelection:[],
                 shows:[
                     {key:1,prop:'id',label:'编号',sortable:'custom',type:'',orgin:'id',width:'120'},
@@ -190,7 +254,8 @@
                     seq:null,
                     status:null,
                     flag:null
-                }
+                },
+                childrenData:[]
             }
         },
         methods:{
@@ -268,6 +333,7 @@
                     status:null,
                     flag:null
                 }
+                this.childrenData=[]
                 this.dicVisible=true
             },
             /**
@@ -275,8 +341,17 @@
              * @param item
              */
             edit(item){
-                alert("edit")
-                console.log(item)
+                let _this=this
+                dictListChildren({pId:item.id+''}).then(p=>{
+                    p.forEach(v=>{
+                        v.edit=false
+                    })
+                    _this.childrenData=p
+                })
+                dictGet({id:item.id}).then(p=>{
+                    _this.dictBean=p
+                })
+                this.dicVisible=true
             },
             view(item){
                 alert('view')
@@ -375,8 +450,99 @@
                 this.dicVisible=false
             },
             saveDic(){
-                alert("save dic")
+                let _this=this
+                dictSave(_this.dictBean).then(p=>{
+                    _this.$message({
+                        message: '保存字典数据成功',
+                        type: 'success'
+                    });
+                    _this.dicVisible=false
+                    _this.init()
+                })
+            },
+            editChild(item){
+                this.childrenData.forEach(p=>{
+                    if(p.id==item.id){
+                        p.edit=true
+                    }
+                })
+            },
+            saveChild(item){
+                let _this=this
+                dictSave(item).then(p=>{
+                    _this.$message({
+                        message: '保存字典数据成功',
+                        type: 'success'
+                    });
+
+                    //再取一遍数据
+                    dictListChildren({pId:item.parentId+''}).then(p=>{
+                        p.forEach(v=>{
+                            v.edit=false
+                        })
+                        _this.childrenData=p
+                    })
+
+                })
+            },
+            cancelChild(item){
+                this.childrenData.forEach(p=>{
+                    if(p.id==item.id){
+                        p.edit=false
+                    }
+                })
+            },
+            delChild(item){
+                let _this=this
+                _this.multipleSelection=[]
+                _this.multipleSelection.push(item.id)
+                this.$confirm('此操作将永久删除该字典项, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    dictDel({ids:_this.multipleSelection}).then(p=>{
+                        _this.$message({
+                            message: '删除字典数据成功',
+                            type: 'success'
+                        });
+
+                        var d=[]
+                        _this.childrenData.forEach(p=>{
+                            if(p.id!=item.id){
+                                d.push(p)
+                            }
+                        })
+                        _this.childrenData=d
+                    }).catch(function (error) {
+                        _this.$message.error('后端错误:'+error.message);
+                    })
+                }).catch(() => {
+                    _this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            },
+            addChild(){
+                let _this=this
+                var d=[]
+                d.push({
+                    id:null,
+                    code:null,
+                    name:null,
+                    parentId:_this.dictBean.id,
+                    seq:null,
+                    status:null,
+                    flag:null,
+                    edit:true
+                })
+                _this.childrenData.forEach(p=>{
+                    d.push(p)
+                })
+                _this.childrenData=d
             }
+
 
         },
         components: {

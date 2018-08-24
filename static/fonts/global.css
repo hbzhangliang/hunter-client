@@ -164,7 +164,7 @@
 
 
 .el-row {
-    margin-bottom: 12px;
+    margin-bottom: 6px;
 &:last-child {
      margin-bottom: 0;
  }
@@ -175,12 +175,12 @@
 .bg-left{
     float: right;
     vertical-align: center;
-    background: lightskyblue;
+    background:  #e6f2FF;
     padding: 15px 3px 10px 0px;
 }
 .bg-right{
     float: left;
-    background: whitesmoke;
+    /*background: whitesmoke;*/
     padding: 5px 3px 10px 3px;
 }
 
@@ -196,5 +196,10 @@
 .lb-left{
     float: right;
     color: #6c6e50;
-    font-size: 18px;
+}
+.bg-header{
+    background: #C6E2FF;
+    font-size: 17px;
+    padding: 3px 2px;
+    margin-bottom: 5px;
 }
