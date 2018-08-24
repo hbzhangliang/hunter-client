@@ -458,6 +458,8 @@
                     });
                     _this.dicVisible=false
                     _this.init()
+                }).catch(function (error) {
+                    _this.$message.error('后端错误:'+error.message);
                 })
             },
             editChild(item){
@@ -474,7 +476,6 @@
                         message: '保存字典数据成功',
                         type: 'success'
                     });
-
                     //再取一遍数据
                     dictListChildren({pId:item.parentId+''}).then(p=>{
                         p.forEach(v=>{
@@ -482,7 +483,8 @@
                         })
                         _this.childrenData=p
                     })
-
+                }).catch(function (error) {
+                    _this.$message.error('后端错误:'+error.message);
                 })
             },
             cancelChild(item){
