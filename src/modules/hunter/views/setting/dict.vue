@@ -31,7 +31,7 @@
                     <el-table-column  label="操作" width="210" fixed="right">
                         <template slot-scope="scope">
                             <el-button size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"></el-button>
-                            <el-button size="mini" type="success" icon="el-icon-view" @click="edit(scope.row)"></el-button>
+                            <el-button size="mini" type="success" icon="el-icon-view" @click="view(scope.row)"></el-button>
                             <el-button size="mini" type="danger" icon="el-icon-delete" @click="del(scope.row)"></el-button>
                         </template>
                     </el-table-column>
@@ -65,6 +65,60 @@
             </div>
         </el-dialog>
 
+
+        <el-dialog title="字典项编辑" :visible.sync="dicVisible" size="tiny"
+                   @close="closedicDialog">
+            <region></region>
+            <el-form  size="small">
+                <el-form-item label="编号" class="hidden">
+                    <el-input v-model="dictBean.id" placeholder="请输入内容" size="medium"></el-input>
+                </el-form-item>
+
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">编码：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="dictBean.code" placeholder="请输入内容" size="medium"></el-input>
+                    </div></el-col>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">名称：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="dictBean.name" placeholder="请输入内容" size="medium"></el-input>
+                    </div></el-col>
+                </el-row>
+
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">父节点：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="dictBean.parentId" placeholder="请输入内容" size="medium"></el-input>
+                    </div></el-col>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">排序号：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="dictBean.seq" placeholder="请输入内容" size="medium"></el-input>
+                    </div></el-col>
+                </el-row>
+
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">状态：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="dictBean.status" placeholder="请输入内容" size="medium"></el-input>
+                    </div></el-col>
+                </el-row>
+
+            </el-form>
+            <div style="text-align: center;margin-top: 25px">
+                <el-button @click="closedicDialog">取消</el-button>
+                <el-button type="primary" @click="saveDic">确定</el-button>
+            </div>
+        </el-dialog>
 
     </section>
 </template>
@@ -127,6 +181,16 @@
                 chShows:[],
                 nchShows:[],
                 colSettingVisible:false,
+                dicVisible:false,
+                dictBean:{
+                    id:null,
+                    code:null,
+                    name:null,
+                    parentId:null,
+                    seq:null,
+                    status:null,
+                    flag:null
+                }
             }
         },
         methods:{
@@ -195,7 +259,16 @@
              * 新增
              */
             addDict(){
-                alert("add")
+                this.dictBean={
+                    id:null,
+                    code:null,
+                    name:null,
+                    parentId:null,
+                    seq:null,
+                    status:null,
+                    flag:null
+                }
+                this.dicVisible=true
             },
             /**
              * 编辑
@@ -203,6 +276,10 @@
              */
             edit(item){
                 alert("edit")
+                console.log(item)
+            },
+            view(item){
+                alert('view')
                 console.log(item)
             },
             /**
@@ -294,6 +371,12 @@
                 })
                 _this.colSettingVisible=false
             },
+            closedicDialog(){
+                this.dicVisible=false
+            },
+            saveDic(){
+                alert("save dic")
+            }
 
         },
         components: {

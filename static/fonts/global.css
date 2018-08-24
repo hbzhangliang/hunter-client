@@ -162,3 +162,39 @@
     margin-bottom: 10px;
 }
 
+
+.el-row {
+    margin-bottom: 12px;
+&:last-child {
+     margin-bottom: 0;
+ }
+}
+.el-col {
+    border-radius: 2px;
+}
+.bg-left{
+    float: right;
+    vertical-align: center;
+    background: lightskyblue;
+    padding: 15px 3px 10px 0px;
+}
+.bg-right{
+    float: left;
+    background: whitesmoke;
+    padding: 5px 3px 10px 3px;
+}
+
+.grid-content {
+    border-radius: 4px;
+    min-height: 32px;
+    width: 100%;
+}
+.row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+}
+.lb-left{
+    float: right;
+    color: #6c6e50;
+    font-size: 18px;
+}
