@@ -11,21 +11,24 @@
                 <el-button type="primary" class="addBanner" @click="addDict"><i class="el-icon-plus"></i>新增</el-button>
                 <el-button type="danger" class="addBanner" @click="delBatchDict"><i class="el-icon-delete"></i>批量删除</el-button>
                 <el-button type="warning" @click="colSetting"><i class="el-icon-setting"></i>配置列</el-button>
-                <el-table :data="pageParams.data" border class="maintb"  v-loading="loading"
+                <el-table :data="pageParams.data" border v-loading="loading"
                           :stripe="tableCss.stripe" size="mini"
                           border
                           :cell-style=cellStyle
                           :row-style=rowStyle
                           :header-cell-style=headerCellStyle
+                          height="560"
+                          max-height="580"
                           @sort-change="sortChange"
                           @selection-change="handleSelectionChange"
                           >
-                    <el-table-column min-width="5%"
+                    <el-table-column width="60"
+                                     fixed
                             type="selection">
                     </el-table-column>
-                    <el-table-column v-for="item in showsOrgin" :sortable="item.sortable" :prop="item.prop" :label="item.label" :min-width="item.width">
+                    <el-table-column v-for="item in showsOrgin" :sortable="item.sortable" :prop="item.prop" :label="item.label" :width="item.width">
                     </el-table-column>
-                    <el-table-column  label="操作" min-width="15%">
+                    <el-table-column  label="操作" width="210" fixed="right">
                         <template slot-scope="scope">
                             <el-button size="mini" type="primary" icon="el-icon-edit" @click="edit(scope.row)"></el-button>
                             <el-button size="mini" type="success" icon="el-icon-view" @click="edit(scope.row)"></el-button>
@@ -104,22 +107,22 @@
                 },
                 multipleSelection:[],
                 shows:[
-                    {key:1,prop:'id',label:'编号',sortable:'custom',type:'',orgin:'id',width:'10%'},
-                    {key:2,prop:'code',label:'编码',sortable:'custom',type:'',orgin:'code',width:'10%'},
-                    {key:3,prop:'name',label:'名称',sortable:'custom',type:'',orgin:'name',width:'10%'},
-                    {key:4,prop:'createTimeStr',label:'创建时间',sortable:'custom',type:'date',orgin:'createTime',width:'10%'},
-                    {key:5,prop:'createBy',label:'创建人',sortable:'custom',type:'',orgin:'createBy',width:'10%'},
-                    {key:6,prop:'modifyTimeStr',label:'修改时间',sortable:'custom',type:'date',orgin:'modifyTime',width:'10%'},
-                    {key:7,prop:'modifyBy',label:'修改人',sortable:'custom',type:'',orgin:'modifyBy',width:'10%'}
+                    {key:1,prop:'id',label:'编号',sortable:'custom',type:'',orgin:'id',width:'200'},
+                    {key:2,prop:'code',label:'编码',sortable:'custom',type:'',orgin:'code',width:'200'},
+                    {key:3,prop:'name',label:'名称',sortable:'custom',type:'',orgin:'name',width:'200'},
+                    {key:4,prop:'createTimeStr',label:'创建时间',sortable:'custom',type:'date',orgin:'createTime',width:'200'},
+                    {key:5,prop:'createBy',label:'创建人',sortable:'custom',type:'',orgin:'createBy',width:'200'},
+                    {key:6,prop:'modifyTimeStr',label:'修改时间',sortable:'custom',type:'date',orgin:'modifyTime',width:'200'},
+                    {key:7,prop:'modifyBy',label:'修改人',sortable:'custom',type:'',orgin:'modifyBy',width:'200'}
                 ],
                 showsOrgin:[
-                    {key:1,prop:'id',label:'编号',sortable:'custom',type:'',orgin:'id',width:'10%'},
-                    {key:2,prop:'code',label:'编码',sortable:'custom',type:'',orgin:'code',width:'10%'},
-                    {key:3,prop:'name',label:'名称',sortable:'custom',type:'',orgin:'name',width:'10%'},
-                    {key:4,prop:'createTimeStr',label:'创建时间',sortable:'custom',type:'date',orgin:'createTime',width:'10%'},
-                    {key:5,prop:'createBy',label:'创建人',sortable:'custom',type:'',orgin:'createBy',width:'10%'},
-                    {key:6,prop:'modifyTimeStr',label:'修改时间',sortable:'custom',type:'date',orgin:'modifyTime',width:'10%'},
-                    {key:7,prop:'modifyBy',label:'修改人',sortable:'custom',type:'',orgin:'modifyBy',width:'10%'}
+                    {key:1,prop:'id',label:'编号',sortable:'custom',type:'',orgin:'id',width:'200'},
+                    {key:2,prop:'code',label:'编码',sortable:'custom',type:'',orgin:'code',width:'200'},
+                    {key:3,prop:'name',label:'名称',sortable:'custom',type:'',orgin:'name',width:'200'},
+                    {key:4,prop:'createTimeStr',label:'创建时间',sortable:'custom',type:'date',orgin:'createTime',width:'200'},
+                    {key:5,prop:'createBy',label:'创建人',sortable:'custom',type:'',orgin:'createBy',width:'200'},
+                    {key:6,prop:'modifyTimeStr',label:'修改时间',sortable:'custom',type:'date',orgin:'modifyTime',width:'200'},
+                    {key:7,prop:'modifyBy',label:'修改人',sortable:'custom',type:'',orgin:'modifyBy',width:'200'}
                 ],
                 chShows:[],
                 nchShows:[],
@@ -290,7 +293,7 @@
                     })
                 })
                 _this.colSettingVisible=false
-            }
+            },
 
         },
         components: {
@@ -308,11 +311,5 @@
 <style lang="scss" scoped>
     .addBanner{
         margin-bottom: 6px;
-    }
-    .maintb{
-        overflow-x: auto;
-        overflow-y: auto;
-        max-height: 460px;
-        width: 100%;
     }
 </style>
