@@ -119,63 +119,64 @@
                 </el-row>
             </el-form>
 
-            <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+            <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;" v-if="strOp!='view'">
                 <el-button @click="closedicDialog">取消</el-button>
                 <el-button type="primary" @click="saveDic">确定</el-button>
             </div>
 
 
-            <el-row>
-                <el-col :span="24"><div class="grid-content bg-header">
-                    <label style="float:left;">子项信息</label>
-                </div></el-col>
-            </el-row>
-            <el-button size="mini" type="primary" icon="el-icon-plus" @click="addChild"></el-button>
-            <el-table :data="childrenData" border
-                      :stripe="tableCss.stripe" size="mini"
-                      border
-                      :cell-style=cellStyle
-                      :row-style=rowStyle
-                      :header-cell-style=childheaderCellStyle
-                      max-height="480" >
-                <el-table-column prop="id" label="编号" align="center" min-width="20%">
+            <div v-if="strOp!='add'">
+                <el-row>
+                    <el-col :span="24"><div class="grid-content bg-header">
+                        <label style="float:left;">子项信息</label>
+                    </div></el-col>
+                </el-row>
+                <el-button size="mini" type="primary" icon="el-icon-plus" @click="addChild" v-if="strOp!='view'"></el-button>
+                <el-table :data="childrenData" border
+                          :stripe="tableCss.stripe" size="mini"
+                          border
+                          :cell-style=cellStyle
+                          :row-style=rowStyle
+                          :header-cell-style=childheaderCellStyle
+                          max-height="480" >
+                    <el-table-column prop="id" label="编号" align="center" min-width="20%">
 
-                </el-table-column>
-                <el-table-column prop="code" label="编码" align="center" min-width="20%">
-                    <template scope="scope">
-                        <el-input v-show="scope.row.edit" size="small" v-model="scope.row.code"></el-input>
-                        <span v-show="!scope.row.edit">{{ scope.row.code }}</span>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="name" label="名称" align="center" min-width="20%">
-                    <template scope="scope">
-                        <el-input v-show="scope.row.edit" size="small" v-model="scope.row.name"></el-input>
-                        <span v-show="!scope.row.edit">{{ scope.row.name }}</span>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="seq" label="排序号" align="center" min-width="20%">
-                    <template scope="scope">
-                        <el-input v-show="scope.row.edit" size="small" v-model="scope.row.seq"></el-input>
-                        <span v-show="!scope.row.edit">{{ scope.row.seq }}</span>
-                    </template>
-                </el-table-column>
-                <el-table-column prop="status" label="状态" align="center" min-width="20%">
-                    <template scope="scope">
-                        <el-input v-show="scope.row.edit" size="small" v-model="scope.row.status"></el-input>
-                        <span v-show="!scope.row.edit">{{ scope.row.status }}</span>
-                    </template>
-                </el-table-column>
+                    </el-table-column>
+                    <el-table-column prop="code" label="编码" align="center" min-width="20%">
+                        <template scope="scope">
+                            <el-input v-show="scope.row.edit" size="small" v-model="scope.row.code"></el-input>
+                            <span v-show="!scope.row.edit">{{ scope.row.code }}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="name" label="名称" align="center" min-width="20%">
+                        <template scope="scope">
+                            <el-input v-show="scope.row.edit" size="small" v-model="scope.row.name"></el-input>
+                            <span v-show="!scope.row.edit">{{ scope.row.name }}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="seq" label="排序号" align="center" min-width="20%">
+                        <template scope="scope">
+                            <el-input v-show="scope.row.edit" size="small" v-model="scope.row.seq"></el-input>
+                            <span v-show="!scope.row.edit">{{ scope.row.seq }}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column prop="status" label="状态" align="center" min-width="20%">
+                        <template scope="scope">
+                            <el-input v-show="scope.row.edit" size="small" v-model="scope.row.status"></el-input>
+                            <span v-show="!scope.row.edit">{{ scope.row.status }}</span>
+                        </template>
+                    </el-table-column>
 
-                <el-table-column  label="操作" width="210" fixed="right">
-                    <template slot-scope="scope">
-                        <el-button v-if="!scope.row.edit" size="mini" type="primary" icon="el-icon-edit" @click="editChild(scope.row)"></el-button>
-                        <el-button v-if="scope.row.edit" size="mini" type="success" icon="el-icon-check" @click="saveChild(scope.row)"></el-button>
-                        <el-button v-if="scope.row.edit" size="mini" type="info" icon="el-icon-close" @click="cancelChild(scope.row)"></el-button>
-                        <el-button size="mini" type="danger" icon="el-icon-delete" @click="delChild(scope.row)"></el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
-
+                    <el-table-column  label="操作" width="210" fixed="right" v-if="strOp!='view'">
+                        <template slot-scope="scope">
+                            <el-button v-if="!scope.row.edit" size="mini" type="primary" icon="el-icon-edit" @click="editChild(scope.row)"></el-button>
+                            <el-button v-if="scope.row.edit" size="mini" type="success" icon="el-icon-check" @click="saveChild(scope.row)"></el-button>
+                            <el-button v-if="scope.row.edit" size="mini" type="info" icon="el-icon-close" @click="cancelChild(scope.row)"></el-button>
+                            <el-button size="mini" type="danger" icon="el-icon-delete" @click="delChild(scope.row)"></el-button>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </div>
         </el-dialog>
 
     </section>
@@ -255,7 +256,8 @@
                     status:null,
                     flag:null
                 },
-                childrenData:[]
+                childrenData:[],
+                strOp:null
             }
         },
         methods:{
@@ -335,6 +337,7 @@
                 }
                 this.childrenData=[]
                 this.dicVisible=true
+                this.strOp='add'
             },
             /**
              * 编辑
@@ -352,10 +355,11 @@
                     _this.dictBean=p
                 })
                 this.dicVisible=true
+                this.strOp='edit'
             },
             view(item){
-                alert('view')
-                console.log(item)
+                this.edit(item)
+                this.strOp='view'
             },
             /**
              * 删除
