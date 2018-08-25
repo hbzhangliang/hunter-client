@@ -42,6 +42,7 @@ end.removeCookie=(objName)=>{
 }
 
 
+// 时间操作
 end.getDate_YMDHMS=(timeStamp)=>{
     var now=new Date(timeStamp),
         y = now.getFullYear(),
@@ -67,5 +68,7 @@ end.getDate_HM=(timeStamp)=>{
     var now=new Date(timeStamp)
     return now.toTimeString().substr(0, 5);
 }
+
+
 
 export default end

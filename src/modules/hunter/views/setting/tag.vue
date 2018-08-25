@@ -1,8 +1,15 @@
 <template>
     <section>
         <div style="float: left;width: 35%;height: 97%;" v-loading="loading">
+
+            <el-row>
+                <el-col :span="24"><div class="grid-content bg-header">
+                    <label style="float:left;">标签组</label>
+                </div></el-col>
+            </el-row>
+
             <div style="margin:5px">
-                <el-button type="primary" icon="el-icon-plus" @click="groupAdd">新增</el-button>
+                <el-button type="primary" size="mini" icon="el-icon-plus" @click="groupAdd">新增</el-button>
             </div>
 
             <el-input
@@ -50,9 +57,19 @@
         </el-dialog>
 
 
+
+
         <div style="float: left;width: 60%;height: 97%;" v-loading="loading2" @click="hideMenuCss">
+
+            <el-row>
+                <el-col :span="24"><div class="grid-content bg-header">
+                    <label style="float:left;">标签信息</label>
+                </div></el-col>
+            </el-row>
+
+
             <div style="margin:5px">
-                <el-button type="primary" icon="el-icon-plus" @click="tagAdd">新增</el-button>
+                <el-button type="primary" size="mini" icon="el-icon-plus" @click="tagAdd">新增</el-button>
             </div>
             <el-input
                     placeholder="输入关键字进行过滤"
@@ -336,6 +353,14 @@
             },
             addRoot(){
                 let _this=this
+                if(_this.currentGroupId==null){
+                    _this.$message({
+                        message: '请先选中编辑的标签组',
+                        type: 'warning'
+                    });
+                    return
+                }
+
                 this.tag={
                     id:null,
                     groupId:_this.currentGroupId,
