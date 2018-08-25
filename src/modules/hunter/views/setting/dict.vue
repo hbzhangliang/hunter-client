@@ -3,14 +3,14 @@
         <div class="searchBar">
             <b>字典项编码:</b> <el-input class="search_input w-240" v-model="pageParams.filter.code" placeholder="请输入内容"></el-input>
             <b>字典项名称:</b> <el-input  class="search_input w-240" v-model="pageParams.filter.name" placeholder="请输入内容"></el-input>
-            <el-button type="primary" icon="el-icon-search"  @click="searchDict">搜索</el-button>
+            <el-button type="primary" icon="el-icon-search"  @click="searchDict" size="small">搜索</el-button>
         </div>
 
         <div class="tableBox">
             <div class="pageTableContent">
-                <el-button type="primary" class="addBanner" @click="addDict"><i class="el-icon-plus"></i>新增</el-button>
-                <el-button type="danger" class="addBanner" @click="delBatchDict"><i class="el-icon-delete"></i>批量删除</el-button>
-                <el-button type="warning" @click="colSetting"><i class="el-icon-setting"></i>配置列</el-button>
+                <el-button type="primary" size="mini" class="addBanner" @click="addDict"><i class="el-icon-plus"></i>新增</el-button>
+                <el-button type="danger" size="mini" class="addBanner" @click="delBatchDict"><i class="el-icon-delete"></i>批量删除</el-button>
+                <el-button type="warning" size="mini" @click="colSetting"><i class="el-icon-setting"></i>配置列</el-button>
                 <el-table :data="pageParams.data" border v-loading="loading"
                           :stripe="tableCss.stripe" size="mini"
                           border
@@ -60,8 +60,8 @@
                 <el-transfer v-model="chShows" :data="nchShows"></el-transfer>
             </template>
             <div style="text-align: center;margin-top: 25px">
-                <el-button @click="closeColSettingDialog">取消</el-button>
-                <el-button type="primary" @click="saveColSetting">确定</el-button>
+                <el-button size="mini" @click="closeColSettingDialog" icon="el-icon-circle-close-outline">取消</el-button>
+                <el-button size="mini" type="primary" @click="saveColSetting" icon="el-icon-success">确定</el-button>
             </div>
         </el-dialog>
 
@@ -120,8 +120,8 @@
             </el-form>
 
             <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;" v-if="strOp!='view'">
-                <el-button @click="closedicDialog">取消</el-button>
-                <el-button type="primary" @click="saveDic">确定</el-button>
+                <el-button size="mini" @click="closedicDialog" icon="el-icon-circle-close-outline">取消</el-button>
+                <el-button size="mini" type="primary" @click="saveDic" icon="el-icon-success">确定</el-button>
             </div>
 
 
@@ -395,6 +395,13 @@
              */
             delBatchDict(){
                 let _this=this
+                if(_this.multipleSelection==null||_this.multipleSelection.length<1){
+                    _this.$message({
+                        message: '请先选择需要删除的字典项',
+                        type: 'warning'
+                    });
+                    return;
+                }
                 this.$confirm('此操作将永久删除该字典项, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
