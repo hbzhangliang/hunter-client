@@ -10,6 +10,7 @@ import business from 'endportView/setting/business'
 import career from 'endportView/setting/career'
 import tag from 'endportView/setting/tag'
 import dict from 'endportView/setting/dict'
+import position from 'endportView/setting/position'
 import calendar from 'endportView/setting/calendar'
 
 Vue.use(Router)
@@ -65,6 +66,11 @@ export default new Router({
               path:'dict',
               name:'dict',
               component:dict
+          },
+          {
+              path:'position',
+              name:'position',
+              component:position
           },
           {
               path:'calendar',

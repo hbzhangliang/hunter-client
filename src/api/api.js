@@ -65,4 +65,9 @@ export const dictListAll = (params) => { return io.post(`${base}/dict/list-all`,
 export const dictSave = (params) => { return io.post(`${base}/dict/save`, params) };
 export const dictGet = (params) => { return io.post(`${base}/dict/get`, params) };
 export const dictDel = (params) => { return io.post(`${base}/dict/del`, params) };
-
+//职位配置
+export const positionList = (params) => { return io.post(`${base}/position/list`, params) };
+export const positionListAll = (params) => { return io.post(`${base}/position/list-all`, params) };
+export const positionSave = (params) => { return io.post(`${base}/position/save`, params) };
+export const positionGet = (params) => { return io.post(`${base}/position/get`, params) };
+export const positionDel = (params) => { return io.post(`${base}/position/del`, params) };
