@@ -11,6 +11,7 @@ import career from 'endportView/setting/career'
 import tag from 'endportView/setting/tag'
 import dict from 'endportView/setting/dict'
 import position from 'endportView/setting/position'
+import team from 'endportView/setting/team'
 import calendar from 'endportView/setting/calendar'
 
 Vue.use(Router)
@@ -71,6 +72,11 @@ export default new Router({
               path:'position',
               name:'position',
               component:position
+          },
+          {
+              path:'team',
+              name:'team',
+              component:team
           },
           {
               path:'calendar',

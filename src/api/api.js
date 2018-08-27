@@ -71,3 +71,10 @@ export const positionListAll = (params) => { return io.post(`${base}/position/li
 export const positionSave = (params) => { return io.post(`${base}/position/save`, params) };
 export const positionGet = (params) => { return io.post(`${base}/position/get`, params) };
 export const positionDel = (params) => { return io.post(`${base}/position/del`, params) };
+//团队管理
+export const teamList = (params) => { return io.post(`${base}/team/list`, params) };
+export const teamListAll = (params) => { return io.post(`${base}/team/list-all`, params) };
+export const teamSave = (params) => { return io.post(`${base}/team/save`, params) };
+export const teamGet = (params) => { return io.post(`${base}/team/get`, params) };
+export const teamDel = (params) => { return io.post(`${base}/team/del`, params) };
+export const teamTree = (params) => { return io.post(`${base}/team/tree`, params) };
