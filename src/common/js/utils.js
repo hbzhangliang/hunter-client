@@ -70,5 +70,42 @@ end.getDate_HM=(timeStamp)=>{
 }
 
 
+//数组转为string  array是整形或字符串
+end.arrayToStr=(array)=>{
+    if(null==array) return "";
+    var result="";
+    array.forEach(p=>{
+        result+=p.toString()+","
+    })
+    return result;
+}
+
+// str转array
+end.strToArray=(str)=>{
+    if(null==str||str.length<1){
+        return null
+    }
+    var result=[]
+    str.split(",").forEach(p=>{
+        if(p.length>0)
+            result.push(parseInt(p))
+    })
+    return result;
+}
+//ids  ==>  names
+end.arrayToStrArray=(ids,list)=>{
+    if(null!=ids&&ids.length>0&&null!=list&&list.length>0){
+        var result=""
+        ids.forEach(p=>{
+            list.forEach(v=>{
+                if(p==v.id){
+                    result+=v.name+','
+                }
+            })
+        })
+        return result;
+    }
+    return null
+}
 
 export default end

@@ -26,7 +26,7 @@ this is main
 </template>
 <script>
     import end from '@/common/js/utils.js'
-  import {healthcheck,accoutCheck,accoutCheckInfo,accoutListAll} from '@/api/api'
+  import {healthcheck,accoutCheck,accoutCheckInfo,accoutListAll,accoutInfo} from '@/api/api'
     import $ from 'jquery'
   export default{
     data () {
@@ -42,7 +42,11 @@ this is main
       methods:{
         healthCheck(){
             let _this=this
-            healthcheck().then().catch(function (error) {
+            healthcheck().then(p=>{
+                accoutInfo().then(v=>{
+                    _this.$store.state.userInfo=v
+                })
+            }).catch(function (error) {
                 _this.loginDialog=true
             });
         },

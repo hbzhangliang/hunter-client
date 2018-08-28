@@ -47,6 +47,7 @@
                           <el-dropdown-item command="dict">字典项管理</el-dropdown-item>
                           <el-dropdown-item command="position">职位管理</el-dropdown-item>
                           <el-dropdown-item command="team">团队管理</el-dropdown-item>
+                          <el-dropdown-item command="corp">企业管理</el-dropdown-item>
                           <el-dropdown-item command="calendar">我的日历</el-dropdown-item>
                           <el-dropdown-item command="myInfo">我的信息</el-dropdown-item>
                           <el-dropdown-item command="email">邮件设置</el-dropdown-item>

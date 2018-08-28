@@ -19,8 +19,9 @@ export const accoutCheck = (params) => { return io.post(`${base}/account/check`,
 export const accoutCheckInfo = (params) => { return io.post(`${base}/account/check_info`, params) };
 export const accountLogout = (params) => { return io.post(`${base}/account/logout`, params) };
 export const accoutListAll = (params) => { return io.post(`${base}/account/listall`, params) };
-
+export const accoutInfo= (params) => { return io.post(`${base}/account/account_info`, params) };
 //城市配置
+export const cityMap = (params) => { return io.post(`${base}/city/map`, params) };
 export const cityTree = (params) => { return io.post(`${base}/city/tree`, params) };
 export const cityGet = (params) => { return io.post(`${base}/city/get`, params) };
 export const cityList = (params) => { return io.post(`${base}/city/list`, params) };
@@ -78,3 +79,6 @@ export const teamSave = (params) => { return io.post(`${base}/team/save`, params
 export const teamGet = (params) => { return io.post(`${base}/team/get`, params) };
 export const teamDel = (params) => { return io.post(`${base}/team/del`, params) };
 export const teamTree = (params) => { return io.post(`${base}/team/tree`, params) };
+//企业管理
+export const corpGet = (params) => { return io.post(`${base}/corp/get`, params) };
+export const corpSave = (params) => { return io.post(`${base}/corp/save`, params) };

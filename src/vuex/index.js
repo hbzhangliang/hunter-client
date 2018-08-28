@@ -40,6 +40,7 @@ export default new Vuex.Store({
           {key:"dict",label:"字典项管理",router:"base/dict"},
           {key:"position",label:"职位管理",router:"base/position"},
           {key:"team",label:"团队管理",router:"base/team"},
+          {key:"corp",label:"企业管理",router:"base/corp"},
           {key:"calendar",label:"我的日历",router:"base/calendar"}
           ],
       //选择到tab中的数据
