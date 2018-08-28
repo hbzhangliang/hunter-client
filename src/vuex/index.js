@@ -41,6 +41,7 @@ export default new Vuex.Store({
           {key:"position",label:"职位管理",router:"base/position"},
           {key:"team",label:"团队管理",router:"base/team"},
           {key:"corp",label:"企业管理",router:"base/corp"},
+          {key:"user",label:"用户管理",router:"base/user"},
           {key:"calendar",label:"我的日历",router:"base/calendar"}
           ],
       //选择到tab中的数据
