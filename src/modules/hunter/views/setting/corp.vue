@@ -302,7 +302,7 @@
 
                     _this.corp=null
                     _this.corp=bean
-                },800);
+                },500);
             },
             initCorp(){
                 let _this=this
