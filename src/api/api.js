@@ -14,12 +14,17 @@ export const healthcheck = (params) => { return io.post(`${base}/health`, params
 export const wsTest = (params) => { return io.post(`${base}/ws/1`, params) };
 export const wsTest2 = (params) => { return io.post(`${base}/ws/2`, params) };
 
-
-export const accoutCheck = (params) => { return io.post(`${base}/account/check`, params) };
-export const accoutCheckInfo = (params) => { return io.post(`${base}/account/check_info`, params) };
+//账号接口
+export const accountCheck = (params) => { return io.post(`${base}/account/check`, params) };
+export const accountCheckInfo = (params) => { return io.post(`${base}/account/check_info`, params) };
 export const accountLogout = (params) => { return io.post(`${base}/account/logout`, params) };
-export const accoutListAll = (params) => { return io.post(`${base}/account/listall`, params) };
-export const accoutInfo= (params) => { return io.post(`${base}/account/account_info`, params) };
+export const accountInfo= (params) => { return io.post(`${base}/account/account_info`, params) };
+
+export const accountGet = (params) => { return io.post(`${base}/account/get`, params) };
+export const accountList = (params) => { return io.post(`${base}/account/list`, params) };
+export const accountListAll = (params) => { return io.post(`${base}/account/list-all`, params) };
+export const accountDel = (params) => { return io.post(`${base}/account/del`, params) };
+export const accountSave = (params) => { return io.post(`${base}/account/save`, params) };
 //城市配置
 export const cityMap = (params) => { return io.post(`${base}/city/map`, params) };
 export const cityTree = (params) => { return io.post(`${base}/city/tree`, params) };
