@@ -25,6 +25,10 @@ export const accountList = (params) => { return io.post(`${base}/account/list`, 
 export const accountListAll = (params) => { return io.post(`${base}/account/list-all`, params) };
 export const accountDel = (params) => { return io.post(`${base}/account/del`, params) };
 export const accountSave = (params) => { return io.post(`${base}/account/save`, params) };
+//账号视图操作
+export const vAccountGet = (params) => { return io.post(`${base}/vaccount/get`, params) };
+export const vAccountList = (params) => { return io.post(`${base}/vaccount/list`, params) };
+export const vAccountListAll = (params) => { return io.post(`${base}/vaccount/list-all`, params) };
 //城市配置
 export const cityMap = (params) => { return io.post(`${base}/city/map`, params) };
 export const cityTree = (params) => { return io.post(`${base}/city/tree`, params) };

@@ -200,3 +200,23 @@
     padding: 3px 2px;
     margin-bottom: 5px;
 }
+
+
+
+
+.sh-grid-content {
+    border-radius: 1px;
+    min-height: 22px;
+    width: 100%;
+}
+
+.sh-bg-left{
+    float: right;
+    vertical-align: center;
+    background:  #e6f2FF;
+    padding: 1px;
+}
+.sh-bg-right{
+    float: left;
+    padding: 2px;
+}
