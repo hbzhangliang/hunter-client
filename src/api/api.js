@@ -91,3 +91,17 @@ export const teamTree = (params) => { return io.post(`${base}/team/tree`, params
 //企业管理
 export const corpGet = (params) => { return io.post(`${base}/corp/get`, params) };
 export const corpSave = (params) => { return io.post(`${base}/corp/save`, params) };
+
+//共享文件夹
+export const docList = (params) => { return io.post(`${base}/doc/list`, params) };
+export const docListAll = (params) => { return io.post(`${base}/doc/list-all`, params) };
+export const docSave = (params) => { return io.post(`${base}/doc/save`, params) };
+export const docGet = (params) => { return io.post(`${base}/doc/get`, params) };
+export const docDel = (params) => { return io.post(`${base}/doc/del`, params) };
+export const docTree = (params) => { return io.post(`${base}/doc/tree`, params) };
+
+export const docShareList = (params) => { return io.post(`${base}/doc-share/list`, params) };
+export const docShareListAll = (params) => { return io.post(`${base}/doc-share/list-all`, params) };
+export const docShareSave = (params) => { return io.post(`${base}/doc-share/save`, params) };
+export const docShareGet = (params) => { return io.post(`${base}/doc-share/get`, params) };
+export const docShareDel = (params) => { return io.post(`${base}/doc-share/del`, params) };

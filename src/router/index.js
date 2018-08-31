@@ -14,6 +14,7 @@ import position from 'endportView/setting/position'
 import team from 'endportView/setting/team'
 import corp from 'endportView/setting/corp'
 import account from 'endportView/setting/account'
+import doc from 'endportView/setting/doc'
 import calendar from 'endportView/setting/calendar'
 
 Vue.use(Router)
@@ -94,6 +95,11 @@ export default new Router({
               path:'calendar',
               name:'calendar',
               component:calendar
+          },
+          {
+              path:'doc',
+              name:'doc',
+              component:doc
           },
         {
           path: '*',
