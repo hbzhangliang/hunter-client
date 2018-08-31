@@ -105,3 +105,10 @@ export const docShareListAll = (params) => { return io.post(`${base}/doc-share/l
 export const docShareSave = (params) => { return io.post(`${base}/doc-share/save`, params) };
 export const docShareGet = (params) => { return io.post(`${base}/doc-share/get`, params) };
 export const docShareDel = (params) => { return io.post(`${base}/doc-share/del`, params) };
+
+//附件上传处理
+export const attachmentUpload = (params) => { return io.post(`${base}/attachment/upload`, params) };
+export const attachmentListAll = (params) => { return io.post(`${base}/attachment/list-all`, params) };
+export const attachmentSave = (params) => { return io.post(`${base}/attachment/save`, params) };
+export const attachmentGet = (params) => { return io.post(`${base}/attachment/get`, params) };
+export const attachmentDel = (params) => { return io.post(`${base}/attachment/del`, params) };

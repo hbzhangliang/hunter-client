@@ -16,6 +16,7 @@ import corp from 'endportView/setting/corp'
 import account from 'endportView/setting/account'
 import doc from 'endportView/setting/doc'
 import calendar from 'endportView/setting/calendar'
+import attachment from 'endportView/setting/attachment'
 
 Vue.use(Router)
 
@@ -100,6 +101,11 @@ export default new Router({
               path:'doc',
               name:'doc',
               component:doc
+          },
+          {
+              path:'attachment',
+              name:'attachment',
+              component:attachment
           },
         {
           path: '*',
