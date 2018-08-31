@@ -52,6 +52,30 @@
                 <el-form-item label="备注">
                     <el-input v-model="doc.remark" placeholder="请输入内容" size="medium"></el-input>
                 </el-form-item>
+
+
+                <el-form-item label="分享">
+                    <div v-for="pt in doc.share">
+                        <el-select v-model="pt.shareType" placeholder="请选择">
+                            <el-option
+                                    v-for="item in shareTypeOptions"
+                                    :key="item.value"
+                                    :label="item.label"
+                                    :value="item.value">
+                            </el-option>
+                        </el-select>
+                        <el-input v-model="pt.detail" placeholder="请输入内容" size="medium" class="w-240"></el-input>
+                        <span>
+                            <el-button @click="addShare(pt)" size="mini" type="primary" icon="el-icon-circle-plus-outline" circle></el-button>
+                            <el-button @click="delShare(pt)" size="mini" type="warning" icon="el-icon-remove-outline" circle></el-button>
+                        </span>
+                    </div>
+                </el-form-item>
+
+
+
+
+
             </el-form>
             <div style="text-align: center;margin-top: 25px">
                 <el-button @click="closeDialog">取消</el-button>
@@ -93,9 +117,13 @@
                     id:null,
                     name:null,
                     type:null,
-                    remark:null
+                    remark:null,
+                    share:[
+                        {id:null,shareType:null,detail:null}
+                    ]
                 },
                 docTypeOptions:[{value:"talent",label:"人才"},{value:"company",label:"公司"},{value:"project",label:"项目"},{value:"other",label:"其他"}],
+                shareTypeOptions:[{value:"account",label:"个人"},{value:"position",label:"岗位"},{value:"team",label:"团队"},{value:"all",label:"所有人"}]
             }
         },
         watch: {
@@ -201,7 +229,10 @@
                     id:null,
                     name:null,
                     type:null,
-                    remark:null
+                    remark:null,
+                    share:[
+                        {id:null,shareType:null,detail:null}
+                    ]
                 }
                 this.visible=true
             },
@@ -231,6 +262,15 @@
             },
             hideMenuCss(){
                 $(".vue-contextmenuName-"+this.menuData.menuName).css({display:"none"});
+            },
+
+
+            //共享添加
+            addShare(pt){
+                console.log(pt)
+            },
+            delShare(pt){
+                console.log(pt)
             }
         },
         created () {
