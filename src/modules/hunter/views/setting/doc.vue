@@ -62,11 +62,8 @@
                     <el-cascader
                             :options="shareOptions"
                             v-model="doc.share"
-                            :props="selectProps"
-                            @change="handleChange">
+                            @change="cascadeChange">
                     </el-cascader>
-
-
                     <!--<div v-for="pt in doc.share">-->
                         <!--<el-select v-model="pt.shareType" placeholder="请选择" @change="typeChange(pt)">-->
                             <!--<el-option-->
@@ -82,6 +79,17 @@
                             <!--<el-button @click="delShare(pt)" size="mini" type="warning" icon="el-icon-remove-outline" circle></el-button>-->
                         <!--</span>-->
                     <!--</div>-->
+
+                    <br/>
+                    <el-tag
+                            :key="tag"
+                            v-for="tag in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="tagClose(tag)">
+                        {{tag}}
+                    </el-tag>
+
                 </el-form-item>
 
 
@@ -113,11 +121,6 @@
                     children: 'children',
                     label: 'name'
                 },
-                selectProps:{
-                    value:'id',
-                    label:'name',
-                    children:'children'
-                },
                 menuData:{
                     menuName:'abc',
                     axios:{x:null, y:null},
@@ -139,26 +142,9 @@
                 },
                 docTypeOptions:[{value:"talent",label:"人才"},{value:"company",label:"公司"},{value:"project",label:"项目"},{value:"other",label:"其他"}],
                 shareTypeOptions:[{value:"account",label:"个人"},{value:"position",label:"岗位"},{value:"team",label:"团队"},{value:"all",label:"所有人"}],
-                shareOptions:[{
-                    value: 'zhinan',
-                    label: '指南',
-                    children: [{
-                        id: 'shejiyuanze',
-                        name: '设计原则',
-                        children: [{
-                            id: 'yizhi',
-                            name: '一致'
-                        }, {
-                            id: 'fankui',
-                            name: '反馈'
-                        }, {
-                            id: 'xiaolv',
-                            name: '效率'
-                        }, {
-                            id: 'kekong',
-                            name: '可控'
-                        }]
-                    }]}]
+                shareOptions:[],
+                dynamicTags: [],
+                tag:null
             }
         },
         watch: {
@@ -273,8 +259,15 @@
                 }
                 this.visible=true
             },
-            handleChange(value){
+            cascadeChange(value){
+                console.log( $("span.el-cascader__label").text())
                 console.log(value)
+                // this.doc.share=[]
+                var d=[]
+                this.dynamicTags.forEach(p=>{
+
+                })
+                this.dynamicTags.push(value[1])
             },
             generateId(item){
                 return "tree_"+item.id
@@ -312,18 +305,8 @@
             delShare(pt){
                 console.log(pt)
             },
-            typeChange(item){
-                let type=item.shareType
-                switch (type){
-                    case "account":{
-
-                    };break;
-                    case "position":{};break;
-                    case "team":{};break;
-                    case "all":{};break;
-                    default:break;
-                }
-
+            tagClose(tag){
+                this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
             }
         },
         created () {
