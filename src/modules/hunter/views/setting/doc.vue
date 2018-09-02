@@ -59,21 +59,29 @@
 
 
                 <el-form-item label="分享">
-                    <div v-for="pt in doc.share">
-                        <el-select v-model="pt.shareType" placeholder="请选择">
-                            <el-option
-                                    v-for="item in shareTypeOptions"
-                                    :key="item.value"
-                                    :label="item.label"
-                                    :value="item.value">
-                            </el-option>
-                        </el-select>
-                        <el-input v-model="pt.detail" placeholder="请输入内容" size="medium" class="w-240"></el-input>
-                        <span>
-                            <el-button @click="addShare(pt)" size="mini" type="primary" icon="el-icon-circle-plus-outline" circle></el-button>
-                            <el-button @click="delShare(pt)" size="mini" type="warning" icon="el-icon-remove-outline" circle></el-button>
-                        </span>
-                    </div>
+                    <el-cascader
+                            :options="shareOptions"
+                            v-model="doc.share"
+                            :props="selectProps"
+                            @change="handleChange">
+                    </el-cascader>
+
+
+                    <!--<div v-for="pt in doc.share">-->
+                        <!--<el-select v-model="pt.shareType" placeholder="请选择" @change="typeChange(pt)">-->
+                            <!--<el-option-->
+                                    <!--v-for="item in shareTypeOptions"-->
+                                    <!--:key="item.value"-->
+                                    <!--:label="item.label"-->
+                                    <!--:value="item.value">-->
+                            <!--</el-option>-->
+                        <!--</el-select>-->
+                        <!--<el-input v-model="pt.detail" placeholder="请输入内容" size="medium" class="w-240"></el-input>-->
+                        <!--<span>-->
+                            <!--<el-button @click="addShare(pt)" size="mini" type="primary" icon="el-icon-circle-plus-outline" circle></el-button>-->
+                            <!--<el-button @click="delShare(pt)" size="mini" type="warning" icon="el-icon-remove-outline" circle></el-button>-->
+                        <!--</span>-->
+                    <!--</div>-->
                 </el-form-item>
 
 
@@ -91,7 +99,7 @@
 </template>
 <script>
     import end from '@/common/js/utils.js'
-    import {docTree,docGet,docList,docDel,docSave,docListAll} from '@/api/api'
+    import {docTree,docGet,docList,docDel,docSave,docListAll,docAllTree} from '@/api/api'
     import $ from 'jquery'
     export default {
         data() {
@@ -104,6 +112,11 @@
                 defaultProps: {
                     children: 'children',
                     label: 'name'
+                },
+                selectProps:{
+                    value:'id',
+                    label:'name',
+                    children:'children'
                 },
                 menuData:{
                     menuName:'abc',
@@ -122,12 +135,30 @@
                     name:null,
                     type:null,
                     remark:null,
-                    share:[
-                        {id:null,shareType:null,detail:null}
-                    ]
+                    share:[]
                 },
                 docTypeOptions:[{value:"talent",label:"人才"},{value:"company",label:"公司"},{value:"project",label:"项目"},{value:"other",label:"其他"}],
-                shareTypeOptions:[{value:"account",label:"个人"},{value:"position",label:"岗位"},{value:"team",label:"团队"},{value:"all",label:"所有人"}]
+                shareTypeOptions:[{value:"account",label:"个人"},{value:"position",label:"岗位"},{value:"team",label:"团队"},{value:"all",label:"所有人"}],
+                shareOptions:[{
+                    value: 'zhinan',
+                    label: '指南',
+                    children: [{
+                        id: 'shejiyuanze',
+                        name: '设计原则',
+                        children: [{
+                            id: 'yizhi',
+                            name: '一致'
+                        }, {
+                            id: 'fankui',
+                            name: '反馈'
+                        }, {
+                            id: 'xiaolv',
+                            name: '效率'
+                        }, {
+                            id: 'kekong',
+                            name: '可控'
+                        }]
+                    }]}]
             }
         },
         watch: {
@@ -164,6 +195,10 @@
                 docTree({types:_this.checkedTypes}).then(p=>{
                     _this.data=p
                     _this.loading=false
+                })
+
+                docAllTree().then(p=>{
+                    _this.shareOptions=p
                 })
             },
             showMenu:function (parameter) {
@@ -234,11 +269,12 @@
                     name:null,
                     type:null,
                     remark:null,
-                    share:[
-                        {id:null,shareType:null,detail:null}
-                    ]
+                    share:[]
                 }
                 this.visible=true
+            },
+            handleChange(value){
+                console.log(value)
             },
             generateId(item){
                 return "tree_"+item.id
@@ -275,6 +311,19 @@
             },
             delShare(pt){
                 console.log(pt)
+            },
+            typeChange(item){
+                let type=item.shareType
+                switch (type){
+                    case "account":{
+
+                    };break;
+                    case "position":{};break;
+                    case "team":{};break;
+                    case "all":{};break;
+                    default:break;
+                }
+
             }
         },
         created () {

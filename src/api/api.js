@@ -99,6 +99,7 @@ export const docSave = (params) => { return io.post(`${base}/doc/save`, params) 
 export const docGet = (params) => { return io.post(`${base}/doc/get`, params) };
 export const docDel = (params) => { return io.post(`${base}/doc/del`, params) };
 export const docTree = (params) => { return io.post(`${base}/doc/tree`, params) };
+export const docAllTree = (params) => { return io.post(`${base}/doc/all-tree`, params) };
 
 export const docShareList = (params) => { return io.post(`${base}/doc-share/list`, params) };
 export const docShareListAll = (params) => { return io.post(`${base}/doc-share/list-all`, params) };
