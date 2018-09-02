@@ -2,6 +2,10 @@
     <section v-loading="loading" v-on:click="hideMenuCss">
         <div style="height: 92%;overflow: hidden">
 
+            <div style="margin:5px">
+                <el-button type="primary" size="mini" icon="el-icon-plus" @click="addRoot">新增</el-button>
+            </div>
+
             文件夹类型<br/>
             <template>
                 <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="changeAll">全选</el-checkbox>

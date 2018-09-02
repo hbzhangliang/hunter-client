@@ -1,6 +1,9 @@
 <template>
     <section v-loading="loading" v-on:click="hideMenuCss">
         <div style="height: 92%;overflow: hidden">
+            <div style="margin:5px">
+                <el-button type="primary" size="mini" icon="el-icon-plus" @click="addRoot">新增</el-button>
+            </div>
             <el-input
                     class="search_input w-240"
                     placeholder="输入关键字进行过滤"

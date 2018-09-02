@@ -119,9 +119,9 @@
                 </el-row>
             </el-form>
 
-            <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;" v-if="strOp!='view'">
-                <el-button size="mini" @click="closedicDialog" icon="el-icon-circle-close-outline">取消</el-button>
-                <el-button size="mini" type="primary" @click="saveDic" icon="el-icon-success">确定</el-button>
+            <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;" >
+                <el-button  size="mini" @click="closedicDialog" icon="el-icon-circle-close-outline">取消</el-button>
+                <el-button v-if="strOp!='view'" size="mini" type="primary" @click="saveDic" icon="el-icon-success">确定</el-button>
             </div>
 
 
