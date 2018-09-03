@@ -61,41 +61,18 @@
                 <el-form-item label="分享">
                     <el-cascader
                             :options="shareOptions"
-                            v-model="doc.share"
                             @change="cascadeChange">
-                    </el-cascader>
-                    <!--<div v-for="pt in doc.share">-->
-                        <!--<el-select v-model="pt.shareType" placeholder="请选择" @change="typeChange(pt)">-->
-                            <!--<el-option-->
-                                    <!--v-for="item in shareTypeOptions"-->
-                                    <!--:key="item.value"-->
-                                    <!--:label="item.label"-->
-                                    <!--:value="item.value">-->
-                            <!--</el-option>-->
-                        <!--</el-select>-->
-                        <!--<el-input v-model="pt.detail" placeholder="请输入内容" size="medium" class="w-240"></el-input>-->
-                        <!--<span>-->
-                            <!--<el-button @click="addShare(pt)" size="mini" type="primary" icon="el-icon-circle-plus-outline" circle></el-button>-->
-                            <!--<el-button @click="delShare(pt)" size="mini" type="warning" icon="el-icon-remove-outline" circle></el-button>-->
-                        <!--</span>-->
-                    <!--</div>-->
-
+                    </el-cascader><label style="color: red">*可以多次选择</label>
                     <br/>
                     <el-tag
-                            :key="tag"
-                            v-for="tag in dynamicTags"
+                            :key="tag.value"
+                            v-for="tag in doc.share"
                             closable
                             :disable-transitions="false"
                             @close="tagClose(tag)">
-                        {{tag}}
+                        {{tag.label}}
                     </el-tag>
-
                 </el-form-item>
-
-
-
-
-
             </el-form>
             <div style="text-align: center;margin-top: 25px">
                 <el-button @click="closeDialog">取消</el-button>
@@ -143,8 +120,8 @@
                 docTypeOptions:[{value:"talent",label:"人才"},{value:"company",label:"公司"},{value:"project",label:"项目"},{value:"other",label:"其他"}],
                 shareTypeOptions:[{value:"account",label:"个人"},{value:"position",label:"岗位"},{value:"team",label:"团队"},{value:"all",label:"所有人"}],
                 shareOptions:[],
-                dynamicTags: [],
-                tag:null
+                cascaderLabel:null,
+                cascaderValues:[]
             }
         },
         watch: {
@@ -260,14 +237,26 @@
                 this.visible=true
             },
             cascadeChange(value){
-                console.log( $("span.el-cascader__label").text())
-                console.log(value)
-                // this.doc.share=[]
-                var d=[]
-                this.dynamicTags.forEach(p=>{
+                this.cascaderLabel=''
+                this.cascadeComp(value,this.shareOptions)
 
+                var strValue=this.arraryToString(value)
+
+                var tmp={
+                    value:strValue,
+                    label:this.cascaderLabel
+                }
+                //需要插入
+                var flag=true
+                this.doc.share.forEach(p=>{
+                    if(p.value==strValue){
+                        flag=false
+                    }
                 })
-                this.dynamicTags.push(value[1])
+                if(flag) {
+                    this.cascaderValues.push(strValue)
+                    this.doc.share.push(tmp)
+                }
             },
             generateId(item){
                 return "tree_"+item.id
@@ -296,18 +285,66 @@
             hideMenuCss(){
                 $(".vue-contextmenuName-"+this.menuData.menuName).css({display:"none"});
             },
-
-
-            //共享添加
-            addShare(pt){
-                console.log(pt)
+            tagClose(item){
+                var d=[]
+                this.doc.share.forEach(p=>{
+                    if(p.value!=item.value){
+                        d.push(p)
+                    }
+                })
+                this.doc.share=d
+                var e=[]
+                this.cascaderValues.forEach(p=>{
+                    if(p!=item.value){
+                        e.push(p)
+                    }
+                })
+                this.cascaderValues=e
             },
-            delShare(pt){
-                console.log(pt)
+
+            /**
+             * option [{"value":"1","label":"abc"},{"value":"2","label":"cdf"}]
+             * value ["1"]
+             * @param value
+             * @param options
+             */
+             cascadeComp(value,options){
+                 let _this=this
+                if(value.length==1){
+                    options.forEach(p=>{
+                        if(p.value==value[0]){
+                            _this.cascaderLabel+=p.label
+                        }
+                    })
+                }
+                else {
+                     var e=[]
+                    options.forEach(p=>{
+                        if(p.value==value[0]){
+                            _this.cascaderLabel+=p.label+'/'
+                            e=p.children
+                        }
+                    })
+                    var l=[]
+                    for(var i=1;i<value.length;i++){
+                         l.push(value[i])
+                    }
+                    this.cascadeComp(l,e)
+                }
             },
-            tagClose(tag){
-                this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+            //数组变String
+            arraryToString(value){
+                 var result=''
+                 for(var i=0;i<value.length;i++){
+                     result+=value[i]+','
+                 }
+                 if(result.length>0){
+                     result= result.substr(0,result.length-1)
+                 }
+                 return result;
             }
+
+
         },
         created () {
             this.initDoc()
