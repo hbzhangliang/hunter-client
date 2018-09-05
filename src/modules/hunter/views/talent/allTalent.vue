@@ -282,6 +282,72 @@
 
 
 
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">性别：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-radio-group v-model="bean.gender">
+                            <el-radio  :label=true>男</el-radio>
+                            <el-radio  :label=false>女</el-radio>
+                        </el-radio-group>
+                    </div></el-col>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">生日：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-date-picker
+                                v-model="bean.birthday"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="">
+                        </el-date-picker>
+                    </div></el-col>
+                </el-row>
+
+
+
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">婚姻状态：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-select  v-model="bean.marray" placeholder="根节点">
+                            <el-option
+                                    v-for="item in dictMarryStatus"
+                                    :key="item.code"
+                                    :label="item.name"
+                                    :value="item.code">
+                            </el-option>
+                        </el-select>
+                    </div></el-col>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">qq：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.qq" placeholder="请输入内容" size="medium" ></el-input>
+                    </div></el-col>
+                </el-row>
+
+
+
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">年薪：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.salary" placeholder="请输入内容" size="medium" ></el-input>
+                    </div></el-col>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">意向城市：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.tmpIntentCityName" placeholder="请输入内容" size="medium" ></el-input>
+                        <el-button size="mini" type="primary" @click="cityChoose('intentCity')" icon="el-icon-setting">选择</el-button>
+                    </div></el-col>
+                </el-row>
+
+
 
 
             </el-form>
@@ -420,6 +486,8 @@
                     birthday: null,
                     marray: null,
                     salary: null,
+                    tmpIntentCityId:null,
+                    tmpIntentCityName:null,
                     intentCity: null,
                     tags: null,
                     mpc: null,
@@ -447,7 +515,9 @@
                 innerBusinessVisible:false,
 
                 innerCareerVisible:false,
-                careerTree:null
+                careerTree:null,
+
+                dictMarryStatus:[]
 
 
             }
@@ -456,11 +526,18 @@
 
         },
         methods: {
-            initDictTalentType(){
+            initDict(){
                 let _this=this
-                dictListChildrenByCode({"code":"TalentType"}).then(p=>{
-                    _this.dictTalentType=p
-                })
+                if(_this.dictTalentType.length<1) {
+                    dictListChildrenByCode({"code": "TalentType"}).then(p => {
+                        _this.dictTalentType = p
+                    })
+                }
+                if(_this.dictMarryStatus.length<1) {
+                    dictListChildrenByCode({"code": "MarryStatus"}).then(p => {
+                        _this.dictMarryStatus = p
+                    })
+                }
             },
             initCity(){
                 let _this=this
@@ -746,6 +823,26 @@
                         _this.bean.city = this.$refs.tree2.getCheckedNodes()[0].id
                     }
                 }
+                else if(this.editCityProp=='intentCity'){
+                    if(length<1){
+                        _this.$message({
+                            message: '必须最少选择一个城市',
+                            type: 'warning'
+                        });
+                        return;
+                    }
+                    _this.bean.intentCity=""
+                    _this.bean.tmpIntentCityId=[]
+                    _this.bean.tmpIntentCityName=""
+                    this.$refs.tree2.getCheckedNodes().forEach(p=>{
+                        if(p.leaf){
+                            _this.bean.intentCity+=p.id+","
+                            _this.bean.tmpIntentCityId.push(p.id)
+                            _this.bean.tmpIntentCityName+=p.name+","
+                        }
+                    })
+
+                }
                 this.innerVisible=false
             },
             chooseInnerBusiness(){
@@ -812,7 +909,7 @@
         created () {
             this.init();
             this.initCity();
-            this.initDictTalentType();
+            this.initDict();
             this.initBusiness();
             this.initCareer();
             this.init_chShows();
