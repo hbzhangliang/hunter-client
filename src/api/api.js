@@ -71,6 +71,7 @@ export const tagSave = (params) => { return io.post(`${base}/tag/save`, params) 
 //字典项管理
 export const dictList = (params) => { return io.post(`${base}/dict/list`, params) };
 export const dictListChildren = (params) => { return io.post(`${base}/dict/list-children`, params) };
+export const dictListChildrenByCode = (params) => { return io.post(`${base}/dict/list-children-bycode`, params) };
 export const dictListAll = (params) => { return io.post(`${base}/dict/list-all`, params) };
 export const dictSave = (params) => { return io.post(`${base}/dict/save`, params) };
 export const dictGet = (params) => { return io.post(`${base}/dict/get`, params) };
@@ -113,3 +114,10 @@ export const attachmentListAll = (params) => { return io.post(`${base}/attachmen
 export const attachmentSave = (params) => { return io.post(`${base}/attachment/save`, params) };
 export const attachmentGet = (params) => { return io.post(`${base}/attachment/get`, params) };
 export const attachmentDel = (params) => { return io.post(`${base}/attachment/del`, params) };
+
+//talent 操作
+export const talentGet = (params) => { return io.post(`${base}/talent/get`, params) };
+export const talentList = (params) => { return io.post(`${base}/talent/list`, params) };
+export const talentListAll = (params) => { return io.post(`${base}/talent/list-all`, params) };
+export const talentDel = (params) => { return io.post(`${base}/talent/del`, params) };
+export const talentSave = (params) => { return io.post(`${base}/talent/save`, params) };
