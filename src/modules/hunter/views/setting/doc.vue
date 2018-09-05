@@ -57,8 +57,15 @@
                     <el-input v-model="doc.remark" placeholder="请输入内容" size="medium"></el-input>
                 </el-form-item>
 
+                <el-form-item label="个人还是共享">
+                    <el-radio-group v-model="doc.shareType">
+                        <el-radio  :label=false>个人</el-radio>
+                        <el-radio  :label=true>共享</el-radio>
+                    </el-radio-group>
+                </el-form-item>
 
-                <el-form-item label="分享">
+
+                <el-form-item label="分享" v-show="doc.shareType==true">
                     <el-cascader
                             :options="shareOptions"
                             @change="cascadeChange">
@@ -115,6 +122,7 @@
                     name:null,
                     type:null,
                     remark:null,
+                    shareType:null,
                     share:[]
                 },
                 docTypeOptions:[{value:"talent",label:"人才"},{value:"company",label:"公司"},{value:"project",label:"项目"},{value:"other",label:"其他"}],
@@ -232,6 +240,7 @@
                     name:null,
                     type:null,
                     remark:null,
+                    shareType:null,
                     share:[]
                 }
                 this.visible=true
