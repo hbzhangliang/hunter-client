@@ -45,22 +45,55 @@
           isCollapse:false,
           menu_user:[{id:"1",path:"1",icon:"el-icon-menu",name:"订阅搜索",children:
                   [{id:"1-1",path:"1-1",icon:"el-icon-menu",name:"我创建的",children:
-                      [{id:"1-1-1",path:"1-1-1",icon:"el-icon-document",name:"所有人才"},{id:"1-1-2",path:"1-1-2",icon:"el-icon-document",name:"我的候选人"},{id:"1-1-3",path:"1-1-3",icon:"el-icon-document",name:"客户联系人"},{id:"1-1-4",path:"1-1-4",icon:"el-icon-document",name:"cold call"}]},
-                  {id:"1-2",path:"1-2",icon:"el-icon-document",name:"共享人才",children:
-                          [{id:"1-2-1",path:"1-2-1",icon:"el-icon-document",name:"所有人才"},{id:"1-2-2",path:"1-2-2",icon:"el-icon-document",name:"候选人"},{id:"1-2-3",path:"1-2-3",icon:"el-icon-document",name:"客户联系人"},{id:"1-2-4",path:"1-2-4",icon:"el-icon-document",name:"cold call"}]},
+                      [{id:"all-talent",path:"all-talent",icon:"el-icon-document",name:"所有人才"},
+                          {id:"1-1-2",path:"1-1-2",icon:"el-icon-document",name:"我的候选人"},
+                          {id:"1-1-3",path:"1-1-3",icon:"el-icon-document",name:"客户联系人"},
+                          {id:"1-1-4",path:"1-1-4",icon:"el-icon-document",name:"cold call"}]},
+                  {id:"1-2",path:"1-2",icon:"el-icon-menu",name:"共享人才",children:
+                          [{id:"1-2-1",path:"1-2-1",icon:"el-icon-document",name:"所有人才"},
+                              {id:"1-2-2",path:"1-2-2",icon:"el-icon-document",name:"候选人"},
+                              {id:"1-2-3",path:"1-2-3",icon:"el-icon-document",name:"客户联系人"},
+                              {id:"1-2-4",path:"1-2-4",icon:"el-icon-document",name:"cold call"}]},
                       {id:"1-3",path:"1-3",icon:"el-icon-menu",name:"收取简历",children:
-                              [{id:"1-3-1",path:"1-3-1",icon:"el-icon-document",name:"收取邮箱简历"},{id:"1-3-2",path:"1-3-2",icon:"el-icon-document",name:"设置邮箱"}]},
-                      {id:"1-4",path:"1-4",icon:"el-icon-document",name:"回收站",children:
-                              [{id:"1-4-1",path:"1-4-1",icon:"el-icon-document",name:"我删除的"},{id:"1-4-2",path:"1-4-2",icon:"el-icon-document",name:"所有删除"}]}]},
+                              [{id:"1-3-1",path:"1-3-1",icon:"el-icon-document",name:"收取邮箱简历"},
+                                  {id:"1-3-2",path:"1-3-2",icon:"el-icon-document",name:"设置邮箱"}]},
+                      {id:"1-4",path:"1-4",icon:"el-icon-menu",name:"回收站",children:
+                              [{id:"1-4-1",path:"1-4-1",icon:"el-icon-document",name:"我删除的"},
+                                  {id:"1-4-2",path:"1-4-2",icon:"el-icon-document",name:"所有删除"}]}]},
               {id:"2",path:"2",icon:"el-icon-menu",name:"文件夹",children:
-                      [{id:"2-1",path:"2-1",icon:"el-icon-document",name:"我的文件夹",children:
-                              [{id:"2-1-1",path:"2-1-1",icon:"el-icon-document",name:"A文件夹"},{id:"2-1-2",path:"2-1-2",icon:"el-icon-document",name:"B文件夹"},{id:"2-1-3",path:"2-1-3",icon:"el-icon-document",name:"C文件夹"},{id:"2-1-4",path:"2-1-4",icon:"el-icon-document",name:"D文件夹"}]}
+                      [{id:"2-1",path:"2-1",icon:"el-icon-menu",name:"我的文件夹",children:
+                              [{id:"2-1-1",path:"2-1-1",icon:"el-icon-document",name:"A文件夹"},
+                                  {id:"2-1-2",path:"2-1-2",icon:"el-icon-document",name:"B文件夹"},
+                                  {id:"2-1-3",path:"2-1-3",icon:"el-icon-document",name:"C文件夹"},
+                                  {id:"2-1-4",path:"2-1-4",icon:"el-icon-document",name:"D文件夹"}]}
                          ]}],
 
 
-          menu_company:[{id:"1",path:"1",icon:"el-icon-document",name:"共享人才",children:[{id:"2",path:"2",icon:"el-icon-document",name:"所有人才",children:
-                      [{id:"4",path:"4",icon:"el-icon-document",name:"c",},{id:"5",path:"5",icon:"el-icon-document",name:"d"}]},
-                  {id:"3",path:"3",icon:"el-icon-document",name:"e",children:[{id:"6",path:"6",icon:"el-icon-document",name:"f"}]}]}],
+          menu_company:[{id:"1",path:"1",icon:"el-icon-menu",name:"订阅搜索",children:
+                  [{id:"1-1",path:"1-1",icon:"el-icon-menu",name:"我创建的",children:
+                          [{id:"1-1-1",path:"1-1-1",icon:"el-icon-document",name:"所有公司"},
+                              {id:"1-1-2",path:"1-1-2",icon:"el-icon-document",name:"普通公司"},
+                              {id:"1-1-3",path:"1-1-3",icon:"el-icon-document",name:"开发中客户"},
+                              {id:"1-1-4",path:"1-1-4",icon:"el-icon-document",name:"已签约客户"},
+                              {id:"1-1-5",path:"1-1-5",icon:"el-icon-document",name:"终止合作"}]},
+                      {id:"1-2",path:"1-2",icon:"el-icon-document",name:"共享公司",children:
+                              [{id:"1-2-2",path:"1-2-2",icon:"el-icon-document",name:"普通公司"},
+                              {id:"1-2-3",path:"1-2-3",icon:"el-icon-document",name:"开发中客户"},
+                              {id:"1-2-4",path:"1-2-4",icon:"el-icon-document",name:"已签约客户"},
+                              {id:"1-2-5",path:"1-2-5",icon:"el-icon-document",name:"终止合作"}]},
+                      {id:"1-3",path:"1-3",icon:"el-icon-document",name:"回收站",children:
+                              [{id:"1-3-1",path:"1-3-1",icon:"el-icon-document",name:"我删除的"},
+                                  {id:"1-3-2",path:"1-3-2",icon:"el-icon-document",name:"所有删除"}]}]},
+              {id:"2",path:"2",icon:"el-icon-menu",name:"文件夹",children:
+                      [{id:"2-1",path:"2-1",icon:"el-icon-document",name:"我的文件夹",children:
+                              [{id:"2-1-1",path:"2-1-1",icon:"el-icon-document",name:"A文件夹"},
+                                  {id:"2-1-2",path:"2-1-2",icon:"el-icon-document",name:"B文件夹"},
+                                  {id:"2-1-3",path:"2-1-3",icon:"el-icon-document",name:"C文件夹"},
+                                  {id:"2-1-4",path:"2-1-4",icon:"el-icon-document",name:"D文件夹"}]}
+                      ]}],
+          menu_project:[],
+
+          menu_report:[],
 
           menu_setting:[{id:"5",path:"5",icon:"el-icon-document",name:"设置",children:[{id:"5-1",path:"5-1",icon:"el-icon-document",name:"系统设置",children:[
                       {id:"5-1-1",path:"5-1-1",icon:"el-icon-document",name:"企业信息维护"},
@@ -124,16 +157,16 @@
         activeMenuContent(){
             let _this=this
             let paras=this.$store.state.activeMenuContent
-            console.log(paras)
-            if(paras=="menu_user"){
-                return _this.menu_user
+            var result=[];
+            switch (paras){
+                case "menu_user":result=_this.menu_user;break;
+                case "menu_company":result=_this.menu_company;break;
+                case "menu_project":result=_this.menu_project;break;
+                case "menu_report":result=_this.menu_report;break;
+                case "menu_setting":result=_this.menu_setting;break;
+                default:result=_this.menu_user;
             }
-            else if(paras=="menu_company"){
-                return _this.menu_company
-            }
-            else if(paras=="menu_setting"){
-                return _this.menu_setting
-            }
+            return result;
         }
 
     },

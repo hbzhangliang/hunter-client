@@ -18,6 +18,10 @@ import doc from 'endportView/setting/doc'
 import calendar from 'endportView/setting/calendar'
 import attachment from 'endportView/setting/attachment'
 
+
+import allTalent from 'endportView/talent/allTalent'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -107,6 +111,16 @@ export default new Router({
               name:'attachment',
               component:attachment
           },
+
+
+
+          //人才相关
+          {
+              path:'all-talent',
+              name:'all-talent',
+              component:allTalent
+          },
+
         {
           path: '*',
           redirect: '/base/firstPage'

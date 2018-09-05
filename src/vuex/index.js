@@ -44,7 +44,11 @@ export default new Vuex.Store({
           {key:"account",label:"用户管理",router:"base/account"},
           {key:"calendar",label:"我的日历",router:"base/calendar"},
           {key:"doc",label:"共享文件夹",router:"base/doc"},
-          {key:"attachment",label:"附件处理",router:"base/attachment"}
+          {key:"attachment",label:"附件处理",router:"base/attachment"},
+
+          //人才页面
+          {key:"all-talent",label:"所有人才",router:"base/all-talent"},
+
           ],
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],
