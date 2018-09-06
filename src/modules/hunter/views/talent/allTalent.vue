@@ -154,6 +154,27 @@
 
 
 
+            <el-dialog
+                    size="tiny"
+                    width="30%"
+                    title="标签选择"
+                    :visible.sync="innerTagVisible"
+                    append-to-body>
+                <el-tree
+                        class="filter-tree tag-tree"
+                        :data="tagList"
+                        :props="defaultProps"
+                        show-checkbox
+                        ref="tag">
+                </el-tree>
+                <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+                    <el-button size="mini" @click="closeInnerTagDialog" icon="el-icon-circle-close-outline">取消</el-button>
+                    <el-button size="mini" type="primary" @click="chooseInnerTag" icon="el-icon-success">确定</el-button>
+                </div>
+            </el-dialog>
+
+
+
 
             <el-row>
                 <el-col :span="24"><div class="grid-content bg-header">
@@ -348,6 +369,90 @@
                 </el-row>
 
 
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">是否mpc：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-radio-group v-model="bean.mpc">
+                            <el-radio  :label=true>是</el-radio>
+                            <el-radio  :label=false>否</el-radio>
+                        </el-radio-group>
+                    </div></el-col>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">综合特质：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.quality" placeholder="请输入内容" size="medium" ></el-input>
+                    </div></el-col>
+                </el-row>
+
+
+
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">家庭情况：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.family" placeholder="请输入内容" size="medium" ></el-input>
+                    </div></el-col>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">求职目的：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.purpose" placeholder="请输入内容" size="medium" ></el-input>
+                    </div></el-col>
+                </el-row>
+
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">目前薪酬：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.nowSalary" placeholder="请输入内容" size="medium" ></el-input>
+                    </div></el-col>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">期望薪酬：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.expSalary" placeholder="请输入内容" size="medium" ></el-input>
+                    </div></el-col>
+                </el-row>
+
+
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">顾问评价：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.evaluate" placeholder="请输入内容" size="medium" ></el-input>
+                    </div></el-col>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">备注：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.remark" placeholder="请输入内容" size="medium" ></el-input>
+                    </div></el-col>
+                </el-row>
+
+
+
+                <el-row>
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">标签：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-input v-model="bean.tmpTagsName" placeholder="请输入内容" size="medium" ></el-input>
+                        <el-button size="mini" type="primary" @click="tagChoose" icon="el-icon-setting">选择</el-button>
+                    </div></el-col>
+                    <!--<el-col :span="4"><div class="grid-content bg-left">-->
+                        <!--<label class="lb-left">共享：</label>-->
+                    <!--</div></el-col>-->
+                    <!--<el-col :span="8"><div class="grid-content bg-right">-->
+                        <!--<el-input v-model="bean.remark" placeholder="请输入内容" size="medium" ></el-input>-->
+                    <!--</div></el-col>-->
+                </el-row>
+
 
 
             </el-form>
@@ -369,7 +474,8 @@
     import end from '@/common/js/utils.js'
     import {talentGet,talentList,talentListAll,talentDel,talentSave,
         cityListAll,cityTree,dictListChildrenByCode,
-        businessTree,careerTree} from '@/api/api'
+        businessTree,careerTree,
+        tagTreeByCode} from '@/api/api'
     import $ from 'jquery'
     export default {
         data() {
@@ -489,6 +595,8 @@
                     tmpIntentCityId:null,
                     tmpIntentCityName:null,
                     intentCity: null,
+                    tmpTagsName:null,
+                    tmpTagsId:null,
                     tags: null,
                     mpc: null,
                     quality: null,
@@ -517,7 +625,10 @@
                 innerCareerVisible:false,
                 careerTree:null,
 
-                dictMarryStatus:[]
+                dictMarryStatus:[],
+
+                innerTagVisible:null,
+                tagList:[]
 
 
             }
@@ -526,6 +637,12 @@
 
         },
         methods: {
+            initTags(){
+                let _this =this
+                tagTreeByCode({code:"talent"}).then(p=>{
+                    _this.tagList=p
+                })
+            },
             initDict(){
                 let _this=this
                 if(_this.dictTalentType.length<1) {
@@ -903,8 +1020,37 @@
                         _this.bean.career+=p.id+","
                     }
                 })
-            }
+            },
 
+            tagChoose(){
+                this.innerTagVisible=true
+            },
+            closeInnerTagDialog(){
+                this.innerTagVisible=false
+            },
+            chooseInnerTag(){
+                let _this=this
+
+                var lenth=this.$refs.tag.getCheckedNodes().length
+                if(lenth<1){
+                    _this.$message({
+                        message: '必须并且只能选择一个标签',
+                        type: 'warning'
+                    });
+                    return;
+                }
+                this.innerTagVisible=false
+                _this.bean.tmpTagsId=[]
+                _this.bean.tmpTagsName=""
+                _this.bean.tags=""
+                this.$refs.tag.getCheckedNodes().forEach(p=>{
+                    if(p.leaf){
+                        _this.bean.tmpTagsId.push(p.id)
+                        _this.bean.tmpTagsName+=p.name+","
+                        _this.bean.tags+=p.id+","
+                    }
+                })
+            }
         },
         created () {
             this.init();
@@ -912,6 +1058,7 @@
             this.initDict();
             this.initBusiness();
             this.initCareer();
+            this.initTags();
             this.init_chShows();
         },
         components: {

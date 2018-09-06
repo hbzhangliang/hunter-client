@@ -62,6 +62,7 @@ export const tagGroupListAll = (params) => { return io.post(`${base}/tag_group/l
 export const tagGroupDel = (params) => { return io.post(`${base}/tag_group/del`, params) };
 export const tagGroupSave = (params) => { return io.post(`${base}/tag_group/save`, params) };
 
+export const tagTreeByCode = (params) => { return io.post(`${base}/tag/tree-bycode`, params) };
 export const tagTree = (params) => { return io.post(`${base}/tag/tree`, params) };
 export const tagGet = (params) => { return io.post(`${base}/tag/get`, params) };
 export const tagList = (params) => { return io.post(`${base}/tag/list`, params) };
