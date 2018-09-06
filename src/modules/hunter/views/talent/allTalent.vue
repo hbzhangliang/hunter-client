@@ -175,6 +175,29 @@
 
 
 
+            <el-dialog
+                    size="tiny"
+                    width="30%"
+                    title="共享选择"
+                    :visible.sync="innerShareVisible"
+                    append-to-body>
+                <el-tree
+                        class="filter-tree tag-tree"
+                        :data="shareList"
+                        node-key="value"
+                        show-checkbox
+                        :default-checked-keys="defaultShareKeys"
+                        ref="shareList">
+                </el-tree>
+                <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+                    <el-button size="mini" @click="closeInnerShareDialog" icon="el-icon-circle-close-outline">取消</el-button>
+                    <el-button size="mini" type="primary" @click="chooseInnerShare" icon="el-icon-success">确定</el-button>
+                </div>
+            </el-dialog>
+
+
+
+
 
             <el-row>
                 <el-col :span="24"><div class="grid-content bg-header">
@@ -320,8 +343,7 @@
                         <el-date-picker
                                 v-model="bean.birthday"
                                 type="date"
-                                value-format="yyyy-MM-dd"
-                                placeholder="">
+                                placeholder="请选择出生日期">
                         </el-date-picker>
                     </div></el-col>
                 </el-row>
@@ -445,12 +467,12 @@
                         <el-input v-model="bean.tmpTagsName" placeholder="请输入内容" size="medium" ></el-input>
                         <el-button size="mini" type="primary" @click="tagChoose" icon="el-icon-setting">选择</el-button>
                     </div></el-col>
-                    <!--<el-col :span="4"><div class="grid-content bg-left">-->
-                        <!--<label class="lb-left">共享：</label>-->
-                    <!--</div></el-col>-->
-                    <!--<el-col :span="8"><div class="grid-content bg-right">-->
-                        <!--<el-input v-model="bean.remark" placeholder="请输入内容" size="medium" ></el-input>-->
-                    <!--</div></el-col>-->
+                    <el-col :span="4"><div class="grid-content bg-left">
+                        <label class="lb-left">共享方式：</label>
+                    </div></el-col>
+                    <el-col :span="8"><div class="grid-content bg-right">
+                        <el-button size="mini" type="primary" @click="shareChoose" icon="el-icon-setting">选择</el-button>
+                    </div></el-col>
                 </el-row>
 
 
@@ -475,7 +497,7 @@
     import {talentGet,talentList,talentListAll,talentDel,talentSave,
         cityListAll,cityTree,dictListChildrenByCode,
         businessTree,careerTree,
-        tagTreeByCode} from '@/api/api'
+        tagTreeByCode,docShareTree} from '@/api/api'
     import $ from 'jquery'
     export default {
         data() {
@@ -627,9 +649,12 @@
 
                 dictMarryStatus:[],
 
-                innerTagVisible:null,
-                tagList:[]
+                innerTagVisible:false,
+                tagList:[],
 
+                innerShareVisible:false,
+                shareList:[],
+                defaultShareKeys:["position3","position4"]
 
             }
         },
@@ -637,6 +662,12 @@
 
         },
         methods: {
+            initShare(){
+                let _this=this
+                docShareTree().then(p=>{
+                    _this.shareList=p
+                })
+            },
             initTags(){
                 let _this =this
                 tagTreeByCode({code:"talent"}).then(p=>{
@@ -1050,7 +1081,36 @@
                         _this.bean.tags+=p.id+","
                     }
                 })
+            },
+
+
+            shareChoose(){
+                this.innerShareVisible=true
+            },
+            closeInnerShareDialog(){
+                this.innerShareVisible=false
+            },
+            chooseInnerShare(){
+                let _this=this
+
+                var lenth=this.$refs.shareList.getCheckedNodes().length
+                if(lenth<1){
+                    _this.$message({
+                        message: '必须并且只能选择一种共享方式',
+                        type: 'warning'
+                    });
+                    return;
+                }
+                this.innerShareVisible=false
+                this.bean.shareValue=""
+                this.bean.shareLabel=""
+                console.log(this.$refs.shareList.getCheckedNodes())
+                this.$refs.shareList.getCheckedNodes().forEach(p=>{
+                    this.bean.shareValue+=p.value+","
+                    this.bean.shareLabel+=p.label+","
+                })
             }
+
         },
         created () {
             this.init();
@@ -1059,6 +1119,7 @@
             this.initBusiness();
             this.initCareer();
             this.initTags();
+            this.initShare();
             this.init_chShows();
         },
         components: {
