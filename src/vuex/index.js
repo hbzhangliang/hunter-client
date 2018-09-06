@@ -45,6 +45,7 @@ export default new Vuex.Store({
           {key:"calendar",label:"我的日历",router:"base/calendar"},
           {key:"doc",label:"共享文件夹",router:"base/doc"},
           {key:"attachment",label:"附件处理",router:"base/attachment"},
+          {key:"webSocket",label:"webSocket",router:"base/webSocket"},
 
           //人才页面
           {key:"all-talent",label:"所有人才",router:"base/all-talent"},

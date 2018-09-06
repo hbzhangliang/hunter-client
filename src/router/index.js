@@ -17,7 +17,7 @@ import account from 'endportView/setting/account'
 import doc from 'endportView/setting/doc'
 import calendar from 'endportView/setting/calendar'
 import attachment from 'endportView/setting/attachment'
-
+import webSocket from 'endportView/setting/webSocket'
 
 import allTalent from 'endportView/talent/allTalent'
 
@@ -111,6 +111,12 @@ export default new Router({
               name:'attachment',
               component:attachment
           },
+          {
+              path:'webSocket',
+              name:'webSocket',
+              component:webSocket
+          },
+
 
 
 

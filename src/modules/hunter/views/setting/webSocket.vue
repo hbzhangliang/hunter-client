@@ -1,7 +1,6 @@
 <template>
     <section>
-        this is page 1-2
-
+        this is page webSocket
         <div>
             <el-input v-model="msg" placeholder="请输入内容" size="medium"></el-input>
 
@@ -59,14 +58,14 @@
                     console.log("is on message")
                     console.log(message)
                     // 消息监听
-                    _this.msg=message.data
+                    _this.msg+=message.data+";"
                 };
             }
         },
         components: {},
         computed: {},
         created() {
-             // this.init_page()
+            // this.init_page()
         }
 
     }
