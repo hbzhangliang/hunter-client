@@ -118,6 +118,7 @@ export const attachmentGet = (params) => { return io.post(`${base}/attachment/ge
 export const attachmentDel = (params) => { return io.post(`${base}/attachment/del`, params) };
 
 //talent 操作
+export const talentGetVo = (params) => { return io.post(`${base}/talent/get-vo`, params) };
 export const talentGet = (params) => { return io.post(`${base}/talent/get`, params) };
 export const talentList = (params) => { return io.post(`${base}/talent/list`, params) };
 export const talentListAll = (params) => { return io.post(`${base}/talent/list-all`, params) };

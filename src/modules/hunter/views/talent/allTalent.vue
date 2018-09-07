@@ -494,7 +494,7 @@
 </template>
 <script>
     import end from '@/common/js/utils.js'
-    import {talentGet,talentList,talentListAll,talentDel,talentSave,
+    import {talentGetVo,talentGet,talentList,talentListAll,talentDel,talentSave,
         cityListAll,cityTree,dictListChildrenByCode,
         businessTree,careerTree,
         tagTreeByCode,docShareTree} from '@/api/api'
@@ -654,7 +654,7 @@
 
                 innerShareVisible:false,
                 shareList:[],
-                defaultShareKeys:["position3","position4"]
+                defaultShareKeys:[]
 
             }
         },
@@ -1102,15 +1102,41 @@
                     return;
                 }
                 this.innerShareVisible=false
-                this.bean.shareValue=""
-                this.bean.shareLabel=""
-                console.log(this.$refs.shareList.getCheckedNodes())
+                this.bean.shareTalentList=[]
                 this.$refs.shareList.getCheckedNodes().forEach(p=>{
-                    this.bean.shareValue+=p.value+","
-                    this.bean.shareLabel+=p.label+","
+                    if(p.leaf){
+                        var tmp={
+                            shareType:_this.checkShareType(p.value),
+                            shareValue:_this.checkShareValue(p.value),
+                            shareLabel:p.label
+                        }
+                        _this.bean.shareTalentList.push(tmp)
+                    }
                 })
-            }
+                console.log(_this.bean.shareTalentList)
+            },
 
+            checkShareType(str){
+                var types=["account","position","team","all"]
+                var result=""
+                types.forEach(p=>{
+                    if(str.indexOf(p)>-1){
+                        result=p
+                    }
+                })
+                return result;
+            },
+            checkShareValue(str){
+                if(str.indexOf("all")>-1){
+                    return null
+                }
+                else {
+                    return this.getNumberV(str)
+                }
+            },
+            getNumberV(str){
+                return parseInt(str.replace(/[^0-9]/ig,""))
+            }
         },
         created () {
             this.init();
