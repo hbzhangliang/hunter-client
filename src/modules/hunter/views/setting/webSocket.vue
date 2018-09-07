@@ -32,7 +32,7 @@
                 // })
             },
             ssF(){
-                this.ws.close()
+                this.socketClose()
             },
             init_page(){
                 let _this=this
@@ -44,23 +44,36 @@
                 }
 
                 _this.ws.onopen = function(message) {
-                    // 连接回调
-                    console.log("is open")
-                    _this.ws.send({"data":"it is just test"})
-                    console.log(message)
+                   _this.socketOpen(message)
                 };
-                _this.ws.onclose = function(message) {
-                    // 断开连接回调
-                    console.log("is close")
-                    console.log(message)
+                _this.ws.onclose = function() {
+                   _this.socketClose()
                 };
                 _this.ws.onmessage = function(message) {
-                    console.log("is on message")
-                    console.log(message)
-                    // 消息监听
-                    _this.msg+=message.data+";"
+                   _this.socketMessage(message)
                 };
+            },
+            socketMessage(message){
+                console.log("is on message")
+                console.log(message)
+                // 消息监听
+                this.$message({
+                    type: 'info',
+                    message: message.data
+                })
+            },
+            socketClose(){
+                this.ws.close()
+                console.log("is close")
+            },
+            socketOpen(message){
+                console.log("is open")
+                this.ws.send({"data":"it is just test"})
+                console.log(message)
             }
+        },
+        beforeDestroy(){
+            this.socketClose()
         },
         components: {},
         computed: {},
