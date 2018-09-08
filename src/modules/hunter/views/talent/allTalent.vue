@@ -199,13 +199,16 @@
 
 
 
-            <el-row>
-                <el-col :span="24"><div class="grid-content bg-header">
-                    <label style="float:left;">人才基本信息</label>
-                </div></el-col>
-            </el-row>
+
 
             <el-form  size="small">
+
+                <el-row>
+                    <el-col :span="24"><div class="grid-content bg-header">
+                        <label style="float:left;">人才基本信息</label>
+                    </div></el-col>
+                </el-row>
+
                 <el-form-item label="编号" class="hidden">
                     <el-input v-model="bean.id" placeholder="请输入内容" size="medium"></el-input>
                 </el-form-item>
@@ -477,6 +480,71 @@
 
 
 
+                <el-row>
+                    <el-col :span="24"><div class="grid-content bg-header">
+                        <label style="float:left;">工作经历</label>
+                    </div></el-col>
+                </el-row>
+
+                <!--工作经历-->
+                <div v-for="item in bean.recordWorkList" style="border: 1px solid #bdbdbd;margin: 5px 0px">
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">时间：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-date-picker
+                                    v-model="item.startDate"
+                                    type="date"
+                                    placeholder="请选择开始日期">
+                            </el-date-picker>
+                            <el-date-picker
+                                    v-model="item.endDate"
+                                    type="date"
+                                    placeholder="请选择结束日期">
+                            </el-date-picker>
+                        </div></el-col>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">是否在职：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-radio-group v-model="item.onJod">
+                                <el-radio  :label=true>是</el-radio>
+                                <el-radio  :label=false>否</el-radio>
+                            </el-radio-group>
+                            <i class="el-icon-delete" style="float: right;border: 1px solid #bdbdbd" @click="delRecordWork(item)"></i>
+                        </div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">公司名称：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-input v-model="item.companyName" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">职务：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-input v-model="item.businessName" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">备注：</label>
+                        </div></el-col>
+                        <el-col :span="20"><div class="grid-content bg-right">
+                            <el-input v-model="item.remark" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                    </el-row>
+                </div>
+                <el-row>
+                    <el-col :span="24"><div>
+                        <el-button type="primary" icon="el-icon-circle-plus" size="mini" @click="addRecordWork">添加</el-button>
+                    </div></el-col>
+                </el-row>
+
+
             </el-form>
 
 
@@ -664,15 +732,19 @@
         methods: {
             initShare(){
                 let _this=this
-                docShareTree().then(p=>{
-                    _this.shareList=p
-                })
+                if(null==_this.shareList) {
+                    docShareTree().then(p => {
+                        _this.shareList = p
+                    })
+                }
             },
             initTags(){
                 let _this =this
-                tagTreeByCode({code:"talent"}).then(p=>{
-                    _this.tagList=p
-                })
+                if(null==_this.tagList) {
+                    tagTreeByCode({code: "talent"}).then(p => {
+                        _this.tagList = p
+                    })
+                }
             },
             initDict(){
                 let _this=this
@@ -823,14 +895,16 @@
                     evaluate: null,
                     remark: null,
                     status: null,
-                    flag: null
+                    flag: null,
+                    recordWorkList:[],
                 },
                     this.visible=true
                 this.strOp='add'
             },
             edit(item){
                 let _this=this
-                talentGet({id:item.id}).then(p=>{
+                talentGetVo({id:item.id}).then(p=>{
+                    console.log(p)
                     _this.bean=p
                 })
                 this.visible=true
@@ -909,7 +983,6 @@
                 this.colSettingVisible=false
             },
             saveColSetting(){
-                console.log(this.chShows)
                 let _this=this
                 _this.showsOrgin=[]
                 _this.chShows.forEach(p=>{
@@ -1113,7 +1186,6 @@
                         _this.bean.shareTalentList.push(tmp)
                     }
                 })
-                console.log(_this.bean.shareTalentList)
             },
 
             checkShareType(str){
@@ -1136,6 +1208,29 @@
             },
             getNumberV(str){
                 return parseInt(str.replace(/[^0-9]/ig,""))
+            },
+            //添加工作记录
+            addRecordWork(){
+                let _this =this
+                var item={
+                    startDate:null,
+                    endDate:null,
+                    onJob:null,
+                    companyName:null,
+                    businessName:null,
+                    remark:null
+                }
+                _this.bean.recordWorkList.push(item)
+            },
+            delRecordWork(item){
+                let _this=this
+                var d=[]
+                _this.bean.recordWorkList.forEach(p=>{
+                    if(p.companyName!=item.companyName){
+                        d.push(p)
+                    }
+                })
+                _this.bean.recordWorkList=d
             }
         },
         created () {
