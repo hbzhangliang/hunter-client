@@ -545,6 +545,201 @@
                 </el-row>
 
 
+
+
+
+                <el-row>
+                    <el-col :span="24"><div class="grid-content bg-header">
+                        <label style="float:left;">教育经历</label>
+                    </div></el-col>
+                </el-row>
+
+                <!--教育经历-->
+                <div v-for="item in bean.recordEducationList" style="border: 1px solid #bdbdbd;margin: 5px 0px">
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">时间：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-date-picker
+                                    v-model="item.startDate"
+                                    type="date"
+                                    placeholder="请选择开始日期">
+                            </el-date-picker>
+                            <el-date-picker
+                                    v-model="item.endDate"
+                                    type="date"
+                                    placeholder="请选择结束日期">
+                            </el-date-picker>
+                        </div></el-col>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">在读：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-radio-group v-model="item.onCollege">
+                                <el-radio  :label=true>是</el-radio>
+                                <el-radio  :label=false>否</el-radio>
+                            </el-radio-group>
+                            <i class="el-icon-delete" style="float: right;border: 1px solid #bdbdbd" @click="delRecordEducation(item)"></i>
+                        </div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">学校：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-input v-model="item.college" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">专业：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-input v-model="item.major" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">学历：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-select  v-model="item.education" placeholder="根节点">
+                                <el-option
+                                        v-for="item in educationLevels"
+                                        :key="item.code"
+                                        :label="item.name"
+                                        :value="item.code">
+                                </el-option>
+                            </el-select>
+                        </div></el-col>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">备注：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-input v-model="item.remark" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                    </el-row>
+                </div>
+                <el-row>
+                    <el-col :span="24"><div>
+                        <el-button type="primary" icon="el-icon-circle-plus" size="mini" @click="addRecordEducation">添加</el-button>
+                    </div></el-col>
+                </el-row>
+
+
+
+
+                <el-row>
+                    <el-col :span="24"><div class="grid-content bg-header">
+                        <label style="float:left;">项目经历</label>
+                    </div></el-col>
+                </el-row>
+
+                <!--教育经历-->
+                <div v-for="item in bean.recordProjectList" style="border: 1px solid #bdbdbd;margin: 5px 0px">
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">时间：</label>
+                        </div></el-col>
+                        <el-col :span="20"><div class="grid-content bg-right">
+                            <el-date-picker
+                                    v-model="item.startDate"
+                                    type="date"
+                                    placeholder="请选择开始日期">
+                            </el-date-picker>
+                            <el-date-picker
+                                    v-model="item.endDate"
+                                    type="date"
+                                    placeholder="请选择结束日期">
+                            </el-date-picker>
+                            <i class="el-icon-delete" style="float: right;border: 1px solid #bdbdbd" @click="delRecordProject(item)"></i>
+                        </div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">项目名称：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-input v-model="item.projectName" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">职位：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-input v-model="item.projectPost" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">备注：</label>
+                        </div></el-col>
+                        <el-col :span="20"><div class="grid-content bg-right">
+                            <el-input v-model="item.remark" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                    </el-row>
+                </div>
+                <el-row>
+                    <el-col :span="24"><div>
+                        <el-button type="primary" icon="el-icon-circle-plus" size="mini" @click="addRecordProject">添加</el-button>
+                    </div></el-col>
+                </el-row>
+
+
+
+
+
+                <el-row>
+                    <el-col :span="24"><div class="grid-content bg-header">
+                        <label style="float:left;">语言能力</label>
+                    </div></el-col>
+                </el-row>
+
+                <!--语言能力-->
+                <div v-for="item in bean.recordLanguageList" style="border: 1px solid #bdbdbd;margin: 5px 0px">
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">语言：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-select  v-model="item.language" placeholder="根节点">
+                                <el-option
+                                        v-for="item in languageList"
+                                        :key="item.code"
+                                        :label="item.name"
+                                        :value="item.code">
+                                </el-option>
+                            </el-select>
+                        </div></el-col>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">水平：</label>
+                        </div></el-col>
+                        <el-col :span="8"><div class="grid-content bg-right">
+                            <el-select  v-model="item.level" placeholder="根节点">
+                                <el-option
+                                        v-for="item in languageLevel"
+                                        :key="item.code"
+                                        :label="item.name"
+                                        :value="item.code">
+                                </el-option>
+                            </el-select>
+                            <i class="el-icon-delete" style="float: right;border: 1px solid #bdbdbd" @click="delRecordLanguage(item)"></i>
+                        </div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="4"><div class="grid-content bg-left">
+                            <label class="lb-left">备注：</label>
+                        </div></el-col>
+                        <el-col :span="20"><div class="grid-content bg-right">
+                            <el-input v-model="item.remark" placeholder="请输入内容" size="medium" ></el-input>
+                        </div></el-col>
+                    </el-row>
+                </div>
+                <el-row>
+                    <el-col :span="24"><div>
+                        <el-button type="primary" icon="el-icon-circle-plus" size="mini" @click="addRecordLanguage">添加</el-button>
+                    </div></el-col>
+                </el-row>
+
+
             </el-form>
 
 
@@ -722,14 +917,42 @@
 
                 innerShareVisible:false,
                 shareList:[],
-                defaultShareKeys:[]
+                defaultShareKeys:[],
 
+                educationLevels:[],
+
+                languageList:[],
+                languageLevel:[]
             }
         },
         watch: {
 
         },
         methods: {
+            initLanguageList(){
+                let _this=this
+                if(_this.languageList.length<1) {
+                    dictListChildrenByCode({"code": "LanguageList"}).then(p => {
+                        _this.languageList = p
+                    })
+                }
+            },
+            initLanguageLevel(){
+                let _this=this
+                if(_this.languageLevel.length<1) {
+                    dictListChildrenByCode({"code": "LanguageLevel"}).then(p => {
+                        _this.languageLevel = p
+                    })
+                }
+            },
+            initEducationLevel(){
+                let _this=this
+                if(_this.educationLevels.length<1) {
+                    dictListChildrenByCode({"code": "EducationLevel"}).then(p => {
+                        _this.educationLevels = p
+                    })
+                }
+            },
             initShare(){
                 let _this=this
                 if(null==_this.shareList) {
@@ -897,6 +1120,9 @@
                     status: null,
                     flag: null,
                     recordWorkList:[],
+                    recordEducationList:[],
+                    recordProjectList:[],
+                    recordLanguageList:[]
                 },
                     this.visible=true
                 this.strOp='add'
@@ -1231,7 +1457,74 @@
                     }
                 })
                 _this.bean.recordWorkList=d
+            },
+
+            addRecordEducation(){
+                var _this=this
+                var item={
+                    startDate:null,
+                    endDate:null,
+                    onCollege:null,
+                    college:null,
+                    major:null,
+                    education:null
+                }
+                _this.bean.recordEducationList.push(item)
+            },
+            delRecordEducation(item){
+                let _this=this
+                var d=[]
+                _this.bean.recordEducationList.forEach(p=>{
+                    if(!(p.college==item.college&&p.education==item.education)){
+                        d.push(p)
+                    }
+                })
+                _this.bean.recordEducationList=d
+            },
+
+            addRecordProject(){
+                var _this=this
+                var item={
+                    startDate:null,
+                    endDate:null,
+                    projectName:null,
+                    projectPost:null,
+                    remark:null
+                }
+                _this.bean.recordProjectList.push(item)
+            },
+            delRecordProject(item){
+                let _this=this
+                var d=[]
+                _this.bean.recordProjectList.forEach(p=>{
+                    if(!(p.projectName==item.projectName&&p.projectPost==item.projectPost)){
+                        d.push(p)
+                    }
+                })
+                _this.bean.recordProjectList=d
+            },
+
+            addRecordLanguage(){
+                var _this=this
+                var item={
+                    language:null,
+                    level:null,
+                    remark:null
+                }
+                _this.bean.recordLanguageList.push(item)
+            },
+            delRecordLanguage(item){
+                let _this=this
+                var d=[]
+                _this.bean.recordLanguageList.forEach(p=>{
+                    if(!(p.language==item.language&&p.level==item.level)){
+                        d.push(p)
+                    }
+                })
+                _this.bean.recordLanguageList=d
             }
+
+
         },
         created () {
             this.init();
@@ -1242,6 +1535,9 @@
             this.initTags();
             this.initShare();
             this.init_chShows();
+            this.initEducationLevel();
+            this.initLanguageList();
+            this.initLanguageLevel()
         },
         components: {
         }
