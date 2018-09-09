@@ -104,6 +104,7 @@
                         :data="cityTree"
                         :props="defaultProps"
                         show-checkbox
+                        node-key="id"
                         ref="tree2">
                 </el-tree>
                 <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
@@ -922,7 +923,8 @@
                 educationLevels:[],
 
                 languageList:[],
-                languageLevel:[]
+                languageLevel:[],
+
             }
         },
         watch: {
@@ -955,7 +957,7 @@
             },
             initShare(){
                 let _this=this
-                if(null==_this.shareList) {
+                if(null==_this.shareList||_this.shareList.length<1) {
                     docShareTree().then(p => {
                         _this.shareList = p
                     })
@@ -963,7 +965,7 @@
             },
             initTags(){
                 let _this =this
-                if(null==_this.tagList) {
+                if(null==_this.tagList||_this.tagList.length<1) {
                     tagTreeByCode({code: "talent"}).then(p => {
                         _this.tagList = p
                     })
@@ -1130,7 +1132,6 @@
             edit(item){
                 let _this=this
                 talentGetVo({id:item.id}).then(p=>{
-                    console.log(p)
                     _this.bean=p
                 })
                 this.visible=true
@@ -1238,6 +1239,25 @@
             },
             cityChoose(prop){
                 this.editCityProp=prop
+                switch (prop){
+                    case "nativePlace":{
+                        if(null!=this.bean.nativePlace) {
+                            var d = []
+                            d.push(this.bean.nativePlace)
+                            this.$refs.tree2.setCheckedKeys([6])
+                        }
+                    };break;
+                    case "city":{
+                        if(null!=this.bean.city) {
+                            var d = []
+                            d.push(this.bean.city)
+                            this.$refs.tree2.setCheckedKeys(d)
+                        }
+                    }break;
+                    case "intentCity":{
+                            this.$refs.tree2.setCheckedKeys(this.bean.tmpIntentCityId)
+                    }break;
+                }
                 this.innerVisible=true
             },
             closeInnerDialog(){
@@ -1522,7 +1542,7 @@
                     }
                 })
                 _this.bean.recordLanguageList=d
-            }
+            },
 
 
         },
