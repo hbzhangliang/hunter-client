@@ -31,7 +31,7 @@
                           max-height="520"
                           @sort-change="sortChange"
                           @selection-change="handleSelectionChange">
-                    <el-table-column width="60"
+                    <el-table-column width="50"
                                      fixed
                                      type="selection">
                     </el-table-column>
@@ -51,7 +51,7 @@
 
                     <el-table-column v-for="item in showsOrgin" :sortable="item.sortable" :prop="item.prop" :label="item.label" :width="item.width">
                     </el-table-column>
-                    <el-table-column  label="操作" width="240" fixed="right">
+                    <el-table-column  label="操作" width="180" fixed="right">
                         <template slot-scope="scope">
                             <el-button size="mini" type="primary" icon="el-icon-edit-outline" @click="edit(scope.row)"></el-button>
                             <el-button size="mini" type="success" icon="el-icon-view" @click="view(scope.row)"></el-button>
@@ -124,6 +124,7 @@
                         class="filter-tree city-tree"
                         :data="businessTree"
                         :props="defaultProps"
+                        node-key="id"
                         show-checkbox
                         ref="businessTree">
                 </el-tree>
@@ -145,6 +146,7 @@
                         :data="careerTree"
                         :props="defaultProps"
                         show-checkbox
+                        node-key="id"
                         ref="careerTree">
                 </el-tree>
                 <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
@@ -166,6 +168,7 @@
                         :data="tagList"
                         :props="defaultProps"
                         show-checkbox
+                        node-key="id"
                         ref="tag">
                 </el-tree>
                 <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
@@ -1238,27 +1241,33 @@
                 })
             },
             cityChoose(prop){
-                this.editCityProp=prop
-                switch (prop){
-                    case "nativePlace":{
-                        if(null!=this.bean.nativePlace) {
-                            var d = []
-                            d.push(this.bean.nativePlace)
-                            this.$refs.tree2.setCheckedKeys([6])
-                        }
-                    };break;
-                    case "city":{
-                        if(null!=this.bean.city) {
-                            var d = []
-                            d.push(this.bean.city)
-                            this.$refs.tree2.setCheckedKeys(d)
-                        }
-                    }break;
-                    case "intentCity":{
-                            this.$refs.tree2.setCheckedKeys(this.bean.tmpIntentCityId)
-                    }break;
-                }
-                this.innerVisible=true
+                let _this=this
+                _this.editCityProp=prop
+
+                _this.innerVisible=true
+                var d = []
+                _this.$nextTick(() => {
+                    switch (prop){
+                        case "nativePlace":{
+                            if(null!=_this.bean.nativePlace) {
+                                d.push(_this.bean.nativePlace)
+                            }
+                            _this.$refs.tree2.setCheckedKeys(d)
+                        };break;
+                        case "city":{
+                            if(null!=_this.bean.city) {
+                                d.push(this.bean.city)
+                            }
+                            _this.$refs.tree2.setCheckedKeys(d)
+                        }break;
+                        case "intentCity":{
+                            if(_this.bean.tmpIntentCityId!=null) {
+                                d=_this.bean.tmpIntentCityId
+                            }
+                            _this.$refs.tree2.setCheckedKeys(d)
+                        }break;
+                    }
+                });
             },
             closeInnerDialog(){
                 this.innerVisible=false
@@ -1336,14 +1345,30 @@
                 })
             },
             businessChoose(){
-                this.innerBusinessVisible=true
+                let _this=this
+                _this.innerBusinessVisible=true
+                var d=[]
+                _this.$nextTick(() => {
+                    if(!(_this.bean.tmpBusinessId==null||_this.bean.tmpBusinessId.length<1)){
+                        d=_this.bean.tmpBusinessId
+                    }
+                    _this.$refs.businessTree.setCheckedKeys(d)
+                });
             },
             closeInnerBusinessDialog(){
                 this.innerBusinessVisible=false
             },
 
             careerChoose(){
+                let _this=this
                 this.innerCareerVisible=true
+                var d=[]
+                _this.$nextTick(() => {
+                    if(!(_this.bean.tmpCareerId==null||_this.bean.tmpCareerId.length<1)){
+                        d=_this.bean.tmpCareerId
+                    }
+                    _this.$refs.careerTree.setCheckedKeys(d)
+                });
             },
             closeInnerCareerDialog(){
                 this.innerCareerVisible=false
@@ -1373,7 +1398,15 @@
             },
 
             tagChoose(){
+                let _this=this
                 this.innerTagVisible=true
+                var d=[]
+                _this.$nextTick(() => {
+                    if(!(_this.bean.tmpTagsId==null||_this.bean.tmpTagsId.length<1)){
+                        d=_this.bean.tmpTagsId
+                    }
+                    _this.$refs.tag.setCheckedKeys(d)
+                });
             },
             closeInnerTagDialog(){
                 this.innerTagVisible=false
