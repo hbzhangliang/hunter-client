@@ -255,14 +255,14 @@
                         <label class="lb-left">籍贯：</label>
                     </div></el-col>
                     <el-col :span="8"><div class="grid-content bg-right">
-                        <el-input v-model="bean.tmpNativePlace" placeholder="请输入内容" size="medium" ></el-input>
+                        <el-input v-model="bean.tmpNativePlace" placeholder="请输入内容" size="medium" readonly="true"></el-input>
                         <el-button size="mini" type="primary" @click="cityChoose('nativePlace')" icon="el-icon-setting">选择</el-button>
                     </div></el-col>
                     <el-col :span="4"><div class="grid-content bg-left">
                         <label class="lb-left">所在城市：</label>
                     </div></el-col>
                     <el-col :span="8"><div class="grid-content bg-right">
-                        <el-input v-model="bean.tmpCity" placeholder="请输入内容" size="medium" ></el-input>
+                        <el-input v-model="bean.tmpCity" placeholder="请输入内容" size="medium" readonly="true"></el-input>
                         <el-button size="mini" type="primary" @click="cityChoose('city')" icon="el-icon-setting">选择</el-button>
                     </div></el-col>
                 </el-row>
@@ -319,14 +319,14 @@
                         <label class="lb-left">行业：</label>
                     </div></el-col>
                     <el-col :span="8"><div class="grid-content bg-right">
-                        <el-input v-model="bean.tmpBusinessName" placeholder="请输入内容" size="medium"></el-input>
+                        <el-input v-model="bean.tmpBusinessName" placeholder="请输入内容" size="medium" readonly="true"></el-input>
                         <el-button size="mini" type="primary" @click="businessChoose" icon="el-icon-setting">选择</el-button>
                     </div></el-col>
                     <el-col :span="4"><div class="grid-content bg-left">
                         <label class="lb-left">职能：</label>
                     </div></el-col>
                     <el-col :span="8"><div class="grid-content bg-right">
-                        <el-input v-model="bean.tmpCareerName" placeholder="请输入内容" size="medium" ></el-input>
+                        <el-input v-model="bean.tmpCareerName" placeholder="请输入内容" size="medium" readonly="true"></el-input>
                         <el-button size="mini" type="primary" @click="careerChoose" icon="el-icon-setting">选择</el-button>
                     </div></el-col>
                 </el-row>
@@ -392,7 +392,7 @@
                         <label class="lb-left">意向城市：</label>
                     </div></el-col>
                     <el-col :span="8"><div class="grid-content bg-right">
-                        <el-input v-model="bean.tmpIntentCityName" placeholder="请输入内容" size="medium" ></el-input>
+                        <el-input v-model="bean.tmpIntentCityName" placeholder="请输入内容" size="medium" readonly="true"></el-input>
                         <el-button size="mini" type="primary" @click="cityChoose('intentCity')" icon="el-icon-setting">选择</el-button>
                     </div></el-col>
                 </el-row>
@@ -471,7 +471,7 @@
                         <label class="lb-left">标签：</label>
                     </div></el-col>
                     <el-col :span="8"><div class="grid-content bg-right">
-                        <el-input v-model="bean.tmpTagsName" placeholder="请输入内容" size="medium" ></el-input>
+                        <el-input v-model="bean.tmpTagsName" placeholder="请输入内容" size="medium" readonly="true"></el-input>
                         <el-button size="mini" type="primary" @click="tagChoose" icon="el-icon-setting">选择</el-button>
                     </div></el-col>
                     <el-col :span="4"><div class="grid-content bg-left">
@@ -1437,7 +1437,17 @@
 
 
             shareChoose(){
+                let _this=this
                 this.innerShareVisible=true
+                var d=[]
+                _this.$nextTick(() => {
+                    if(!(_this.bean.shareTalentList==null||_this.bean.shareTalentList.length<1)){
+                        _this.bean.shareTalentList.forEach(p=>{
+                            d.push(p.shareType+p.shareValue)
+                        })
+                    }
+                    _this.$refs.shareList.setCheckedKeys(d)
+                });
             },
             closeInnerShareDialog(){
                 this.innerShareVisible=false
