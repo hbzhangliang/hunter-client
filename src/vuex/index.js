@@ -48,7 +48,10 @@ export default new Vuex.Store({
           {key:"webSocket",label:"webSocket",router:"base/webSocket"},
 
           //人才页面
-          {key:"all-talent",label:"所有人才",router:"base/all-talent"},
+          {key:"my-talent",label:"所有人才",router:"base/my-talent"},
+          {key:"my-candidate",label:"我的候选人",router:"base/my-candidate"},
+          {key:"my-linkman",label:"客户联系人",router:"base/my-linkman"},
+          {key:"my-coldcall",label:"cold call",router:"base/my-coldcall"},
 
           ],
       //选择到tab中的数据

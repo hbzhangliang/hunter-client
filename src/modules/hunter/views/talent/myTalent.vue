@@ -780,6 +780,7 @@
                     orderBy: 'id',
                     direction: 'desc',
                     params: {
+                        eq_flag:true,
                         lk_name: null
                     },
                     data: []

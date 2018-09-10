@@ -45,10 +45,10 @@
           isCollapse:false,
           menu_user:[{id:"1",path:"1",icon:"el-icon-menu",name:"订阅搜索",children:
                   [{id:"1-1",path:"1-1",icon:"el-icon-menu",name:"我创建的",children:
-                      [{id:"all-talent",path:"all-talent",icon:"el-icon-document",name:"所有人才"},
-                          {id:"1-1-2",path:"1-1-2",icon:"el-icon-document",name:"我的候选人"},
-                          {id:"1-1-3",path:"1-1-3",icon:"el-icon-document",name:"客户联系人"},
-                          {id:"1-1-4",path:"1-1-4",icon:"el-icon-document",name:"cold call"}]},
+                      [{id:"my-talent",path:"my-talent",icon:"el-icon-document",name:"所有人才"},
+                          {id:"my-candidate",path:"my-candidate",icon:"el-icon-document",name:"我的候选人"},
+                          {id:"my-linkman",path:"my-linkman",icon:"el-icon-document",name:"客户联系人"},
+                          {id:"my-coldcall",path:"my-coldcall",icon:"el-icon-document",name:"cold call"}]},
                   {id:"1-2",path:"1-2",icon:"el-icon-menu",name:"共享人才",children:
                           [{id:"1-2-1",path:"1-2-1",icon:"el-icon-document",name:"所有人才"},
                               {id:"1-2-2",path:"1-2-2",icon:"el-icon-document",name:"候选人"},

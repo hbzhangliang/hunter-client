@@ -19,7 +19,11 @@ import calendar from 'endportView/setting/calendar'
 import attachment from 'endportView/setting/attachment'
 import webSocket from 'endportView/setting/webSocket'
 
-import allTalent from 'endportView/talent/allTalent'
+import myTalent from 'endportView/talent/myTalent'
+import myCandidate from 'endportView/talent/myCandidate'
+import myLinkman from 'endportView/talent/myLinkman'
+import myColdcall from 'endportView/talent/myColdcall'
+
 
 
 Vue.use(Router)
@@ -122,9 +126,24 @@ export default new Router({
 
           //人才相关
           {
-              path:'all-talent',
-              name:'all-talent',
-              component:allTalent
+              path:'my-talent',
+              name:'my-talent',
+              component:myTalent
+          },
+          {
+              path:'my-candidate',
+              name:'my-candidate',
+              component:myCandidate
+          },
+          {
+              path:'my-linkman',
+              name:'my-linkman',
+              component:myLinkman
+          },
+          {
+              path:'my-coldcall',
+              name:'my-coldcall',
+              component:myColdcall
           },
 
         {
