@@ -38,7 +38,7 @@
 
                     <el-table-column sortable="custom" prop="type" label="类型" align="center" min-width="120">
                         <template scope="scope">
-                            <span v-for="item in dictTalentType" v-if="item.code==scope.row.type">{{item.name}}</span>
+                            <span v-for="item in dictMap.TalentType" v-if="item.code==scope.row.type">{{item.name}}</span>
                         </template>
                     </el-table-column>
 
@@ -223,7 +223,7 @@
                     </div></el-col>
                     <el-col :span="8"><div class="grid-content bg-right">
                         <el-radio-group v-model="bean.type">
-                            <el-radio v-for="item in dictTalentType" :label="item.code">{{item.name}}</el-radio>
+                            <el-radio v-for="item in dictMap.TalentType" :label="item.code">{{item.name}}</el-radio>
                         </el-radio-group>
                     </div></el-col>
                     <el-col :span="4"><div class="grid-content bg-left">
@@ -364,7 +364,7 @@
                     <el-col :span="8"><div class="grid-content bg-right">
                         <el-select  v-model="bean.marray" placeholder="根节点">
                             <el-option
-                                    v-for="item in dictMarryStatus"
+                                    v-for="item in dictMap.MarryStatus"
                                     :key="item.code"
                                     :label="item.name"
                                     :value="item.code">
@@ -608,7 +608,7 @@
                         <el-col :span="8"><div class="grid-content bg-right">
                             <el-select  v-model="item.education" placeholder="根节点">
                                 <el-option
-                                        v-for="item in educationLevels"
+                                        v-for="item in dictMap.EducationLevel"
                                         :key="item.code"
                                         :label="item.name"
                                         :value="item.code">
@@ -706,7 +706,7 @@
                         <el-col :span="8"><div class="grid-content bg-right">
                             <el-select  v-model="item.language" placeholder="根节点">
                                 <el-option
-                                        v-for="item in languageList"
+                                        v-for="item in dictMap.LanguageList"
                                         :key="item.code"
                                         :label="item.name"
                                         :value="item.code">
@@ -719,7 +719,7 @@
                         <el-col :span="8"><div class="grid-content bg-right">
                             <el-select  v-model="item.level" placeholder="根节点">
                                 <el-option
-                                        v-for="item in languageLevel"
+                                        v-for="item in dictMap.LanguageLevel"
                                         :key="item.code"
                                         :label="item.name"
                                         :value="item.code">
@@ -762,7 +762,7 @@
 <script>
     import end from '@/common/js/utils.js'
     import {talentGetVo,talentGet,talentList,talentListAll,talentDel,talentSave,
-        cityListAll,cityTree,dictListChildrenByCode,
+        cityListAll,cityTree,dictListChildrenByCode,dictListChildrenByCodes,
         businessTree,careerTree,
         tagTreeByCode,docShareTree} from '@/api/api'
     import $ from 'jquery'
@@ -900,7 +900,6 @@
                 },
                 strOp: null,
                 cityList:null,
-                dictTalentType:[],
                 cityTree:null,
                 innerVisible:false,
                 defaultProps: {
@@ -910,53 +909,26 @@
                 editCityProp:null,
                 businessTree:null,
                 innerBusinessVisible:false,
-
                 innerCareerVisible:false,
                 careerTree:null,
-
-                dictMarryStatus:[],
-
                 innerTagVisible:false,
                 tagList:[],
-
                 innerShareVisible:false,
                 shareList:[],
                 defaultShareKeys:[],
-
-                educationLevels:[],
-
-                languageList:[],
-                languageLevel:[],
-
+                dictMap:null
             }
         },
         watch: {
 
         },
         methods: {
-            initLanguageList(){
+            initDictMap(){
                 let _this=this
-                if(_this.languageList.length<1) {
-                    dictListChildrenByCode({"code": "LanguageList"}).then(p => {
-                        _this.languageList = p
-                    })
-                }
-            },
-            initLanguageLevel(){
-                let _this=this
-                if(_this.languageLevel.length<1) {
-                    dictListChildrenByCode({"code": "LanguageLevel"}).then(p => {
-                        _this.languageLevel = p
-                    })
-                }
-            },
-            initEducationLevel(){
-                let _this=this
-                if(_this.educationLevels.length<1) {
-                    dictListChildrenByCode({"code": "EducationLevel"}).then(p => {
-                        _this.educationLevels = p
-                    })
-                }
+                var d=["LanguageList","LanguageLevel","EducationLevel","TalentType","MarryStatus"]
+                dictListChildrenByCodes({"codes":d}).then(p=>{
+                    _this.dictMap=p
+                })
             },
             initShare(){
                 let _this=this
@@ -971,19 +943,6 @@
                 if(null==_this.tagList||_this.tagList.length<1) {
                     tagTreeByCode({code: "talent"}).then(p => {
                         _this.tagList = p
-                    })
-                }
-            },
-            initDict(){
-                let _this=this
-                if(_this.dictTalentType.length<1) {
-                    dictListChildrenByCode({"code": "TalentType"}).then(p => {
-                        _this.dictTalentType = p
-                    })
-                }
-                if(_this.dictMarryStatus.length<1) {
-                    dictListChildrenByCode({"code": "MarryStatus"}).then(p => {
-                        _this.dictMarryStatus = p
                     })
                 }
             },
@@ -1592,15 +1551,13 @@
         created () {
             this.init();
             this.initCity();
-            this.initDict();
             this.initBusiness();
             this.initCareer();
             this.initTags();
             this.initShare();
             this.init_chShows();
-            this.initEducationLevel();
-            this.initLanguageList();
-            this.initLanguageLevel()
+
+            this.initDictMap();
         },
         components: {
         }
