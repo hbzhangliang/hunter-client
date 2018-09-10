@@ -101,7 +101,7 @@
                     append-to-body>
                 <el-tree
                         class="filter-tree city-tree"
-                        :data="cityTree"
+                        :data="treeMap.CityTree"
                         :props="defaultProps"
                         show-checkbox
                         node-key="id"
@@ -122,7 +122,7 @@
                     append-to-body>
                 <el-tree
                         class="filter-tree city-tree"
-                        :data="businessTree"
+                        :data="treeMap.BusinessTree"
                         :props="defaultProps"
                         node-key="id"
                         show-checkbox
@@ -143,7 +143,7 @@
                     append-to-body>
                 <el-tree
                         class="filter-tree city-tree"
-                        :data="careerTree"
+                        :data="treeMap.CareerTree"
                         :props="defaultProps"
                         show-checkbox
                         node-key="id"
@@ -187,7 +187,7 @@
                     append-to-body>
                 <el-tree
                         class="filter-tree tag-tree"
-                        :data="shareList"
+                        :data="treeMap.ShareTree"
                         node-key="value"
                         show-checkbox
                         :default-checked-keys="defaultShareKeys"
@@ -764,7 +764,8 @@
     import {talentGetVo,talentGet,talentList,talentListAll,talentDel,talentSave,
         cityListAll,cityTree,dictListChildrenByCode,dictListChildrenByCodes,
         businessTree,careerTree,
-        tagTreeByCode,docShareTree} from '@/api/api'
+        tagTreeByCode,docShareTree,
+        utilTree} from '@/api/api'
     import $ from 'jquery'
     export default {
         data() {
@@ -900,23 +901,31 @@
                 },
                 strOp: null,
                 cityList:null,
-                cityTree:null,
                 innerVisible:false,
                 defaultProps: {
                     children: 'children',
                     label: 'name'
                 },
                 editCityProp:null,
-                businessTree:null,
                 innerBusinessVisible:false,
                 innerCareerVisible:false,
-                careerTree:null,
                 innerTagVisible:false,
                 tagList:[],
                 innerShareVisible:false,
-                shareList:[],
                 defaultShareKeys:[],
-                dictMap:null
+                dictMap:{
+                    LanguageList:[],
+                    LanguageLevel:[],
+                    EducationLevel:[],
+                    TalentType:[],
+                    MarryStatus:[]
+                },
+                treeMap:{
+                    BusinessTree:[],
+                    CareerTree:[],
+                    CityTree:[],
+                    ShareTree:[]
+                }
             }
         },
         watch: {
@@ -930,13 +939,12 @@
                     _this.dictMap=p
                 })
             },
-            initShare(){
+            initTreeMap(){
                 let _this=this
-                if(null==_this.shareList||_this.shareList.length<1) {
-                    docShareTree().then(p => {
-                        _this.shareList = p
-                    })
-                }
+                var d=["BusinessTree","CareerTree","CityTree","ShareTree"]
+                utilTree({"codes":d}).then(p=>{
+                    _this.treeMap=p
+                })
             },
             initTags(){
                 let _this =this
@@ -951,27 +959,6 @@
                 if(null==_this.cityList) {
                     cityListAll().then(p => {
                         _this.cityList = p
-                    })
-                }
-                if(null==_this.cityTree) {
-                    cityTree().then(p => {
-                        _this.cityTree = p
-                    })
-                }
-            },
-            initCareer(){
-                let _this=this
-                if(null==_this.careerTree) {
-                    careerTree().then(p => {
-                        _this.careerTree = p
-                    })
-                }
-            },
-            initBusiness(){
-                let _this=this
-                if(null==_this.businessTree) {
-                    businessTree().then(p => {
-                        _this.businessTree = p
                     })
                 }
             },
@@ -1551,13 +1538,11 @@
         created () {
             this.init();
             this.initCity();
-            this.initBusiness();
-            this.initCareer();
             this.initTags();
-            this.initShare();
             this.init_chShows();
 
             this.initDictMap();
+            this.initTreeMap();
         },
         components: {
         }
