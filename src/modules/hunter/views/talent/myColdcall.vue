@@ -780,7 +780,7 @@
                     orderBy: 'id',
                     direction: 'desc',
                     params: {
-                        eq_flag:true,
+                        eq_delStatus:"Normal",
                         eq_type:'ColdCall',
                         lk_name: null,
                     },
