@@ -53,6 +53,14 @@ export default new Vuex.Store({
           {key:"my-linkman",label:"客户联系人",router:"base/my-linkman"},
           {key:"my-coldcall",label:"cold call",router:"base/my-coldcall"},
 
+          {key:"all-talent",label:"所有人才",router:"base/all-talent"},
+          {key:"all-candidate",label:"我的候选人",router:"base/all-candidate"},
+          {key:"all-linkman",label:"客户联系人",router:"base/all-linkman"},
+          {key:"all-coldcall",label:"cold call",router:"base/all-coldcall"},
+
+          {key:"my-talentfaked",label:"我删除的",router:"base/my-talentfaked"},
+          {key:"all-talentfaked",label:"所有删除",router:"base/all-talentfaked"},
+
           ],
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],

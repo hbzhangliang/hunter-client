@@ -50,16 +50,16 @@
                           {id:"my-linkman",path:"my-linkman",icon:"el-icon-document",name:"客户联系人"},
                           {id:"my-coldcall",path:"my-coldcall",icon:"el-icon-document",name:"cold call"}]},
                   {id:"1-2",path:"1-2",icon:"el-icon-menu",name:"共享人才",children:
-                          [{id:"1-2-1",path:"1-2-1",icon:"el-icon-document",name:"所有人才"},
-                              {id:"1-2-2",path:"1-2-2",icon:"el-icon-document",name:"候选人"},
-                              {id:"1-2-3",path:"1-2-3",icon:"el-icon-document",name:"客户联系人"},
-                              {id:"1-2-4",path:"1-2-4",icon:"el-icon-document",name:"cold call"}]},
+                          [{id:"all-talent",path:"all-talent",icon:"el-icon-document",name:"所有人才"},
+                              {id:"all-candidate",path:"all-candidate",icon:"el-icon-document",name:"我的候选人"},
+                              {id:"all-linkman",path:"all-linkman",icon:"el-icon-document",name:"客户联系人"},
+                              {id:"all-coldcall",path:"all-coldcall",icon:"el-icon-document",name:"cold call"}]},
                       {id:"1-3",path:"1-3",icon:"el-icon-menu",name:"收取简历",children:
                               [{id:"1-3-1",path:"1-3-1",icon:"el-icon-document",name:"收取邮箱简历"},
                                   {id:"1-3-2",path:"1-3-2",icon:"el-icon-document",name:"设置邮箱"}]},
                       {id:"1-4",path:"1-4",icon:"el-icon-menu",name:"回收站",children:
-                              [{id:"1-4-1",path:"1-4-1",icon:"el-icon-document",name:"我删除的"},
-                                  {id:"1-4-2",path:"1-4-2",icon:"el-icon-document",name:"所有删除"}]}]},
+                              [{id:"my-talentfaked",path:"my-talentfaked",icon:"el-icon-document",name:"我删除的"},
+                                  {id:"all-talentfaked",path:"all-talentfaked",icon:"el-icon-document",name:"所有删除"}]}]},
               {id:"2",path:"2",icon:"el-icon-menu",name:"文件夹",children:
                       [{id:"2-1",path:"2-1",icon:"el-icon-menu",name:"我的文件夹",children:
                               [{id:"2-1-1",path:"2-1-1",icon:"el-icon-document",name:"A文件夹"},

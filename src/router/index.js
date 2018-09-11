@@ -23,8 +23,12 @@ import myTalent from 'endportView/talent/myTalent'
 import myCandidate from 'endportView/talent/myCandidate'
 import myLinkman from 'endportView/talent/myLinkman'
 import myColdcall from 'endportView/talent/myColdcall'
-
-
+import allTalent from 'endportView/talent/allTalent'
+import allCandidate from 'endportView/talent/allCandidate'
+import allLinkman from 'endportView/talent/allLinkman'
+import allColdcall from 'endportView/talent/allColdcall'
+import myTalentFaked from 'endportView/talent/myTalentFaked'
+import allTalentFaked from 'endportView/talent/allTalentFaked'
 
 Vue.use(Router)
 
@@ -144,6 +148,36 @@ export default new Router({
               path:'my-coldcall',
               name:'my-coldcall',
               component:myColdcall
+          },
+          {
+              path:'all-talent',
+              name:'all-talent',
+              component:allTalent
+          },
+          {
+              path:'all-candidate',
+              name:'all-candidate',
+              component:allCandidate
+          },
+          {
+              path:'all-linkman',
+              name:'all-linkman',
+              component:allLinkman
+          },
+          {
+              path:'all-coldcall',
+              name:'all-coldcall',
+              component:allColdcall
+          },
+          {
+              path:'my-talentfaked',
+              name:'my-talentfaked',
+              component:myTalentFaked
+          },
+          {
+              path:'all-talentfaked',
+              name:'all-talentfaked',
+              component:allTalentFaked
           },
 
         {
