@@ -127,6 +127,7 @@ export const talentListAll = (params) => { return io.post(`${base}/talent/list-a
 export const talentDel = (params) => { return io.post(`${base}/talent/del`, params) };
 export const talentAdminDel = (params) => { return io.post(`${base}/talent/admin-del`, params) };
 export const talentSave = (params) => { return io.post(`${base}/talent/save`, params) };
+export const talentShareList = (params) => { return io.post(`${base}/talent/list-share`, params) };
 
 //获取所有的树结构
 export const utilTree = (params) => { return io.post(`${base}/util/tree`, params) };
