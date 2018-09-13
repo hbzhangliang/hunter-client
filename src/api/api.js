@@ -122,8 +122,10 @@ export const attachmentDel = (params) => { return io.post(`${base}/attachment/de
 export const talentGetVo = (params) => { return io.post(`${base}/talent/get-vo`, params) };
 export const talentGet = (params) => { return io.post(`${base}/talent/get`, params) };
 export const talentList = (params) => { return io.post(`${base}/talent/list`, params) };
+export const talentListPage = (params) => { return io.post(`${base}/talent/list-all-page`, params) };
 export const talentListAll = (params) => { return io.post(`${base}/talent/list-all`, params) };
 export const talentDel = (params) => { return io.post(`${base}/talent/del`, params) };
+export const talentAdminDel = (params) => { return io.post(`${base}/talent/admin-del`, params) };
 export const talentSave = (params) => { return io.post(`${base}/talent/save`, params) };
 
 //获取所有的树结构
