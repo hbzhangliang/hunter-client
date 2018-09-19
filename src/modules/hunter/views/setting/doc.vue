@@ -65,6 +65,20 @@
                 </el-form-item>
 
 
+                <el-form-item label="选择拥有者" v-show="doc.shareType==false">
+                    <el-select v-model="doc.owner" placeholder="请选择">
+                        <el-option
+                                v-for="item in accountList"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                        </el-option>
+                    </el-select>
+
+                </el-form-item>
+
+
+
                 <el-form-item label="分享" v-show="doc.shareType==true">
                     <el-cascader
                             :options="shareOptions"
@@ -91,7 +105,7 @@
 </template>
 <script>
     import end from '@/common/js/utils.js'
-    import {docTree,docGet,docList,docDel,docSave,docListAll,docAllTree} from '@/api/api'
+    import {docTree,docGet,docList,docDel,docSave,docListAll,docAllTree,accountListAll} from '@/api/api'
     import $ from 'jquery'
     export default {
         data() {
@@ -123,19 +137,29 @@
                     type:null,
                     remark:null,
                     shareType:null,
+                    owner:null,
                     share:[]
                 },
                 docTypeOptions:[{value:"talent",label:"人才"},{value:"company",label:"公司"},{value:"project",label:"项目"},{value:"other",label:"其他"}],
-                shareTypeOptions:[{value:"account",label:"个人"},{value:"position",label:"岗位"},{value:"team",label:"团队"},{value:"all",label:"所有人"}],
                 shareOptions:[],
                 cascaderLabel:null,
-                cascaderValues:[]
+                cascaderValues:[],
+                accountList:[]
             }
         },
         watch: {
 
         },
         methods: {
+            initAccountList(){
+                let _this=this
+               if(_this.accountList.length<1){
+                   accountListAll().then(p=>{
+                       _this.accountList=p
+                       console.log(p)
+                   })
+               }
+            },
             changeAll(val) {
                 if(val){
                    var d=[]
@@ -241,6 +265,7 @@
                     type:null,
                     remark:null,
                     shareType:null,
+                    owner:null,
                     share:[]
                 }
                 this.visible=true
@@ -357,6 +382,7 @@
         },
         created () {
             this.initDoc()
+            this.initAccountList()
         },
         components: {
         }
