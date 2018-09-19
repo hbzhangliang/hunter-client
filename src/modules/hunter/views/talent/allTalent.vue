@@ -18,8 +18,8 @@
 
         <div class="tableBox">
             <div class="pageTableContent">
-                <el-button type="primary" size="mini" class="addBanner" @click="add"><i class="el-icon-plus"></i>新增</el-button>
-                <el-button type="danger" size="mini" class="addBanner" @click="delBatch"><i class="el-icon-delete"></i>批量删除</el-button>
+                <!--<el-button type="primary" size="mini" class="addBanner" @click="add"><i class="el-icon-plus"></i>新增</el-button>-->
+                <!--<el-button type="danger" size="mini" class="addBanner" @click="delBatch"><i class="el-icon-delete"></i>批量删除</el-button>-->
                 <el-button type="warning" size="mini" @click="colSetting"><i class="el-icon-setting"></i>配置列</el-button>
                 <el-table :data="pageParams.data" border v-loading="loading"
                           :stripe="tableCss.stripe" size="mini"
