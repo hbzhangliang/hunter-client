@@ -61,6 +61,11 @@ export default new Vuex.Store({
           {key:"my-talentfaked",label:"我删除的",router:"base/my-talentfaked"},
           {key:"all-talentfaked",label:"所有删除",router:"base/all-talentfaked"},
 
+          {key:"talent-doc6",label:"111",router:"base/talent-doc*"},
+          {key:"talent-doc7",label:"222",router:"base/talent-doc*"},
+          {key:"talent-doc8",label:"333",router:"base/talent-doc*"},
+          {key:"talent-doc9",label:"共享111",router:"base/talent-doc*"},
+          {key:"talent-doc10",label:"共享222",router:"base/talent-doc*"},
           ],
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],

@@ -106,6 +106,8 @@ export const docAllTree = (params) => { return io.post(`${base}/doc/all-tree`, p
 export const docShareTree = (params) => { return io.post(`${base}/doc/share-tree`, params) };
 export const docListOwner = (params) => { return io.post(`${base}/doc/list-self`, params) };
 export const docListShare = (params) => { return io.post(`${base}/doc/list-share`, params) };
+export const docListOwnerFront = (params) => { return io.post(`${base}/doc/list-owner`, params) };
+
 
 export const docShareList = (params) => { return io.post(`${base}/doc-share/list`, params) };
 export const docShareListAll = (params) => { return io.post(`${base}/doc-share/list-all`, params) };
@@ -133,3 +135,13 @@ export const talentShareList = (params) => { return io.post(`${base}/talent/list
 
 //获取所有的树结构
 export const utilTree = (params) => { return io.post(`${base}/util/tree`, params) };
+
+
+//talentDoc
+export const talentDocList = (params) => { return io.post(`${base}/talent-doc/list`, params) };
+export const talentDocListAll = (params) => { return io.post(`${base}/talent-doc/list-all`, params) };
+export const talentDocSave = (params) => { return io.post(`${base}/talent-doc/save`, params) };
+export const talentDocGet = (params) => { return io.post(`${base}/talent-doc/get`, params) };
+export const talentDocDel = (params) => { return io.post(`${base}/talent-doc/del`, params) };
+export const talentDocAddShare = (params) => { return io.post(`${base}/talent-doc/add-share`, params) };
+export const talentDocsByTalentId = (params) => { return io.post(`${base}/talent-doc/docs-bytalent`, params) };

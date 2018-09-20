@@ -63,10 +63,14 @@
                                   {id:"all-talentfaked",path:"all-talentfaked",icon:"el-icon-document",name:"所有删除"}]}]},
               {id:"2",path:"2",icon:"el-icon-menu",name:"文件夹",children:
                       [{id:"2-1",path:"2-1",icon:"el-icon-menu",name:"我的文件夹",children:
-                              [{id:"2-1-1",path:"2-1-1",icon:"el-icon-document",name:"A文件夹"},
-                                  {id:"2-1-2",path:"2-1-2",icon:"el-icon-document",name:"B文件夹"},
-                                  {id:"2-1-3",path:"2-1-3",icon:"el-icon-document",name:"C文件夹"},
-                                  {id:"2-1-4",path:"2-1-4",icon:"el-icon-document",name:"D文件夹"}]}
+                              [{id:"talent-doc6",path:"talent-doc6",icon:"el-icon-document",name:"111"},
+                                  {id:"talent-doc7",path:"talent-doc7",icon:"el-icon-document",name:"222"},
+                                  {id:"talent-doc8",path:"talent-doc8",icon:"el-icon-document",name:"333"}
+                                  ]},
+                          {id:"2-2",path:"2-2",icon:"el-icon-menu",name:"共享文件夹",children:
+                                  [{id:"talent-doc9",path:"talent-doc9",icon:"el-icon-document",name:"共享111"},
+                                      {id:"talent-doc10",path:"talent-doc10",icon:"el-icon-document",name:"共享222"}
+                                  ]}
                          ]}],
 
 

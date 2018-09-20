@@ -29,7 +29,7 @@ import allLinkman from 'endportView/talent/allLinkman'
 import allColdcall from 'endportView/talent/allColdcall'
 import myTalentFaked from 'endportView/talent/myTalentFaked'
 import allTalentFaked from 'endportView/talent/allTalentFaked'
-
+import docTalent from 'endportView/talent/docTalent'
 Vue.use(Router)
 
 export default new Router({
@@ -178,6 +178,11 @@ export default new Router({
               path:'all-talentfaked',
               name:'all-talentfaked',
               component:allTalentFaked
+          },
+          {
+              path:'talent-doc*',
+              name:'talent-doc',
+              component:docTalent
           },
 
         {

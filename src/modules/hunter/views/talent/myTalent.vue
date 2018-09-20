@@ -51,16 +51,54 @@
 
                     <el-table-column v-for="item in showsOrgin" :sortable="item.sortable" :prop="item.prop" :label="item.label" :width="item.width">
                     </el-table-column>
-                    <el-table-column  label="操作" width="180" fixed="right">
+                    <el-table-column  label="操作" width="228" fixed="right">
                         <template slot-scope="scope">
                             <el-button size="mini" type="primary" icon="el-icon-edit-outline" @click="edit(scope.row)"></el-button>
                             <el-button size="mini" type="success" icon="el-icon-view" @click="view(scope.row)"></el-button>
                             <el-button size="mini" type="danger" icon="el-icon-delete" @click="del(scope.row)"></el-button>
+                            <el-dropdown @command="setting">
+                                <el-button size="mini" type="warning" icon="el-icon-setting">
+                                </el-button>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item :command="generateComd('shareDoc',scope.row)">分享到文件夹</el-dropdown-item>
+                                    <el-dropdown-item>狮子头</el-dropdown-item>
+                                    <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                                    <el-dropdown-item>双皮奶</el-dropdown-item>
+                                    <el-dropdown-item>蚵仔煎</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </el-dropdown>
+                            <!--<el-button size="mini" type="warning" icon="el-icon-setting" @click="setting(scope.row)">-->
+                                <!--<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+                            <!--</el-button>-->
                         </template>
                     </el-table-column>
                 </el-table>
             </div>
         </div>
+
+
+
+        <!--doc文档数据-->
+        <el-dialog
+                size="tiny"
+                width="30%"
+                title="选择分享到的文件夹"
+                :visible.sync="shareDocVisible">
+            <el-tree
+                    class="filter-tree city-tree"
+                    :data="shareDocList"
+                    :props="defaultProps"
+                    show-checkbox
+                    node-key="id"
+                    ref="shareDoc">
+            </el-tree>
+            <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+                <el-button size="mini" @click="closeShareDocDialog" icon="el-icon-circle-close-outline">取消</el-button>
+                <el-button size="mini" type="primary" @click="chooseShareDocDialog" icon="el-icon-success">确定</el-button>
+            </div>
+        </el-dialog>
+
+
 
         <div class="block">
             <span class="demonstration"></span>
@@ -765,7 +803,9 @@
         cityListAll,cityTree,dictListChildrenByCode,dictListChildrenByCodes,
         businessTree,careerTree,
         tagTreeByCode,docShareTree,
-        utilTree} from '@/api/api'
+        utilTree,
+        docListOwnerFront,
+        talentDocAddShare,talentDocsByTalentId} from '@/api/api'
     import $ from 'jquery'
     export default {
         data() {
@@ -926,7 +966,13 @@
                     CareerTree:[],
                     CityTree:[],
                     ShareTree:[]
-                }
+                },
+
+                //共享到文件夹
+                shareDocVisible:false,
+                shareDocList:[],
+                editTalent:null,
+                defaultShareDocIds:[]
             }
         },
         watch: {
@@ -1535,6 +1581,82 @@
             },
 
 
+            /**
+             * 生成drop的comand
+             * @param comd
+             * @param item
+             * @returns {{key: *, value: *}}
+             */
+            generateComd(comd,item){
+                var obj={
+                    key:comd,
+                    value:item
+                }
+                return obj
+            },
+            //分享到文件夹
+            setting(item){
+                let _this=this
+                 switch (item.key){
+                     case "shareDoc":{
+                         _this.shareDocVisible=true
+                         _this.editTalent=item.value
+                         _this.initShareDocList()
+                     }break;
+                 }
+            },
+            initShareDocList(){
+                let _this=this
+                if(_this.shareDocList==null||_this.shareDocList.length<1) {
+                    docListOwnerFront().then(p => {
+                        _this.shareDocList = p
+
+                        talentDocsByTalentId({id:_this.editTalent.id}).then(q=>{
+                            console.log(q)
+                            _this.$nextTick(() => {
+                                _this.$refs.shareDoc.setCheckedKeys(q)
+                            });
+                        })
+                    })
+                }
+                else {
+                    talentDocsByTalentId({id:_this.editTalent.id}).then(q=>{
+                        console.log(q)
+                        _this.$nextTick(() => {
+                            _this.$refs.shareDoc.setCheckedKeys(q)
+                        });
+                    })
+                }
+            },
+            closeShareDocDialog(){
+                this.shareDocVisible=false
+            },
+            chooseShareDocDialog(){
+                let _this=this
+                var d=[]
+                var lenth=this.$refs.shareDoc.getCheckedNodes().length
+                if(lenth<1){
+                    _this.$message({
+                        message: '必须至少选择一个文件夹',
+                        type: 'warning'
+                    });
+                    return;
+                }
+                this.$refs.shareDoc.getCheckedNodes().forEach(p=>{
+                    if(p.leaf){
+                       d.push(p.id)
+                    }
+                })
+                talentDocAddShare({talentId:_this.editTalent.id,docIds:d}).then(p=>{
+                    _this.$message({
+                        message: '共享人才数据到文件夹成功',
+                        type: 'success'
+                    });
+                    _this.shareDocVisible=false
+                }).catch(function (error) {
+                    _this.$message.error('后端错误:'+error.message);
+                })
+            }
         },
         created () {
             this.init();
