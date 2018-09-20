@@ -37,7 +37,8 @@
 <script>
   import end from '@/common/js/utils.js'
   import {} from '@/api/api'
-  import {mapState,mapMutations} from 'vuex'
+  import {mapState,mapMutations,
+      docListOwner,docListShare} from 'vuex'
   import $ from 'jquery'
   export default {
     data () {
@@ -110,6 +111,11 @@
             // console.log(this.leftMenuCollapse)
             // this.isCollapse=this.leftMenuCollapse
             // console.log(this.isCollapse)
+
+            //共享目录的初始化
+
+
+
         },
 
         handleOpen(key, keyPath) {

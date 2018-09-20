@@ -104,6 +104,8 @@ export const docDel = (params) => { return io.post(`${base}/doc/del`, params) };
 export const docTree = (params) => { return io.post(`${base}/doc/tree`, params) };
 export const docAllTree = (params) => { return io.post(`${base}/doc/all-tree`, params) };
 export const docShareTree = (params) => { return io.post(`${base}/doc/share-tree`, params) };
+export const docListOwner = (params) => { return io.post(`${base}/doc/list-self`, params) };
+export const docListShare = (params) => { return io.post(`${base}/doc/list-share`, params) };
 
 export const docShareList = (params) => { return io.post(`${base}/doc-share/list`, params) };
 export const docShareListAll = (params) => { return io.post(`${base}/doc-share/list-all`, params) };

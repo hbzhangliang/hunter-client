@@ -191,7 +191,6 @@
                     _this.data=p
                     _this.loading=false
                 })
-
                 docAllTree().then(p=>{
                     _this.shareOptions=p
                 })
