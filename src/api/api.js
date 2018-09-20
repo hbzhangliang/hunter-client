@@ -145,3 +145,7 @@ export const talentDocGet = (params) => { return io.post(`${base}/talent-doc/get
 export const talentDocDel = (params) => { return io.post(`${base}/talent-doc/del`, params) };
 export const talentDocAddShare = (params) => { return io.post(`${base}/talent-doc/add-share`, params) };
 export const talentDocsByTalentId = (params) => { return io.post(`${base}/talent-doc/docs-bytalent`, params) };
+
+//vtalentDoc
+export const vtalentDocList = (params) => { return io.post(`${base}/vtalentdoc/list`, params) };
+export const vtalentDocGet = (params) => { return io.post(`${base}/vtalentdoc/get`, params) };
