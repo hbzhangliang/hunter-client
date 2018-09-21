@@ -35,11 +35,11 @@
           userRules: {
               account: [
                   {required: true, message: '请输入账号', trigger: 'blur'},
-                  {min: 6, max: 30, message: '长度最少6个字符', trigger: 'blur'}
+                  {min: 5, max: 30, message: '长度最少6个字符', trigger: 'blur'}
               ],
               pwd: [
                   {required: true, message: '请输入密码', trigger: 'blur'},
-                  {min: 6, max: 30, message: '长度最少6个字符', trigger: 'blur'}
+                  {min: 1, max: 30, message: '长度最少6个字符', trigger: 'blur'}
               ],
           }
       }
