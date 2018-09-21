@@ -1,25 +1,21 @@
 <template>
   <section>
-this is main
-    <el-button type="primary" @click="searchAll">查询所有</el-button>
-    <el-dialog title="请登录系统" :visible.sync="loginDialog" size="tiny"
+    <el-dialog title="请登录系统" :visible.sync="loginDialog" size="tiny" :show-close="false"
                width="28%"
                @close="closeLoginDialog">
-      <div class="modalContent">
-        <div class="demo-input-suffix">
-          用户名:<el-input v-model="user.account" placeholder="请输入内容" size="medium"></el-input>
-        </div>
-        <div class="demo-input-suffix">
-          密码:<el-input v-model="user.pwd" placeholder="请输入内容" size="medium"></el-input>
-        </div>
-        <div class="demo-input-suffix">
-          <span style="color: red">{{errorInfo}}</span>
-        </div>
-      </div>
-      <div style="text-align: center;margin-top: 25px">
-        <el-button type="primary" @click="login">确定</el-button>
-      </div>
 
+      <el-form :model="user" :rules="userRules" ref="user" label-width="100px" class="demo-ruleForm">
+        <el-form-item label="账号" prop="account">
+          <el-input v-model="user.account" prefix-icon="el-icon-mobile-phone"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="pwd">
+          <el-input v-model="user.pwd" type="password"  prefix-icon="el-icon-view"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="login('user')">登录</el-button>
+          <el-button @click="resetForm('user')">重置</el-button>
+        </el-form-item>
+      </el-form>
     </el-dialog>
 
   </section>
@@ -36,7 +32,16 @@ this is main
               account:null,
               pwd:null
           },
-          errorInfo:null
+          userRules: {
+              account: [
+                  {required: true, message: '请输入账号', trigger: 'blur'},
+                  {min: 6, max: 30, message: '长度最少6个字符', trigger: 'blur'}
+              ],
+              pwd: [
+                  {required: true, message: '请输入密码', trigger: 'blur'},
+                  {min: 6, max: 30, message: '长度最少6个字符', trigger: 'blur'}
+              ],
+          }
       }
     },
       methods:{
@@ -51,29 +56,34 @@ this is main
             });
         },
           closeLoginDialog(){
-              this.loginDialog=false
+            this.loginDialog=false
           },
-        login(){
+        login(formName){
             let _this=this
-            console.log(this.user)
-            accountCheckInfo(_this.user).then(p=>{
-                if(null!=p){
-                    _this.$store.state.userInfo=p
-                    _this.loginDialog=false
-                    console.log(p)
+
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    accountCheckInfo(_this.user).then(p=>{
+                        if(null!=p){
+                            _this.$store.state.userInfo=p
+                            _this.loginDialog=false
+                        }
+                        else {
+                            _this.$message.error('账号或密码错误');
+                        }
+                    }).catch(function (error) {
+                        _this.$message.error('后端错误:'+error.message);
+                    })
+                } else {
+                    console.log('error submit!!');
+                    return false;
                 }
-                else {
-                    _this.errorInfo="用户名或密码错误"
-                }
-            })
+            });
 
         },
-        searchAll(){
-            accountListAll().then(p=>{
-                console.log(p)
-            })
-        }
-
+          resetForm(formName){
+              this.$refs[formName].resetFields();
+          }
       },
     components: {
 
