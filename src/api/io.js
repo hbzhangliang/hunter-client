@@ -4,7 +4,9 @@
 import axios from 'axios'
 const io = axios.create(
   {
-    withCredentials: true
+    withCredentials: true,
+      Origin:'http://180.76.119.95:8081',
+      timeout: 5000
    // headers: {'Content-Type': 'application/json;charset=utf-8'}
   })
 io.interceptors.request.use((config) => {

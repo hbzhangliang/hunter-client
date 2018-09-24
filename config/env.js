@@ -14,6 +14,6 @@ module.exports = {
   },
   production: {
     NODE_ENV: '"production"',
-    BASE_API: '"https://mop.ums86.com/api"'
+    BASE_API: '"http://180.76.119.95:8081/api"'
   }
 };

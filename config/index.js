@@ -28,7 +28,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {
-       // target: 'https://mop-test61.ums86.com/', // 设置你调用的接口域名和端口号 别忘了加http
+       // target: 'http://180.76.119.95:8060', // 设置你调用的接口域名和端口号 别忘了加http
         target:'http://127.0.0.1:8060',
         changeOrigin: true,
         pathRewrite: {
