@@ -72,29 +72,33 @@
                                       {id:"talent-doc10",path:"talent-doc10",icon:"el-icon-document",name:"共享222"}
                                   ]}
                          ]}],
-
-
-          menu_company:[{id:"1",path:"1",icon:"el-icon-menu",name:"订阅搜索",children:
-                  [{id:"1-1",path:"1-1",icon:"el-icon-menu",name:"我创建的",children:
-                          [{id:"1-1-1",path:"1-1-1",icon:"el-icon-document",name:"所有公司"},
-                              {id:"1-1-2",path:"1-1-2",icon:"el-icon-document",name:"普通公司"},
-                              {id:"1-1-3",path:"1-1-3",icon:"el-icon-document",name:"开发中客户"},
-                              {id:"1-1-4",path:"1-1-4",icon:"el-icon-document",name:"已签约客户"},
-                              {id:"1-1-5",path:"1-1-5",icon:"el-icon-document",name:"终止合作"}]},
-                      {id:"1-2",path:"1-2",icon:"el-icon-document",name:"共享公司",children:
-                              [{id:"1-2-2",path:"1-2-2",icon:"el-icon-document",name:"普通公司"},
-                              {id:"1-2-3",path:"1-2-3",icon:"el-icon-document",name:"开发中客户"},
-                              {id:"1-2-4",path:"1-2-4",icon:"el-icon-document",name:"已签约客户"},
-                              {id:"1-2-5",path:"1-2-5",icon:"el-icon-document",name:"终止合作"}]},
-                      {id:"1-3",path:"1-3",icon:"el-icon-document",name:"回收站",children:
-                              [{id:"1-3-1",path:"1-3-1",icon:"el-icon-document",name:"我删除的"},
-                                  {id:"1-3-2",path:"1-3-2",icon:"el-icon-document",name:"所有删除"}]}]},
-              {id:"2",path:"2",icon:"el-icon-menu",name:"文件夹",children:
-                      [{id:"2-1",path:"2-1",icon:"el-icon-document",name:"我的文件夹",children:
-                              [{id:"2-1-1",path:"2-1-1",icon:"el-icon-document",name:"A文件夹"},
-                                  {id:"2-1-2",path:"2-1-2",icon:"el-icon-document",name:"B文件夹"},
-                                  {id:"2-1-3",path:"2-1-3",icon:"el-icon-document",name:"C文件夹"},
-                                  {id:"2-1-4",path:"2-1-4",icon:"el-icon-document",name:"D文件夹"}]}
+          menu_company:[{id:"3",path:"3",icon:"el-icon-menu",name:"订阅搜索",children:
+                  [{id:"3-1",path:"3-1",icon:"el-icon-menu",name:"我创建的",children:
+                          [{id:"my-company",path:"my-company",icon:"el-icon-document",name:"所有公司"},
+                              {id:"my-company",path:"my-company",icon:"el-icon-document",name:"普通公司"},
+                              {id:"3-1-3",path:"3-1-3",icon:"el-icon-document",name:"开发中客户"},
+                              {id:"3-1-4",path:"3-1-4",icon:"el-icon-document",name:"已签约客户"},
+                              {id:"3-1-5",path:"3-1-5",icon:"el-icon-document",name:"终止合作"}]},
+                      {id:"3-2",path:"3-2",icon:"el-icon-document",name:"共享公司",children:
+                              [{id:"3-1-1",path:"3-1-1",icon:"el-icon-document",name:"所有公司"},
+                              {id:"3-2-2",path:"3-2-2",icon:"el-icon-document",name:"普通公司"},
+                              {id:"3-2-3",path:"3-2-3",icon:"el-icon-document",name:"开发中客户"},
+                              {id:"3-2-4",path:"3-2-4",icon:"el-icon-document",name:"已签约客户"},
+                              {id:"3-2-5",path:"3-2-5",icon:"el-icon-document",name:"终止合作"}]},
+                      {id:"3-3",path:"3-3",icon:"el-icon-document",name:"回收站",children:
+                              [{id:"3-3-1",path:"3-3-1",icon:"el-icon-document",name:"我删除的"},
+                                  {id:"3-3-2",path:"3-3-2",icon:"el-icon-document",name:"所有删除"}]}]},
+              {id:"4",path:"4",icon:"el-icon-menu",name:"文件夹",children:
+                      [{id:"4-1",path:"4-1",icon:"el-icon-document",name:"我的文件夹",children:
+                              [{id:"4-1-1",path:"4-1-1",icon:"el-icon-document",name:"自己A"},
+                                  {id:"4-1-2",path:"4-1-2",icon:"el-icon-document",name:"自己B"},
+                                  {id:"4-1-3",path:"4-1-3",icon:"el-icon-document",name:"自己C"},
+                                  {id:"4-1-4",path:"4-1-4",icon:"el-icon-document",name:"自己D"}]},
+                          {id:"4-2",path:"4-2",icon:"el-icon-document",name:"共享文件夹",children:
+                                  [{id:"4-2-1",path:"4-2-1",icon:"el-icon-document",name:"企业共享A"},
+                                      {id:"4-2-2",path:"4-2-2",icon:"el-icon-document",name:"企业共享B"},
+                                      {id:"4-2-3",path:"4-2-3",icon:"el-icon-document",name:"企业共享C"},
+                                      {id:"4-2-4",path:"4-2-4",icon:"el-icon-document",name:"企业共享D"}]}
                       ]}],
           menu_project:[],
 
