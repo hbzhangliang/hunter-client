@@ -66,6 +66,9 @@ export default new Vuex.Store({
           {key:"talent-doc8",label:"333",router:"base/talent-doc*"},
           {key:"talent-doc9",label:"共享111",router:"base/talent-doc*"},
           {key:"talent-doc10",label:"共享222",router:"base/talent-doc*"},
+
+          //公司
+          {key:"my-company",label:"所有公司",router:"base/my-company"},
           ],
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],

@@ -1,5 +1,5 @@
 <template>
-    <section v-loading="loading">
+    <section>
         <div class="searchBar">
             <el-form  size="small">
                 <el-row>

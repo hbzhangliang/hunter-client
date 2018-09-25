@@ -30,8 +30,11 @@ import allColdcall from 'endportView/talent/allColdcall'
 import myTalentFaked from 'endportView/talent/myTalentFaked'
 import allTalentFaked from 'endportView/talent/allTalentFaked'
 import docTalent from 'endportView/talent/docTalent'
+
+import myCompany from 'endportView/company/myCompany'
 Vue.use(Router)
 
+// noinspection JSAnnotator
 export default new Router({
   routes: [
     {
@@ -184,6 +187,17 @@ export default new Router({
               name:'talent-doc',
               component:docTalent
           },
+
+
+
+
+          {
+              path:'my-company',
+              name:'my-company',
+              component:myCompany
+          },
+
+
 
         {
           path: '*',

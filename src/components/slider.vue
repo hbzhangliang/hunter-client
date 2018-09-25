@@ -75,19 +75,19 @@
           menu_company:[{id:"3",path:"3",icon:"el-icon-menu",name:"订阅搜索",children:
                   [{id:"3-1",path:"3-1",icon:"el-icon-menu",name:"我创建的",children:
                           [{id:"my-company",path:"my-company",icon:"el-icon-document",name:"所有公司"},
-                              {id:"my-company",path:"my-company",icon:"el-icon-document",name:"普通公司"},
-                              {id:"3-1-3",path:"3-1-3",icon:"el-icon-document",name:"开发中客户"},
-                              {id:"3-1-4",path:"3-1-4",icon:"el-icon-document",name:"已签约客户"},
-                              {id:"3-1-5",path:"3-1-5",icon:"el-icon-document",name:"终止合作"}]},
+                              {id:"my-con-company",path:"my-con-company",icon:"el-icon-document",name:"普通公司"},
+                              {id:"my-dev-company",path:"my-dev-company",icon:"el-icon-document",name:"开发中客户"},
+                              {id:"my-sign-company",path:"my-sign-company",icon:"el-icon-document",name:"已签约客户"},
+                              {id:"my-terminal-company",path:"my-terminal-concompany",icon:"el-icon-document",name:"终止合作"}]},
                       {id:"3-2",path:"3-2",icon:"el-icon-document",name:"共享公司",children:
-                              [{id:"3-1-1",path:"3-1-1",icon:"el-icon-document",name:"所有公司"},
-                              {id:"3-2-2",path:"3-2-2",icon:"el-icon-document",name:"普通公司"},
-                              {id:"3-2-3",path:"3-2-3",icon:"el-icon-document",name:"开发中客户"},
-                              {id:"3-2-4",path:"3-2-4",icon:"el-icon-document",name:"已签约客户"},
-                              {id:"3-2-5",path:"3-2-5",icon:"el-icon-document",name:"终止合作"}]},
+                              [{id:"share-company",path:"share-company",icon:"el-icon-document",name:"所有公司"},
+                              {id:"share-con-company",path:"share-con-company",icon:"el-icon-document",name:"普通公司"},
+                              {id:"share-dev-company",path:"share-dev-company",icon:"el-icon-document",name:"开发中客户"},
+                              {id:"share-sign-company",path:"share-sign-company",icon:"el-icon-document",name:"已签约客户"},
+                              {id:"share-terminal-company",path:"share-terminal-company",icon:"el-icon-document",name:"终止合作"}]},
                       {id:"3-3",path:"3-3",icon:"el-icon-document",name:"回收站",children:
-                              [{id:"3-3-1",path:"3-3-1",icon:"el-icon-document",name:"我删除的"},
-                                  {id:"3-3-2",path:"3-3-2",icon:"el-icon-document",name:"所有删除"}]}]},
+                              [{id:"my-faked-company",path:"my-faked-company",icon:"el-icon-document",name:"我删除的"},
+                                  {id:"all-faked-company",path:"all-faked-company",icon:"el-icon-document",name:"所有删除"}]}]},
               {id:"4",path:"4",icon:"el-icon-menu",name:"文件夹",children:
                       [{id:"4-1",path:"4-1",icon:"el-icon-document",name:"我的文件夹",children:
                               [{id:"4-1-1",path:"4-1-1",icon:"el-icon-document",name:"自己A"},

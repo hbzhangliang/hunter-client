@@ -149,3 +149,15 @@ export const talentDocsByTalentId = (params) => { return io.post(`${base}/talent
 //vtalentDoc
 export const vtalentDocList = (params) => { return io.post(`${base}/vtalentdoc/list`, params) };
 export const vtalentDocGet = (params) => { return io.post(`${base}/vtalentdoc/get`, params) };
+
+
+//company
+export const companyGetVo = (params) => { return io.post(`${base}/company/get-vo`, params) };
+export const companyGet = (params) => { return io.post(`${base}/company/get`, params) };
+export const companyList = (params) => { return io.post(`${base}/company/list`, params) };
+export const companyListPage = (params) => { return io.post(`${base}/company/list-all-page`, params) };
+export const companyListAll = (params) => { return io.post(`${base}/company/list-all`, params) };
+export const companyDel = (params) => { return io.post(`${base}/company/del`, params) };
+export const tcompanyAdminDel = (params) => { return io.post(`${base}/company/admin-del`, params) };
+export const companySave = (params) => { return io.post(`${base}/company/save`, params) };
+//export const companyShareList = (params) => { return io.post(`${base}/talent/list-share`, params) };
