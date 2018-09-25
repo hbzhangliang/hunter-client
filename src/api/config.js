@@ -9,8 +9,8 @@ export default process.env.NODE_ENV === 'development' ? {
   // host: 'http://10.0.0.197:9006' // 上海
 
     //本地调试环境
-    //  host:'http://127.0.0.1:8060'  //本地环境调试
+      host:'http://127.0.0.1:8060'  //本地环境调试
     // host: 'https://mop-test61.ums86.com/api'
     //正式环境
-     host: 'http://180.76.119.95:8081/api'
+     //host: 'http://180.76.119.95:8081/api'
 }
