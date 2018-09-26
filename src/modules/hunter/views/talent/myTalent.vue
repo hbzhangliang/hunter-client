@@ -1608,7 +1608,7 @@
             initShareDocList(){
                 let _this=this
                 if(_this.shareDocList==null||_this.shareDocList.length<1) {
-                    docListOwnerFront().then(p => {
+                    docListOwnerFront({type:"talent"}).then(p => {
                         _this.shareDocList = p
 
                         talentDocsByTalentId({id:_this.editTalent.id}).then(q=>{

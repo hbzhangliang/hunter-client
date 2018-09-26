@@ -160,4 +160,4 @@ export const companyListAll = (params) => { return io.post(`${base}/company/list
 export const companyDel = (params) => { return io.post(`${base}/company/del`, params) };
 export const tcompanyAdminDel = (params) => { return io.post(`${base}/company/admin-del`, params) };
 export const companySave = (params) => { return io.post(`${base}/company/save`, params) };
-//export const companyShareList = (params) => { return io.post(`${base}/talent/list-share`, params) };
+export const companyShareList = (params) => { return io.post(`${base}/talent/list-share`, params) };

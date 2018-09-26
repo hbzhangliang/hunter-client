@@ -69,6 +69,20 @@ export default new Vuex.Store({
 
           //公司
           {key:"my-company",label:"所有公司",router:"base/my-company"},
+          {key:"my-con-company",label:"普通公司",router:"base/my-con-company"},
+          {key:"my-dev-company",label:"开发中客户",router:"base/my-dev-company"},
+          {key:"my-sign-company",label:"已签约客户",router:"base/my-sign-company"},
+          {key:"my-terminal-company",label:"终止合作",router:"base/my-terminal-company"},
+
+          {key:"share-company",label:"所有公司",router:"base/share-company"},
+          {key:"share-con-company",label:"普通公司",router:"base/share-con-company"},
+          {key:"share-dev-company",label:"开发中客户",router:"base/share-dev-company"},
+          {key:"share-sign-company",label:"已签约客户",router:"base/share-sign-company"},
+          {key:"share-terminal-company",label:"终止合作",router:"base/share-terminal-company"},
+
+          {key:"my-faked-company",label:"我删除的",router:"base/my-faked-company"},
+          {key:"all-faked-company",label:"所有删除",router:"base/all-faked-company"},
+
           ],
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],

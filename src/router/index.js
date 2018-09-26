@@ -32,6 +32,17 @@ import allTalentFaked from 'endportView/talent/allTalentFaked'
 import docTalent from 'endportView/talent/docTalent'
 
 import myCompany from 'endportView/company/myCompany'
+import myConCompany from 'endportView/company/myConCompany'
+import myDevCompany from 'endportView/company/myDevCompany'
+import mySignCompany from 'endportView/company/mySignCompany'
+import myTerminalCompany from 'endportView/company/myTerminalCompany'
+import shareCompany from 'endportView/company/shareCompany'
+import shareConCompany from 'endportView/company/shareConCompany'
+import shareDevCompany from 'endportView/company/shareDevCompany'
+import shareSignCompany from 'endportView/company/shareSignCompany'
+import shareTerminalCompany from 'endportView/company/shareTerminalCompany'
+
+
 Vue.use(Router)
 
 // noinspection JSAnnotator
@@ -196,8 +207,52 @@ export default new Router({
               name:'my-company',
               component:myCompany
           },
+          {
+              path:'my-con-company',
+              name:'my-con-company',
+              component:myConCompany
+          },
+          {
+              path:'my-dev-company',
+              name:'my-dev-company',
+              component:myDevCompany
+          },
+          {
+              path:'my-sign-company',
+              name:'my-sign-company',
+              component:mySignCompany
+          },
+          {
+              path:'my-terminal-company',
+              name:'my-terminal-company',
+              component:myTerminalCompany
+          },
 
-
+          {
+              path:'share-company',
+              name:'share-company',
+              component:shareCompany
+          },
+          {
+              path:'share-con-company',
+              name:'share-con-company',
+              component:shareConCompany
+          },
+          {
+              path:'share-dev-company',
+              name:'share-dev-company',
+              component:shareDevCompany
+          },
+          {
+              path:'share-sign-company',
+              name:'share-sign-company',
+              component:shareSignCompany
+          },
+          {
+              path:'share-terminal-company',
+              name:'share-terminal-company',
+              component:shareTerminalCompany
+          },
 
         {
           path: '*',
