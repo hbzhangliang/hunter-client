@@ -56,7 +56,7 @@
             });
         },
           closeLoginDialog(){
-            this.loginDialog=false
+            this.loginDialog=true
           },
         login(formName){
             let _this=this
