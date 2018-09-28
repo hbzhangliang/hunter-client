@@ -41,7 +41,9 @@ import shareConCompany from 'endportView/company/shareConCompany'
 import shareDevCompany from 'endportView/company/shareDevCompany'
 import shareSignCompany from 'endportView/company/shareSignCompany'
 import shareTerminalCompany from 'endportView/company/shareTerminalCompany'
-
+import myCompanyFaked from 'endportView/company/myCompanyFaked'
+import allCompanyFaked from 'endportView/company/allCompanyFaked'
+import docCompany from 'endportView/company/docCompany'
 
 Vue.use(Router)
 
@@ -252,6 +254,21 @@ export default new Router({
               path:'share-terminal-company',
               name:'share-terminal-company',
               component:shareTerminalCompany
+          },
+          {
+              path:'my-faked-company',
+              name:'my-faked-company',
+              component:myCompanyFaked
+          },
+          {
+              path:'all-faked-company',
+              name:'all-faked-company',
+              component:allCompanyFaked
+          },
+          {
+              path:'company-doc*',
+              name:'company-doc',
+              component:docCompany
           },
 
         {

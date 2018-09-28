@@ -2,8 +2,7 @@
   <section>
     <el-dialog title="请登录系统" :visible.sync="loginDialog" size="tiny" :show-close="false"
                width="28%"
-               :close-on-click-modal="false" :close-on-press-escape="false"
-               @close="closeLoginDialog">
+               :close-on-click-modal="false" :close-on-press-escape="false">
 
       <el-form :model="user" :rules="userRules" ref="user" label-width="100px" class="demo-ruleForm">
         <el-form-item label="账号" prop="account">
@@ -56,9 +55,6 @@
                 _this.loginDialog=true
             });
         },
-          closeLoginDialog(){
-            this.loginDialog=true
-          },
         login(formName){
             let _this=this
 

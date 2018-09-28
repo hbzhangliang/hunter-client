@@ -83,6 +83,11 @@ export default new Vuex.Store({
           {key:"my-faked-company",label:"我删除的",router:"base/my-faked-company"},
           {key:"all-faked-company",label:"所有删除",router:"base/all-faked-company"},
 
+          {key:"company-doc11",label:"公司001",router:"base/company-doc*"},
+          {key:"company-doc12",label:"公司002",router:"base/company-doc*"},
+          {key:"company-doc13",label:"公司003",router:"base/company-doc*"},
+          {key:"company-doc14",label:"共享公司a",router:"base/company-doc*"},
+          {key:"company-doc15",label:"共享公司b",router:"base/company-doc*"},
           ],
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],

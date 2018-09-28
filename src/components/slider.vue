@@ -90,15 +90,12 @@
                                   {id:"all-faked-company",path:"all-faked-company",icon:"el-icon-document",name:"所有删除"}]}]},
               {id:"4",path:"4",icon:"el-icon-menu",name:"文件夹",children:
                       [{id:"4-1",path:"4-1",icon:"el-icon-document",name:"我的文件夹",children:
-                              [{id:"4-1-1",path:"4-1-1",icon:"el-icon-document",name:"自己A"},
-                                  {id:"4-1-2",path:"4-1-2",icon:"el-icon-document",name:"自己B"},
-                                  {id:"4-1-3",path:"4-1-3",icon:"el-icon-document",name:"自己C"},
-                                  {id:"4-1-4",path:"4-1-4",icon:"el-icon-document",name:"自己D"}]},
+                              [{id:"company-doc11",path:"company-doc11",icon:"el-icon-document",name:"公司001"},
+                                  {id:"company-doc12",path:"company-doc12",icon:"el-icon-document",name:"公司002"},
+                                  {id:"company-doc13",path:"company-doc13",icon:"el-icon-document",name:"公司003"}]},
                           {id:"4-2",path:"4-2",icon:"el-icon-document",name:"共享文件夹",children:
-                                  [{id:"4-2-1",path:"4-2-1",icon:"el-icon-document",name:"企业共享A"},
-                                      {id:"4-2-2",path:"4-2-2",icon:"el-icon-document",name:"企业共享B"},
-                                      {id:"4-2-3",path:"4-2-3",icon:"el-icon-document",name:"企业共享C"},
-                                      {id:"4-2-4",path:"4-2-4",icon:"el-icon-document",name:"企业共享D"}]}
+                                  [{id:"company-doc14",path:"company-doc14",icon:"el-icon-document",name:"共享公司a"},
+                                      {id:"company-doc15",path:"company-doc15",icon:"el-icon-document",name:"共享公司b"}]}
                       ]}],
           menu_project:[],
 

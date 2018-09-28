@@ -160,7 +160,7 @@ export const companyListAll = (params) => { return io.post(`${base}/company/list
 export const companyDel = (params) => { return io.post(`${base}/company/del`, params) };
 export const companyAdminDel = (params) => { return io.post(`${base}/company/admin-del`, params) };
 export const companySave = (params) => { return io.post(`${base}/company/save`, params) };
-export const companyShareList = (params) => { return io.post(`${base}/talent/list-share`, params) };
+export const companyShareList = (params) => { return io.post(`${base}/company/list-share`, params) };
 //company-doc
 export const companyDocList = (params) => { return io.post(`${base}/company-doc/list`, params) };
 export const companyDocListAll = (params) => { return io.post(`${base}/company-doc/list-all`, params) };
