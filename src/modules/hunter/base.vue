@@ -31,7 +31,7 @@
     name:'base',
     data: function () {
       return {
-
+          td:'abc'
       }
     },
       methods:{
@@ -93,10 +93,10 @@
 
               setTimeout(function () {
                   //tab后边菜单处理
-                  var info="<span class='el-tabs__new-tab rt_tab_rm'><i class='el-icon-search'></i></span>" +
-                      "<span class='el-tabs__new-tab'><i class='el-icon-close'></i></span>" +
-                      "<span class='el-tabs__new-tab'><i class='el-icon-refresh'></i></span>" +
-                      "<span class='el-tabs__new-tab'><i class='el-icon-mobile-phone'></i></span>";
+                  var info="<span class='el-tabs__new-tab rt_tab_rm' id='base_el_search'><i class='el-icon-search'></i></span>" +
+                      "<span class='el-tabs__new-tab' id='base_el_close'><i class='el-icon-close'></i></span>" +
+                      "<span class='el-tabs__new-tab' id='base_el_refresh'><i class='el-icon-refresh'></i></span>" +
+                      "<span class='el-tabs__new-tab' id='base_el_phone'><i class='el-icon-mobile-phone'></i></span>";
                   $(".el-tabs__new-tab").before(info);
 
                   //高度设置
@@ -106,6 +106,20 @@
               },100)
 
 
+              $(function () {
+                  $("#base_el_search").on("click",function () {
+
+                  })
+                  $("#base_el_close").on("click",function () {
+                      console.log("clode")
+                  })
+                  $("#base_el_refresh").on("click",function () {
+
+                  })
+                  $("#base_el_phone").on("click",function () {
+
+                  })
+              })
           }
       },
     components:{
