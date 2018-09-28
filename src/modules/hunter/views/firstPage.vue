@@ -2,6 +2,7 @@
   <section>
     <el-dialog title="请登录系统" :visible.sync="loginDialog" size="tiny" :show-close="false"
                width="28%"
+               :close-on-click-modal="false" :close-on-press-escape="false"
                @close="closeLoginDialog">
 
       <el-form :model="user" :rules="userRules" ref="user" label-width="100px" class="demo-ruleForm">

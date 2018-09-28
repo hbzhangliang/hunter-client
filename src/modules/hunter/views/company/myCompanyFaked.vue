@@ -327,8 +327,7 @@
                     orderBy: 'id',
                     direction: 'desc',
                     params: {
-                        eq_type:"Signed",
-                        eq_delStatus:"Normal",
+                        eq_delStatus:"Faked",
                         lk_name: null
                     },
                     data: []
@@ -576,9 +575,9 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    companyDel({ids:_this.multipleSelection}).then(p=>{
+                    companyAdminDel({ids:_this.multipleSelection}).then(p=>{
                         _this.$message({
-                            message: '删除人才数据成功',
+                            message: '删除公司数据成功',
                             type: 'success'
                         });
                         _this.init()

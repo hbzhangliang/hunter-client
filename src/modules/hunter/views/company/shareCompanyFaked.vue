@@ -327,8 +327,7 @@
                     orderBy: 'id',
                     direction: 'desc',
                     params: {
-                        eq_type:"Signed",
-                        eq_delStatus:"Normal",
+                        eq_delStatus:"Faked",
                         lk_name: null
                     },
                     data: []
@@ -459,7 +458,7 @@
                 _this.loading=true;
                 _this.pageParams.page=page;
                 _this.pageParams.pageSize=pageSize;
-                companyList(_this.pageParams).then(res => {
+                companyListPage(_this.pageParams).then(res => {
                     res.data.forEach(p => {
                         p.modifyTimeStr = end.getDate_YMDHM(p.modifyTime)
                         p.createTimeStr = end.getDate_YMDHM(p.createTime)
@@ -472,7 +471,7 @@
             init(){
                 var _this=this;
                 _this.loading=true;
-                companyList(_this.pageParams).then(res => {
+                companyListPage(_this.pageParams).then(res => {
                     res.data.forEach(p => {
                         p.modifyTimeStr = end.getDate_YMDHM(p.modifyTime)
                         p.createTimeStr = end.getDate_YMDHM(p.createTime)
@@ -576,9 +575,9 @@
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
-                    companyDel({ids:_this.multipleSelection}).then(p=>{
+                    companyAdminDel({ids:_this.multipleSelection}).then(p=>{
                         _this.$message({
-                            message: '删除人才数据成功',
+                            message: '删除公司数据成功',
                             type: 'success'
                         });
                         _this.init()

@@ -308,9 +308,10 @@
     </section>
 </template>
 <script>
-    import {companyGetVo,companyGet,companyList,companyListPage,companyListAll,companyDel,tcompanyAdminDel,companySave,
+    import {companyGetVo,companyGet,companyList,companyListPage,companyListAll,companyDel,companyAdminDel,companySave,
         dictListChildrenByCodes,utilTree,
-        docListOwnerFront} from '@/api/api'
+        docListOwnerFront,
+        companyDocAddShare,companyDocsByCompanyId} from '@/api/api'
     import $ from 'jquery'
     import end from '@/common/js/utils.js'
     export default {
@@ -809,21 +810,21 @@
                         console.log(p)
                         _this.shareDocList = p
 
-                        // talentDocsByTalentId({id:_this.editTalent.id}).then(q=>{
-                        //     console.log(q)
-                        //     _this.$nextTick(() => {
-                        //         _this.$refs.shareDoc.setCheckedKeys(q)
-                        //     });
-                        // })
+                        companyDocsByCompanyId({id:_this.editCompany.id}).then(q=>{
+                            console.log(q)
+                            _this.$nextTick(() => {
+                                _this.$refs.shareDoc.setCheckedKeys(q)
+                            });
+                        })
                     })
                 }
                 else {
-                    // talentDocsByTalentId({id:_this.editTalent.id}).then(q=>{
-                    //     console.log(q)
-                    //     _this.$nextTick(() => {
-                    //         _this.$refs.shareDoc.setCheckedKeys(q)
-                    //     });
-                    // })
+                    companyDocsByCompanyId({id:_this.editCompany.id}).then(q=>{
+                        console.log(q)
+                        _this.$nextTick(() => {
+                            _this.$refs.shareDoc.setCheckedKeys(q)
+                        });
+                    })
                 }
             },
             closeShareDocDialog(){
@@ -845,9 +846,9 @@
                         d.push(p.id)
                     }
                 })
-                talentDocAddShare({talentId:_this.editTalent.id,docIds:d}).then(p=>{
+                companyDocAddShare({companyId:_this.editCompany.id,docIds:d}).then(p=>{
                     _this.$message({
-                        message: '共享人才数据到文件夹成功',
+                        message: '共享公司数据到文件夹成功',
                         type: 'success'
                     });
                     _this.shareDocVisible=false

@@ -158,6 +158,18 @@ export const companyList = (params) => { return io.post(`${base}/company/list`, 
 export const companyListPage = (params) => { return io.post(`${base}/company/list-all-page`, params) };
 export const companyListAll = (params) => { return io.post(`${base}/company/list-all`, params) };
 export const companyDel = (params) => { return io.post(`${base}/company/del`, params) };
-export const tcompanyAdminDel = (params) => { return io.post(`${base}/company/admin-del`, params) };
+export const companyAdminDel = (params) => { return io.post(`${base}/company/admin-del`, params) };
 export const companySave = (params) => { return io.post(`${base}/company/save`, params) };
 export const companyShareList = (params) => { return io.post(`${base}/talent/list-share`, params) };
+//company-doc
+export const companyDocList = (params) => { return io.post(`${base}/company-doc/list`, params) };
+export const companyDocListAll = (params) => { return io.post(`${base}/company-doc/list-all`, params) };
+export const companyDocSave = (params) => { return io.post(`${base}/company-doc/save`, params) };
+export const companyDocGet = (params) => { return io.post(`${base}/company-doc/get`, params) };
+export const companyDocDel = (params) => { return io.post(`${base}/company-doc/del`, params) };
+export const companyDocAddShare = (params) => { return io.post(`${base}/company-doc/add-share`, params) };
+export const companyDocsByCompanyId = (params) => { return io.post(`${base}/company-doc/docs-bycompany`, params) };
+//vcompanyDoc
+export const vCompanyDocList = (params) => { return io.post(`${base}/vcompanydoc/list`, params) };
+export const vCompanyDocGet = (params) => { return io.post(`${base}/vcompanydoc/get`, params) };
+
