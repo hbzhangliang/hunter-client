@@ -1,5 +1,9 @@
 <template>
   <section>
+
+    <div style="margin-left: auto;margin-right: auto;margin-top: 20px;">
+      <h2>Welcome to Hunter System</h2>
+    </div>
     <el-dialog title="请登录系统" :visible.sync="loginDialog" size="tiny" :show-close="false"
                width="28%"
                :close-on-click-modal="false" :close-on-press-escape="false">

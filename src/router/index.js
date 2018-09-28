@@ -45,6 +45,9 @@ import myCompanyFaked from 'endportView/company/myCompanyFaked'
 import allCompanyFaked from 'endportView/company/allCompanyFaked'
 import docCompany from 'endportView/company/docCompany'
 
+
+import errorPage from  'endportView/error'
+
 Vue.use(Router)
 
 // noinspection JSAnnotator
@@ -58,7 +61,7 @@ export default new Router({
           {
               path: '1-1',
               name: '1-1',
-              component: test
+              component: errorPage
           },
           {
               path: '1-2',
