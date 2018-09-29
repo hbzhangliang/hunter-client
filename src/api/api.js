@@ -173,3 +173,25 @@ export const companyDocsByCompanyId = (params) => { return io.post(`${base}/comp
 export const vCompanyDocList = (params) => { return io.post(`${base}/vcompanydoc/list`, params) };
 export const vCompanyDocGet = (params) => { return io.post(`${base}/vcompanydoc/get`, params) };
 
+
+//project
+export const projectGetVo = (params) => { return io.post(`${base}/project/get-vo`, params) };
+export const projectGet = (params) => { return io.post(`${base}/project/get`, params) };
+export const projectList = (params) => { return io.post(`${base}/project/list`, params) };
+export const projectListPage = (params) => { return io.post(`${base}/project/list-all-page`, params) };
+export const projectListAll = (params) => { return io.post(`${base}/project/list-all`, params) };
+export const projectDel = (params) => { return io.post(`${base}/project/del`, params) };
+export const projectAdminDel = (params) => { return io.post(`${base}/project/admin-del`, params) };
+export const projectSave = (params) => { return io.post(`${base}/project/save`, params) };
+export const projectShareList = (params) => { return io.post(`${base}/project/list-share`, params) };
+//project-doc
+export const projectDocList = (params) => { return io.post(`${base}/project-doc/list`, params) };
+export const projectDocListAll = (params) => { return io.post(`${base}/project-doc/list-all`, params) };
+export const projectDocSave = (params) => { return io.post(`${base}/project-doc/save`, params) };
+export const projectDocGet = (params) => { return io.post(`${base}/project-doc/get`, params) };
+export const projectDocDel = (params) => { return io.post(`${base}/project-doc/del`, params) };
+export const projectDocAddShare = (params) => { return io.post(`${base}/project-doc/add-share`, params) };
+export const projectDocsByProjectId = (params) => { return io.post(`${base}/project-doc/docs-byproject`, params) };
+//vprojectDoc
+export const vProjectDocList = (params) => { return io.post(`${base}/vprojectdoc/list`, params) };
+export const vProjectDocGet = (params) => { return io.post(`${base}/vprojectdoc/get`, params) };

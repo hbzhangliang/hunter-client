@@ -45,6 +45,8 @@ import myCompanyFaked from 'endportView/company/myCompanyFaked'
 import allCompanyFaked from 'endportView/company/allCompanyFaked'
 import docCompany from 'endportView/company/docCompany'
 
+import myProject from 'endportView/project/myProject'
+
 
 import errorPage from  'endportView/error'
 
@@ -273,6 +275,18 @@ export default new Router({
               name:'company-doc',
               component:docCompany
           },
+
+
+
+
+
+          {
+              path:'my-project',
+              name:'my-project',
+              component:myProject
+          },
+
+
 
         {
           path: '*',

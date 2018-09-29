@@ -220,3 +220,11 @@
     float: left;
     padding: 2px;
 }
+
+
+.aLink{
+    cursor: pointer;
+}
+.aLink:hover{
+    color: red;
+}

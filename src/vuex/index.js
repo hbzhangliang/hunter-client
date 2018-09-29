@@ -88,6 +88,9 @@ export default new Vuex.Store({
           {key:"company-doc13",label:"公司003",router:"base/company-doc*"},
           {key:"company-doc14",label:"共享公司a",router:"base/company-doc*"},
           {key:"company-doc15",label:"共享公司b",router:"base/company-doc*"},
+
+          //项目页面
+          {key:"my-project",label:"所有项目",router:"base/my-project"},
           ],
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],
