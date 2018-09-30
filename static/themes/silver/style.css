@@ -238,3 +238,9 @@ html,body{
 .rt_tab_rm{
     margin-right: 15px;
 }
+
+
+/*20180811*/
+.hidden{
+    display: none;
+}
