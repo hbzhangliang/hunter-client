@@ -224,7 +224,14 @@
 
 .aLink{
     cursor: pointer;
+    text-decoration: underline;
 }
 .aLink:hover{
     color: red;
+}
+
+.list-img{
+    width: 23px;
+    height: 23px;
+    vertical-align: middle;
 }

@@ -108,4 +108,15 @@ end.arrayToStrArray=(ids,list)=>{
     return null
 }
 
+
+end.checkInStr=(str,p)=>{
+    if(str.indexOf(","+p+",")>0){
+        return true
+    }
+    if(str.indexOf(p+",")==0){
+        return true
+    }
+    return  false;
+}
+
 export default end

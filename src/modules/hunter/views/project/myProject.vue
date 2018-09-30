@@ -41,13 +41,157 @@
 
                     <el-table-column sortable="custom" prop="" label="公司编号" align="center" min-width="80">
                         <template scope="scope">
-                            <a class="aLink" @click="showCompany(scope.row)">{{scope.row.companyId}}</a>
+                            <el-popover
+                                    placement="bottom"
+                                    width="400"
+                                    @show="companyShow(scope.row)"
+                                    trigger="click">
+                                <el-form  size="small">
+
+                                    <el-row>
+                                        <el-col :span="24"><div class="grid-content bg-header">
+                                            <label style="float:left;">类型</label>
+                                        </div></el-col>
+                                    </el-row>
+
+                                    <el-form-item label="编号" class="hidden">
+                                        <el-input v-model="viewCompany.id" placeholder="请输入内容" size="medium"></el-input>
+                                    </el-form-item>
+
+                                    <el-row>
+                                        <el-col :span="4"><div class="grid-content bg-left">
+                                            <label class="lb-left">公司类型：</label>
+                                        </div></el-col>
+                                        <el-col :span="8"><div class="grid-content bg-right">
+                                            <el-radio-group v-model="viewCompany.type">
+                                                <el-radio v-for="item in dictMap.CorpType" :label="item.code">{{item.name}}</el-radio>
+                                            </el-radio-group>
+                                        </div></el-col>
+                                        <el-col :span="4"><div class="grid-content bg-left">
+                                            <label class="lb-left">子母公司：</label>
+                                        </div></el-col>
+                                        <el-col :span="8"><div class="grid-content bg-right">
+                                            <el-radio-group v-model="viewCompany.mtype">
+                                                <el-radio v-for="item in dictMap.CorpMtype" :label="item.code">{{item.name}}</el-radio>
+                                            </el-radio-group>
+                                        </div></el-col>
+                                    </el-row>
+
+
+                                    <el-row>
+                                        <el-col :span="24"><div class="grid-content bg-header">
+                                            <label style="float:left;">基本信息</label>
+                                        </div></el-col>
+                                    </el-row>
+                                    <el-row>
+                                        <el-col :span="4"><div class="grid-content bg-left">
+                                            <label class="lb-left">名称：</label>
+                                        </div></el-col>
+                                        <el-col :span="8"><div class="grid-content bg-right">
+                                            <el-input v-model="viewCompany.name" placeholder="请输入内容" size="medium"></el-input>
+                                        </div></el-col>
+                                        <el-col :span="4"><div class="grid-content bg-left">
+                                            <label class="lb-left">简称：</label>
+                                        </div></el-col>
+                                        <el-col :span="8"><div class="grid-content bg-right">
+                                            <el-input v-model="viewCompany.shortName" placeholder="请输入内容" size="medium"></el-input>
+                                        </div></el-col>
+                                    </el-row>
+
+
+                                    <el-row>
+                                        <el-col :span="4"><div class="grid-content bg-left">
+                                            <label class="lb-left">行业：</label>
+                                        </div></el-col>
+                                        <el-col :span="8"><div class="grid-content bg-right">
+                                            <el-input v-model="viewCompany.tmpBusinessName" placeholder="请输入内容" size="medium" readonly="true"></el-input>
+                                        </div></el-col>
+                                        <el-col :span="4"><div class="grid-content bg-left">
+                                            <label class="lb-left">城市：</label>
+                                        </div></el-col>
+                                        <el-col :span="8"><div class="grid-content bg-right">
+                                            <el-input v-model="viewCompany.tmpCityName" placeholder="请输入内容" size="medium" readonly="true"></el-input>
+                                        </div></el-col>
+                                    </el-row>
+
+
+                                    <el-row>
+                                        <el-col :span="4"><div class="grid-content bg-left">
+                                            <label class="lb-left">融资情况：</label>
+                                        </div></el-col>
+                                        <el-col :span="8"><div class="grid-content bg-right">
+                                            <el-radio-group v-model="viewCompany.finance">
+                                                <el-radio v-for="item in dictMap.CorpFinace" :label="item.code">{{item.name}}</el-radio>
+                                            </el-radio-group>
+                                        </div></el-col>
+                                        <el-col :span="4"><div class="grid-content bg-left">
+                                            <label class="lb-left">共享方式：</label>
+                                        </div></el-col>
+                                    </el-row>
+
+                                    <el-row>
+                                        <el-col :span="24"><div class="grid-content bg-header">
+                                            <label style="float:left;">公司介绍</label>
+                                        </div></el-col>
+                                    </el-row>
+
+                                    <el-row>
+                                        <el-col :span="4"><div class="grid-content bg-left">
+                                            <label class="lb-left">公司简介：</label>
+                                        </div></el-col>
+                                        <el-col :span="20"><div class="grid-content bg-right">
+                                            <el-input v-model="viewCompany.introduce" placeholder="请输入内容" size="medium" ></el-input>
+                                        </div></el-col>
+                                    </el-row>
+                                </el-form>
+                                <a class="aLink" slot="reference">{{scope.row.companyId}}</a>
+                            </el-popover>
                         </template>
                     </el-table-column>
 
-                    <el-table-column sortable="custom" prop="mtype" label="联系人编号" align="center" min-width="80">
+                    <el-table-column sortable="custom" prop="mtype" label="联系人名称" align="center" min-width="80">
                         <template scope="scope">
-                            <a class="aLink" @click="showTalent(scope.row)">{{scope.row.talentId}}</a>
+                            <el-popover
+                                    placement="bottom"
+                                    width="600"
+                                    @show="talentShow(scope.row)"
+                                    trigger="click">
+                                <el-table :data="viewTalentList" border v-loading="loading"
+                                          size="mini"
+                                          border>
+                                    <el-table-column  prop="name" label="名称" align="center">
+                                    </el-table-column>
+                                    <el-table-column  prop="engName" label="英文名" align="center">
+                                    </el-table-column>
+                                    <el-table-column  prop="gender" label="性别" align="center">
+                                        <template scope="scope">
+                                            <span v-if="1==scope.row.gender">男</span>
+                                            <span v-else>女</span>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column  prop="type" label="类型" align="center">
+                                        <template scope="scope">
+                                            <span v-for="item in dictMap.TalentType" v-if="item.code==scope.row.type">{{item.name}}</span>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column  prop="tmpNativePlace" label="籍贯" align="center">
+                                    </el-table-column>
+                                    <el-table-column  prop="" label="图像" align="center">
+                                        <template scope="scope">
+                                           <img :src="scope.row.avatar" class="list-img"/>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column  prop="phone1" label="电话" align="center">
+                                    </el-table-column>
+                                    <el-table-column  prop="email1" label="Email" align="center">
+                                    </el-table-column>
+                                    <el-table-column  prop="tmpBusinessName" label="行业" align="center">
+                                    </el-table-column>
+                                    <el-table-column  prop="tmpCareerName" label="职能" align="center">
+                                    </el-table-column>
+                                </el-table>
+                                <a class="aLink" slot="reference">{{scope.row.talentIds}}</a>
+                            </el-popover>
                         </template>
                     </el-table-column>
 
@@ -179,6 +323,81 @@
                 </div>
             </el-dialog>
 
+
+
+            <el-dialog
+                    size="tiny"
+                    width="80%"
+                    title="人才选择"
+                    :visible.sync="innerTalentVisible"
+                    append-to-body>
+
+                <div class="tableBox">
+                    <div class="pageTableContent">
+                        <el-table :data="pageParamsTalent.data" border
+                                  size="mini"
+                                  @selection-change="handleSelectionChangeTalent"
+                                  border>
+                            <el-table-column width="50"
+                                             fixed
+                                             type="selection">
+                            </el-table-column>
+                            <el-table-column  prop="name" label="名称" align="center">
+                            </el-table-column>
+                            <el-table-column  prop="engName" label="英文名" align="center">
+                            </el-table-column>
+                            <el-table-column  prop="gender" label="性别" align="center">
+                                <template scope="scope">
+                                    <span v-if="1==scope.row.gender">男</span>
+                                    <span v-else>女</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column  prop="type" label="类型" align="center">
+                                <template scope="scope">
+                                    <span v-for="item in dictMap.TalentType" v-if="item.code==scope.row.type">{{item.name}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column sortable="custom" prop="nativePlace" label="籍贯" align="center" min-width="120">
+                                <template scope="scope">
+                                    <span v-for="item in cityList" v-if="item.id==scope.row.nativePlace">{{item.name}}</span>
+                                </template>
+                            </el-table-column>
+                            <el-table-column  prop="" label="图像" align="center">
+                                <template scope="scope">
+                                    <img :src="scope.row.avatar" class="list-img"/>
+                                </template>
+                            </el-table-column>
+                            <el-table-column  prop="phone1" label="电话" align="center">
+                            </el-table-column>
+                            <el-table-column  prop="email1" label="Email" align="center">
+                            </el-table-column>
+                        </el-table>
+
+                    </div>
+
+                    <div class="block">
+                        <span class="demonstration"></span>
+                        <el-pagination v-if="pageParamsTalent.totalRows"
+                                       @current-change="handleCurrentChangeTalent"
+                                       @size-change="handleSizeChangeTalent"
+                                       :current-page.sync="pageParamsTalent.page"
+                                       :page-sizes="[10, 20, 50, 100,200]"
+                                       :page-size="pageParamsTalent.pageSize"
+                                       layout="total,sizes,prev, pager, next, jumper"
+                                       :total="pageParamsTalent.totalRows">
+                        </el-pagination>
+                    </div>
+
+                    <div style="text-align: center;margin-top: 10px;margin-bottom: 10px;">
+                        <el-button size="mini" @click="closeInnerTalentDialog" icon="el-icon-circle-close-outline">取消</el-button>
+                        <el-button size="mini" type="primary" @click="chooseInnerTalent" icon="el-icon-success">确定</el-button>
+                    </div>
+                </div>
+            </el-dialog>
+
+
+
+
             <el-form  size="small">
 
                 <el-row>
@@ -218,7 +437,9 @@
                         <label class="lb-left">客户联系人：</label>
                     </div></el-col>
                     <el-col :span="8"><div class="grid-content bg-right">
-                        <el-input v-model="bean.talentId" placeholder="请输入内容" size="medium"></el-input>
+                        <el-input v-model="bean.tmpTalentNames" placeholder="请输入内容" size="medium"></el-input>
+                        <el-button size="mini" type="primary" @click="talentAdd" icon="el-icon-setting">添加</el-button>
+                        <el-button size="mini" type="warning" @click="talentClean" icon="el-icon-setting">清空</el-button>
                     </div></el-col>
                 </el-row>
 
@@ -364,7 +585,9 @@
     import {projectGetVo,projectGet,projectList,projectListPage,projectListAll,projectDel,projectAdminDel,projectSave,projectShareList,
         projectDocList,projectDocListAll,projectDocSave,projectDocGet,projectDocDel,projectDocAddShare,projectDocsByProjectId,
         vProjectDocList,vProjectDocGet,
-        dictListChildrenByCodes,utilTree,docListOwnerFront
+        dictListChildrenByCodes,utilTree,docListOwnerFront,
+        companyGetVo,cityListAll,
+        talentList
     } from '@/api/api'
     import $ from 'jquery'
     import end from '@/common/js/utils.js'
@@ -374,6 +597,19 @@
                 loading: false,
                 defaultPageSize: 10,
                 pageParams:{
+                    page: 1,
+                    pageSize: 10,
+                    totalRows: null,
+                    totalPage: null,
+                    orderBy: 'id',
+                    direction: 'desc',
+                    params: {
+                        eq_delStatus:"Normal",
+                        lk_name: null
+                    },
+                    data: []
+                },
+                pageParamsTalent:{
                     page: 1,
                     pageSize: 10,
                     totalRows: null,
@@ -410,7 +646,7 @@
                     {key: 1, prop: 'name', label: '名称', sortable: 'custom', type: '', orgin: 'type', width: '100'},
                     {key: 2, prop: 'scount', label: '数量', sortable: 'custom', type: '', orgin: 'avatar', width: '120'},
                     {key: 3, prop: 'companyId', label: '公司编号', sortable: 'custom', type: '', orgin: 'companyId', width: '120'},
-                    {key: 4, prop: 'talentId', label: '联系人编号', sortable: 'custom', type: '', orgin: 'talentId', width: '120'},
+                    {key: 4, prop: 'talentIds', label: '联系人编号', sortable: 'custom', type: '', orgin: 'talentIds', width: '120'},
                     {key: 5, prop: 'city', label: '城市', sortable: 'custom', type: '', orgin: 'city', width: '120'},
                     {key: 6, prop: 'position', label: '职位', sortable: 'custom', type: '', orgin: 'position', width: '120'},
                     {key: 7, prop: 'salary', label: '薪水', sortable: 'custom', type: '', orgin: 'salary', width: '120'},
@@ -430,7 +666,7 @@
                     {key: 1, prop: 'name', label: '名称', sortable: 'custom', type: '', orgin: 'type', width: '100'},
                     {key: 2, prop: 'scount', label: '数量', sortable: 'custom', type: '', orgin: 'avatar', width: '120'},
                     {key: 3, prop: 'companyId', label: '公司编号', sortable: 'custom', type: '', orgin: 'companyId', width: '120'},
-                    {key: 4, prop: 'talentId', label: '联系人编号', sortable: 'custom', type: '', orgin: 'talentId', width: '120'},
+                    {key: 4, prop: 'talentIds', label: '联系人编号', sortable: 'custom', type: '', orgin: 'talentIds', width: '120'},
                     {key: 5, prop: 'city', label: '城市', sortable: 'custom', type: '', orgin: 'city', width: '120'},
                     {key: 6, prop: 'position', label: '职位', sortable: 'custom', type: '', orgin: 'position', width: '120'},
                 ],
@@ -442,7 +678,10 @@
                     name:null,
                     scount:null,
                     companyId:null,
-                    talentId:null,
+                    talentIds:null,
+                    tmpTalentNames:null,
+                    tmpTalentIds:null,
+                    talentVoList:null,
                     tmpCityId:null,
                     tmpCityName:null,
                     city:null,
@@ -468,7 +707,15 @@
                 },
                 dictMap:{
                     ProjectPriority:[],
-                    ProcessStatus:[]
+                    ProcessStatus:[],
+                    CorpType:[],
+                    CorpMtype:[],
+                    CorpFinace:[],
+                    LanguageList:[],
+                    LanguageLevel:[],
+                    EducationLevel:[],
+                    TalentType:[],
+                    MarryStatus:[]
                 },
                 treeMap:{
                     CareerTree:[],
@@ -482,13 +729,49 @@
                 shareDocList:[],
                 editProject:null,
                 defaultShareDocIds:[],
-                defaultShareKeys:[]
+                defaultShareKeys:[],
+                viewCompany:{
+                    id:null,
+                    type:null,
+                    mtype:null,
+                    parentId:null,
+                    name:null,
+                    owner:null,
+                    shortName:null,
+                    tmpBusinessId:null,
+                    tmpBusinessName:null,
+                    business:null,
+                    tmpCityId:null,
+                    tmpCityName:null,
+                    city:null,
+                    finance:null,
+                    introduce:null,
+                    delStatus:null,
+                    flag:null,
+                    status:null,
+                },
+                viewTalentList:[],
+                cityList:[],
+
+                //人才选择
+                innerTalentVisible:false,
+                talentList:[],
+                multipleSelectionTalent:[]
+
             }
         },
         methods:{
+            initCity(){
+                let _this=this
+                if(null==_this.cityList) {
+                    cityListAll().then(p => {
+                        _this.cityList = p
+                    })
+                }
+            },
             initDictMap(){
                 let _this=this
-                var d=["ProjectPriority","ProcessStatus"]
+                var d=["ProjectPriority","ProcessStatus","CorpType","CorpMtype","CorpFinace","LanguageList","LanguageLevel","EducationLevel","TalentType","MarryStatus"]
                 dictListChildrenByCodes({"codes":d}).then(p=>{
                     _this.dictMap=p
                     console.log(p)
@@ -580,7 +863,10 @@
                     name:null,
                     scount:null,
                     companyId:null,
-                    talentId:null,
+                    talentIds:null,
+                    tmpTalentNames:null,
+                    tmpTalentIds:null,
+                    talentVoList:null,
                     tmpCityId:null,
                     tmpCityName:null,
                     city:null,
@@ -926,13 +1212,69 @@
                     _this.$message.error('后端错误:'+error.message);
                 })
             },
-            showCompany(item){
-                console.log(item)
+            companyShow(item){
+                let _this=this
+                companyGetVo({id:item.id}).then(p=>{
+                    _this.viewCompany=p
+                })
             },
-            showTalent(item){
-                console.log(item)
-            }
+            talentShow(item){
+                let _this=this
+                projectGetVo({id:item.id}).then(p=>{
+                    console.log(p.talentVoList)
+                    _this.viewTalentList=p.talentVoList
+                })
+            },
+            talentAdd(){
+                let _this=this
+                this.innerTalentVisible=true
+                this.initTalent()
+            },
+            talentClean(){
+                let _this=this
+                _this.bean.talentIds=""
+                _this.bean.tmpTalentIds=[]
+                _this.bean.tmpTalentNames=""
+                _this.bean.talentVoList=[]
+            },
 
+            closeInnerTalentDialog(){
+                this.innerTalentVisible=false
+            },
+            chooseInnerTalent(){
+                let _this=this
+                this.innerTalentVisible=false
+                this.multipleSelectionTalent.forEach(p=>{
+                    if(!end.checkInStr(_this.bean.talentIds,p)){
+                        _this.bean.talentIds+=p+","
+                    }
+                })
+            },
+            handleCurrentChangeTalent(item){
+               this.pageParamsTalent.page=item
+               this.initTalent()
+            },
+            handleSizeChangeTalent(count){
+                this.pageParamsTalent.pageSize=count
+                this.initTalent();
+            },
+            initTalent(){
+                var _this=this;
+                _this.loading=true;
+                talentList(_this.pageParamsTalent).then(res => {
+                    console.log(res)
+                    _this.pageParamsTalent=res
+                    _this.loading=false;
+                });
+            },
+            handleSelectionChangeTalent(val){
+                let _this=this
+                var d=[]
+                val.forEach(p=>{
+                    d.push(p.id)
+                })
+                _this.multipleSelectionTalent=d
+            }
 
         },
         components: {},
