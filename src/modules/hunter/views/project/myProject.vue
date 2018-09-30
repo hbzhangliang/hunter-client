@@ -1247,6 +1247,16 @@
                 this.multipleSelectionTalent.forEach(p=>{
                     if(!end.checkInStr(_this.bean.talentIds,p)){
                         _this.bean.talentIds+=p+","
+
+                        //名称也加上去
+                        _this.pageParamsTalent.data.forEach(q=>{
+                            if(p==q.id){
+                                if(_this.bean.tmpTalentNames==null){
+                                    _this.bean.tmpTalentNames=""
+                                }
+                                _this.bean.tmpTalentNames+=q.name+","
+                            }
+                        })
                     }
                 })
             },
