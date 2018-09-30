@@ -117,12 +117,12 @@
                                   {id:"all-faked-project",path:"all-faked-project",icon:"el-icon-document",name:"所有删除"}]}]},
               {id:"6",path:"6",icon:"el-icon-menu",name:"文件夹",children:
                       [{id:"6-1",path:"6-1",icon:"el-icon-document",name:"我的文件夹",children:
-                              [{id:"company-doc16",path:"company-doc16",icon:"el-icon-document",name:"项目001"},
-                                  {id:"company-doc17",path:"company-doc17",icon:"el-icon-document",name:"项目002"},
-                                  {id:"company-doc18",path:"company-doc18",icon:"el-icon-document",name:"项目003"}]},
+                              [{id:"project-doc16",path:"project-doc16",icon:"el-icon-document",name:"项目001"},
+                                  {id:"project-doc17",path:"project-doc17",icon:"el-icon-document",name:"项目002"},
+                                  {id:"project-doc18",path:"project-doc18",icon:"el-icon-document",name:"项目003"}]},
                           {id:"6-2",path:"6-2",icon:"el-icon-document",name:"共享文件夹",children:
-                                  [{id:"company-doc19",path:"company-doc19",icon:"el-icon-document",name:"共享项目a"},
-                                      {id:"company-doc20",path:"company-doc20",icon:"el-icon-document",name:"共享项目b"}]}
+                                  [{id:"project-doc19",path:"project-doc19",icon:"el-icon-document",name:"共享项目a"},
+                                      {id:"project-doc20",path:"project-doc20",icon:"el-icon-document",name:"共享项目b"}]}
                       ]}],
 
           menu_report:[],

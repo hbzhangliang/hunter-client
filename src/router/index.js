@@ -46,6 +46,20 @@ import allCompanyFaked from 'endportView/company/allCompanyFaked'
 import docCompany from 'endportView/company/docCompany'
 
 import myProject from 'endportView/project/myProject'
+import myProcessProject from 'endportView/project/myProcessProject'
+import mySuccessProject from 'endportView/project/mySuccessProject'
+import myPauseProject from 'endportView/project/myPauseProject'
+import myNoEffectiveProject from 'endportView/project/myNoEffectiveProject'
+import myCanceledProject from 'endportView/project/myCanceledProject'
+import ptProject from 'endportView/project/ptProject'
+import ptProcessProject from 'endportView/project/ptProcessProject'
+import ptSuccessProject from 'endportView/project/ptSuccessProject'
+import ptPauseProject from 'endportView/project/ptPauseProject'
+import ptNoEffectiveProject from 'endportView/project/ptNoEffectiveProject'
+import ptCanceledProject from 'endportView/project/ptCanceledProject'
+import myProjectFaked from 'endportView/project/myProjectFaked'
+import allProjectFaked from 'endportView/project/allProjectFaked'
+import docProject from 'endportView/project/docProject'
 
 
 import errorPage from  'endportView/error'
@@ -285,7 +299,78 @@ export default new Router({
               name:'my-project',
               component:myProject
           },
+          {
+              path:'my-process-project',
+              name:'my-process-project',
+              component:myProcessProject
+          },
+          {
+              path:'my-success-project',
+              name:'my-success-project',
+              component:mySuccessProject
+          },
+          {
+              path:'my-pause-project',
+              name:'my-pause-project',
+              component:myPauseProject
+          },
+          {
+              path:'my-noEffective-project',
+              name:'my-noEffective-project',
+              component:myNoEffectiveProject
+          },
+          {
+              path:'my-canceled-project',
+              name:'my-canceled-project',
+              component:myCanceledProject
+          },
 
+          {
+              path:'pt-project',
+              name:'pt-project',
+              component:ptProject
+          },
+          {
+              path:'pt-process-project',
+              name:'pt-process-project',
+              component:ptProcessProject
+          },
+          {
+              path:'pt-success-project',
+              name:'pt-success-project',
+              component:ptSuccessProject
+          },
+          {
+              path:'pt-pause-project',
+              name:'pt-pause-project',
+              component:ptPauseProject
+          },
+          {
+              path:'pt-noEffective-project',
+              name:'pt-noEffective-project',
+              component:ptNoEffectiveProject
+          },
+          {
+              path:'pt-canceled-project',
+              name:'pt-canceled-project',
+              component:ptCanceledProject
+          },
+
+          {
+              path:'my-faked-project',
+              name:'my-faked-project',
+              component:myProjectFaked
+          },
+          {
+              path:'all-faked-project',
+              name:'all-faked-project',
+              component:allProjectFaked
+          },
+          {
+              path:'project-doc*',
+              name:'project-doc',
+              component:docProject
+          },
 
 
         {

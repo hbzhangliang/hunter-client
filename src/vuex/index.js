@@ -91,6 +91,29 @@ export default new Vuex.Store({
 
           //项目页面
           {key:"my-project",label:"所有项目",router:"base/my-project"},
+          {key:"my-process-project",label:"进展中的",router:"base/my-process-project"},
+          {key:"my-success-project",label:"已成功的",router:"base/my-success-project"},
+          {key:"my-pause-project",label:"暂停的",router:"base/my-pause-project"},
+          {key:"my-noEffective-project",label:"失效的",router:"base/my-noEffective-project"},
+          {key:"my-canceled-project",label:"已取消",router:"base/my-canceled-project"},
+
+          {key:"pt-project",label:"所有项目",router:"base/pt-project"},
+          {key:"pt-process-project",label:"进展中的",router:"base/pt-process-project"},
+          {key:"pt-success-project",label:"已成功的",router:"base/pt-success-project"},
+          {key:"pt-pause-project",label:"暂停的",router:"base/pt-pause-project"},
+          {key:"pt-noEffective-project",label:"失效的",router:"base/pt-noEffective-project"},
+          {key:"pt-canceled-project",label:"已取消",router:"base/pt-canceled-project"},
+
+          {key:"my-faked-project",label:"我删除的",router:"base/my-faked-project"},
+          {key:"all-faked-project",label:"所有删除",router:"base/all-faked-project"},
+
+          {key:"project-doc16",label:"项目001",router:"base/project-doc*"},
+          {key:"project-doc17",label:"项目002",router:"base/project-doc*"},
+          {key:"project-doc18",label:"项目003",router:"base/project-doc*"},
+          {key:"project-doc19",label:"共享项目a",router:"base/project-doc*"},
+          {key:"project-doc20",label:"共享项目b",router:"base/project-doc*"},
+
+
           ],
       //选择到tab中的数据
       options:[{key:"main",label:"主页",router:"base/firstPage"}],
