@@ -44,7 +44,7 @@
     data () {
       return {
           isCollapse:false,
-          menu_user:[{id:"1",path:"1",icon:"el-icon-goods",name:"订阅搜索(人才)",children:
+          menu_user:[{id:"1",path:"1",icon:"el-icon-phone",name:"订阅搜索(人才)",children:
                   [{id:"1-1",path:"1-1",icon:"el-icon-menu",name:"我创建的",children:
                       [{id:"my-talent",path:"my-talent",icon:"el-icon-document",name:"所有人才"},
                           {id:"my-candidate",path:"my-candidate",icon:"el-icon-document",name:"我的候选人"},
@@ -59,20 +59,20 @@
                               [{id:"1-3-1",path:"1-3-1",icon:"el-icon-document",name:"收取邮箱简历"},
                                   {id:"1-3-2",path:"1-3-2",icon:"el-icon-document",name:"设置邮箱"}]},
                       {id:"1-4",path:"1-4",icon:"el-icon-menu",name:"回收站",children:
-                              [{id:"my-talentfaked",path:"my-talentfaked",icon:"el-icon-document",name:"我删除的"},
-                                  {id:"all-talentfaked",path:"all-talentfaked",icon:"el-icon-document",name:"所有删除"}]}]},
+                              [{id:"my-talentfaked",path:"my-talentfaked",icon:"el-icon-delete",name:"我删除的"},
+                                  {id:"all-talentfaked",path:"all-talentfaked",icon:"el-icon-delete",name:"所有删除"}]}]},
               {id:"2",path:"2",icon:"el-icon-goods",name:"文件夹",children:
                       [{id:"2-1",path:"2-1",icon:"el-icon-menu",name:"我的文件夹",children:
-                              [{id:"talent-doc6",path:"talent-doc6",icon:"el-icon-document",name:"111"},
-                                  {id:"talent-doc7",path:"talent-doc7",icon:"el-icon-document",name:"222"},
-                                  {id:"talent-doc8",path:"talent-doc8",icon:"el-icon-document",name:"333"}
+                              [{id:"talent-doc6",path:"talent-doc6",icon:"el-icon-tickets",name:"111"},
+                                  {id:"talent-doc7",path:"talent-doc7",icon:"el-icon-tickets",name:"222"},
+                                  {id:"talent-doc8",path:"talent-doc8",icon:"el-icon-tickets",name:"333"}
                                   ]},
                           {id:"2-2",path:"2-2",icon:"el-icon-menu",name:"共享文件夹",children:
-                                  [{id:"talent-doc9",path:"talent-doc9",icon:"el-icon-document",name:"共享111"},
-                                      {id:"talent-doc10",path:"talent-doc10",icon:"el-icon-document",name:"共享222"}
+                                  [{id:"talent-doc9",path:"talent-doc9",icon:"el-icon-tickets",name:"共享111"},
+                                      {id:"talent-doc10",path:"talent-doc10",icon:"el-icon-tickets",name:"共享222"}
                                   ]}
                          ]}],
-          menu_company:[{id:"3",path:"3",icon:"el-icon-goods",name:"订阅搜索(公司)",children:
+          menu_company:[{id:"3",path:"3",icon:"el-icon-service",name:"订阅搜索(公司)",children:
                   [{id:"3-1",path:"3-1",icon:"el-icon-menu",name:"我创建的",children:
                           [{id:"my-company",path:"my-company",icon:"el-icon-document",name:"所有公司"},
                               {id:"my-con-company",path:"my-con-company",icon:"el-icon-document",name:"普通公司"},
@@ -86,18 +86,18 @@
                               {id:"share-sign-company",path:"share-sign-company",icon:"el-icon-document",name:"已签约客户"},
                               {id:"share-terminal-company",path:"share-terminal-company",icon:"el-icon-document",name:"终止合作"}]},
                       {id:"3-3",path:"3-3",icon:"el-icon-menu",name:"回收站",children:
-                              [{id:"my-faked-company",path:"my-faked-company",icon:"el-icon-document",name:"我删除的"},
-                                  {id:"all-faked-company",path:"all-faked-company",icon:"el-icon-document",name:"所有删除"}]}]},
+                              [{id:"my-faked-company",path:"my-faked-company",icon:"el-icon-delete",name:"我删除的"},
+                                  {id:"all-faked-company",path:"all-faked-company",icon:"el-icon-delete",name:"所有删除"}]}]},
               {id:"4",path:"4",icon:"el-icon-goods",name:"文件夹",children:
                       [{id:"4-1",path:"4-1",icon:"el-icon-menu",name:"我的文件夹",children:
-                              [{id:"company-doc11",path:"company-doc11",icon:"el-icon-document",name:"公司001"},
-                                  {id:"company-doc12",path:"company-doc12",icon:"el-icon-document",name:"公司002"},
-                                  {id:"company-doc13",path:"company-doc13",icon:"el-icon-document",name:"公司003"}]},
+                              [{id:"company-doc11",path:"company-doc11",icon:"el-icon-tickets",name:"公司001"},
+                                  {id:"company-doc12",path:"company-doc12",icon:"el-icon-tickets",name:"公司002"},
+                                  {id:"company-doc13",path:"company-doc13",icon:"el-icon-tickets",name:"公司003"}]},
                           {id:"4-2",path:"4-2",icon:"el-icon-menu",name:"共享文件夹",children:
-                                  [{id:"company-doc14",path:"company-doc14",icon:"el-icon-document",name:"共享公司a"},
-                                      {id:"company-doc15",path:"company-doc15",icon:"el-icon-document",name:"共享公司b"}]}
+                                  [{id:"company-doc14",path:"company-doc14",icon:"el-icon-tickets",name:"共享公司a"},
+                                      {id:"company-doc15",path:"company-doc15",icon:"el-icon-tickets",name:"共享公司b"}]}
                       ]}],
-          menu_project:[{id:"5",path:"5",icon:"el-icon-goods",name:"订阅搜索(项目)",children:
+          menu_project:[{id:"5",path:"5",icon:"el-icon-bell",name:"订阅搜索(项目)",children:
                   [{id:"5-1",path:"5-1",icon:"el-icon-menu",name:"我创建的",children:
                           [{id:"my-project",path:"my-project",icon:"el-icon-document",name:"所有项目"},
                               {id:"my-process-project",path:"my-process-project",icon:"el-icon-document",name:"进展中的"},
@@ -113,16 +113,16 @@
                                   {id:"pt-noEffective-project",path:"pt-noEffective-project",icon:"el-icon-document",name:"失效的"},
                                   {id:"pt-canceled-project",path:"pt-canceled-project",icon:"el-icon-document",name:"已取消"}]},
                       {id:"5-3",path:"5-3",icon:"el-icon-menu",name:"回收站",children:
-                              [{id:"my-faked-project",path:"my-faked-project",icon:"el-icon-document",name:"我删除的"},
-                                  {id:"all-faked-project",path:"all-faked-project",icon:"el-icon-document",name:"所有删除"}]}]},
+                              [{id:"my-faked-project",path:"my-faked-project",icon:"el-icon-delete",name:"我删除的"},
+                                  {id:"all-faked-project",path:"all-faked-project",icon:"el-icon-delete",name:"所有删除"}]}]},
               {id:"6",path:"6",icon:"el-icon-goods",name:"文件夹",children:
                       [{id:"6-1",path:"6-1",icon:"el-icon-menu",name:"我的文件夹",children:
-                              [{id:"project-doc16",path:"project-doc16",icon:"el-icon-document",name:"项目001"},
-                                  {id:"project-doc17",path:"project-doc17",icon:"el-icon-document",name:"项目002"},
-                                  {id:"project-doc18",path:"project-doc18",icon:"el-icon-document",name:"项目003"}]},
+                              [{id:"project-doc16",path:"project-doc16",icon:"el-icon-tickets",name:"项目001"},
+                                  {id:"project-doc17",path:"project-doc17",icon:"el-icon-tickets",name:"项目002"},
+                                  {id:"project-doc18",path:"project-doc18",icon:"el-icon-tickets",name:"项目003"}]},
                           {id:"6-2",path:"6-2",icon:"el-icon-menu",name:"共享文件夹",children:
-                                  [{id:"project-doc19",path:"project-doc19",icon:"el-icon-document",name:"共享项目a"},
-                                      {id:"project-doc20",path:"project-doc20",icon:"el-icon-document",name:"共享项目b"}]}
+                                  [{id:"project-doc19",path:"project-doc19",icon:"el-icon-tickets",name:"共享项目a"},
+                                      {id:"project-doc20",path:"project-doc20",icon:"el-icon-tickets",name:"共享项目b"}]}
                       ]}],
 
           menu_report:[],
