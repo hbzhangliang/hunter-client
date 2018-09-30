@@ -30,6 +30,7 @@ export default new Vuex.Store({
       //所有的菜单项
       menus:[
           {key:"main",label:"主页",router:"base/firstPage"},
+          {key:"error",label:"页面建设中",router:"base/error"},
           {key:"1-1",label:"第一个页面页面",router:"base/1-1"},
           {key:"1-2",label:"第二个页面页面",router:"base/1-2"},
           {key:"1-3",label:"第三个页面页面",router:"base/1-3"},

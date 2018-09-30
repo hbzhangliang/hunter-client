@@ -127,13 +127,32 @@
 
           menu_report:[],
 
-          menu_setting:[{id:"5",path:"5",icon:"el-icon-document",name:"设置",children:[{id:"5-1",path:"5-1",icon:"el-icon-document",name:"系统设置",children:[
-                      {id:"5-1-1",path:"5-1-1",icon:"el-icon-document",name:"企业信息维护"},
-                      {id:"5-1-2",path:"5-1-2",icon:"el-icon-document",name:"用户管理"},
-                      {id:"5-1-3",path:"5-1-3",icon:"el-icon-document",name:"角色管理"},
-                      {id:"5-1-4",path:"5-1-4",icon:"el-icon-document",name:"权限管理"},
-                      {id:"5-1-5",path:"5-1-5",icon:"el-icon-document",name:"字典项管理"}
-                  ]}]}]
+          menu_setting:[{id:"7",path:"7",icon:"el-icon-setting",name:"设置",children:
+                  [{id:"7-1",path:"7-1",icon:"el-icon-menu",name:"基础设置",children:[
+                      {id:"city",path:"city",icon:"el-icon-edit-outline",name:"城市设置"},
+                      {id:"business",path:"business",icon:"el-icon-edit-outline",name:"行业设置"},
+                      {id:"career",path:"career",icon:"el-icon-edit-outline",name:"职能设置"}
+                  ]},
+                  {id:"7-2",path:"7-2",icon:"el-icon-menu",name:"业务管理",children:[
+                          {id:"position",path:"position",icon:"el-icon-edit-outline",name:"职位管理"},
+                          {id:"team",path:"team",icon:"el-icon-edit-outline",name:"团队管理"},
+                          {id:"account",path:"account",icon:"el-icon-edit-outline",name:"用户管理"},
+                          {id:"corp",path:"corp",icon:"el-icon-edit-outline",name:"企业管理"}
+                      ]},
+                  {id:"7-3",path:"7-3",icon:"el-icon-menu",name:"资源配置",children:[
+                          {id:"tag",path:"tag",icon:"el-icon-edit-outline",name:"标签管理"},
+                          {id:"dict",path:"dict",icon:"el-icon-edit-outline",name:"字典项管理"},
+                          {id:"doc",path:"doc",icon:"el-icon-edit-outline",name:"共享文件夹管理"}
+                      ]},
+                  {id:"7-4",path:"7-4",icon:"el-icon-menu",name:"权限管理",children:[
+                          {id:"error",path:"7-4-1",icon:"el-icon-edit-outline",name:"权限项配置"},
+                          {id:"error",path:"7-4-2",icon:"el-icon-edit-outline",name:"角色管理"},
+                          {id:"error",path:"7-4-3",icon:"el-icon-edit-outline",name:"角色权限项配置"},
+                          {id:"error",path:"7-4-3",icon:"el-icon-edit-outline",name:"角色用户管理"},
+                          {id:"error",path:"7-4-3",icon:"el-icon-edit-outline",name:"用户角色管理"},
+                          {id:"error",path:"7-4-3",icon:"el-icon-view",name:"综合查询"}
+                      ]}
+                  ]}]
       }
     },
     methods: {

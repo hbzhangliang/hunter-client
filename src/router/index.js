@@ -75,8 +75,8 @@ export default new Router({
       component: Base,
       children:[
           {
-              path: '1-1',
-              name: '1-1',
+              path: 'error',
+              name: 'error',
               component: errorPage
           },
           {

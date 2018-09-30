@@ -40,16 +40,16 @@
                                     {{userInfo==null?'未登录':userInfo.name}}<i class="el-icon-arrow-down el-icon--right"></i>
                                   </span>
                       <el-dropdown-menu slot="dropdown">
-                          <el-dropdown-item command="city">城市设置</el-dropdown-item>
-                          <el-dropdown-item command="business">行业设置</el-dropdown-item>
-                          <el-dropdown-item command="career">职能设置</el-dropdown-item>
-                          <el-dropdown-item command="tag">标签管理</el-dropdown-item>
-                          <el-dropdown-item command="dict">字典项管理</el-dropdown-item>
-                          <el-dropdown-item command="position">职位管理</el-dropdown-item>
-                          <el-dropdown-item command="team">团队管理</el-dropdown-item>
-                          <el-dropdown-item command="corp">企业管理</el-dropdown-item>
-                          <el-dropdown-item command="account">用户管理</el-dropdown-item>
-                          <el-dropdown-item command="doc">共享文件夹</el-dropdown-item>
+                          <!--<el-dropdown-item command="city">城市设置</el-dropdown-item>-->
+                          <!--<el-dropdown-item command="business">行业设置</el-dropdown-item>-->
+                          <!--<el-dropdown-item command="career">职能设置</el-dropdown-item>-->
+                          <!--<el-dropdown-item command="tag">标签管理</el-dropdown-item>-->
+                          <!--<el-dropdown-item command="dict">字典项管理</el-dropdown-item>-->
+                          <!--<el-dropdown-item command="position">职位管理</el-dropdown-item>-->
+                          <!--<el-dropdown-item command="team">团队管理</el-dropdown-item>-->
+                          <!--<el-dropdown-item command="corp">企业管理</el-dropdown-item>-->
+                          <!--<el-dropdown-item command="account">用户管理</el-dropdown-item>-->
+                          <!--<el-dropdown-item command="doc">共享文件夹</el-dropdown-item>-->
                           <el-dropdown-item command="attachment">附件处理</el-dropdown-item>
                           <el-dropdown-item command="webSocket">webSocket</el-dropdown-item>
                           <el-dropdown-item command="calendar">我的日历</el-dropdown-item>
